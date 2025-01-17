@@ -13,8 +13,6 @@ export const caseStudies: CaseStudyProps[] = [
       'Staff training and workflow optimization',
       'Performance monitoring dashboard'
     ],
-    timeline: '8-12 weeks',
-    investment: 'Starting from $15,000',
     image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=800',
     Icon: MessageSquare
   },
@@ -29,8 +27,6 @@ export const caseStudies: CaseStudyProps[] = [
       'Sales team training program',
       'ROI tracking implementation'
     ],
-    timeline: '10-14 weeks',
-    investment: 'Starting from $20,000',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
     Icon: Target
   },
@@ -45,8 +41,6 @@ export const caseStudies: CaseStudyProps[] = [
       'Competitor monitoring setup',
       'Revenue impact reporting'
     ],
-    timeline: '12-16 weeks',
-    investment: 'Starting from $25,000',
     image: 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&q=80&w=800',
     Icon: DollarSign
   },
@@ -61,8 +55,6 @@ export const caseStudies: CaseStudyProps[] = [
       'Performance tracking dashboard',
       'Content strategy development'
     ],
-    timeline: '6-8 weeks',
-    investment: 'Starting from $12,000',
     image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=800',
     Icon: Search
   },
@@ -77,8 +69,6 @@ export const caseStudies: CaseStudyProps[] = [
       'ROI tracking implementation',
       'Team training program'
     ],
-    timeline: '8-10 weeks',
-    investment: 'Starting from $18,000',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
     Icon: TrendingUp
   }

@@ -25,7 +25,7 @@ const Contact = () => {
                 </div>
                 <div className="flex items-center">
                   <Mail className="h-6 w-6 text-indigo-600 mr-3" />
-                  <span className="text-gray-700">contact@smartbiz.ai</span>
+                  <span className="text-gray-700">tripleshot.consulting@gmail.com</span>
                 </div>
                 <div className="flex items-center">
                   <MessageSquare className="h-6 w-6 text-indigo-600 mr-3" />

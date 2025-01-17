@@ -59,9 +59,6 @@ const Header = () => {
                 {item.name}
               </Link>
             ))}
-            <button className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors">
-              Get Started
-            </button>
           </div>
 
           <div className="md:hidden flex items-center">
@@ -91,9 +88,6 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
-              <button className="w-full mt-2 bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors">
-                Get Started
-              </button>
             </div>
           </div>
         )}

@@ -7,8 +7,6 @@ export interface CaseStudyProps {
   challenge: string;
   solution: string;
   scope: string[];
-  timeline: string;
-  investment: string;
   image: string;
   Icon: LucideIcon;
 }
@@ -19,8 +17,6 @@ const CaseStudyCard = ({
   challenge,
   solution,
   scope,
-  timeline,
-  investment,
   image,
   Icon,
 }: CaseStudyProps) => {
@@ -63,17 +59,6 @@ const CaseStudyCard = ({
               </li>
             ))}
           </ul>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <p className="text-sm text-gray-600 mb-1">Timeline</p>
-            <p className="text-lg font-semibold text-indigo-600">{timeline}</p>
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <p className="text-sm text-gray-600 mb-1">Investment</p>
-            <p className="text-lg font-semibold text-indigo-600">{investment}</p>
-          </div>
         </div>
       </div>
     </div>

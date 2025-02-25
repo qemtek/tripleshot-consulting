@@ -4,8 +4,10 @@ import Hero from '../components/Hero';
 import Mission from '../components/Mission';
 import Services from '../components/Services';
 import CaseStudies from '../components/CaseStudies';
+// Import kept for future use
 import Reviews from '../components/reviews/Reviews';
-import Companies from '../components/companies/Companies';
+// Import kept for future use
+// import Companies from '../components/companies/Companies';
 import Team from '../components/Team';
 import Contact from '../components/Contact';
 
@@ -27,8 +29,10 @@ export default function HomePage() {
       <Mission />
       <Services />
       <CaseStudies />
-      <Reviews />
-      <Companies />
+      {/* Reviews section temporarily removed until we have real testimonials */}
+      {/* <Reviews /> */}
+      {/* Companies section temporarily removed */}
+      {/* <Companies /> */}
       <Team />
       <Contact />
     </main>

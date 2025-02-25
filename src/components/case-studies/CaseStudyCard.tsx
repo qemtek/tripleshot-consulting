@@ -1,65 +1,52 @@
 import React from 'react';
-import type { LucideIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
-export interface CaseStudyProps {
+interface CaseStudyCardProps {
+  id: string;
   title: string;
   industry: string;
-  challenge: string;
-  solution: string;
-  scope: string[];
+  summary: string;
   image: string;
-  Icon: LucideIcon;
 }
 
-const CaseStudyCard = ({
+const CaseStudyCard: React.FC<CaseStudyCardProps> = ({
+  id,
   title,
   industry,
-  challenge,
-  solution,
-  scope,
-  image,
-  Icon,
-}: CaseStudyProps) => {
+  summary,
+  image
+}) => {
   return (
-    <div className="bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
+    <div className="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col h-full transition-all hover:shadow-md">
       <div className="relative h-48 overflow-hidden">
-        <img
-          src={image}
-          alt={title}
+        <img 
+          src={image} 
+          alt={`${title} illustration`} 
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-        <div className="absolute bottom-4 left-4 right-4 text-white">
-          <div className="flex items-center gap-2 mb-2">
-            <Icon className="h-6 w-6" />
-            <h3 className="text-xl font-semibold">{title}</h3>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+          <div className="p-4 text-white">
+            <div className="text-xs font-medium bg-blue-600 inline-block px-2 py-1 rounded mb-2">
+              {industry}
+            </div>
+            <h3 className="text-xl font-bold">{title}</h3>
           </div>
-          <p className="text-sm opacity-90">{industry}</p>
         </div>
       </div>
       
-      <div className="p-6">
-        <div className="mb-6">
-          <h4 className="text-sm font-semibold text-gray-500 uppercase mb-2">Challenge</h4>
-          <p className="text-gray-700">{challenge}</p>
-        </div>
+      <div className="p-6 flex-grow flex flex-col">
+        <p className="text-gray-700 mb-6 flex-grow">
+          {summary}
+        </p>
         
-        <div className="mb-6">
-          <h4 className="text-sm font-semibold text-gray-500 uppercase mb-2">Solution</h4>
-          <p className="text-gray-700">{solution}</p>
-        </div>
-
-        <div className="mb-6">
-          <h4 className="text-sm font-semibold text-gray-500 uppercase mb-2">Project Scope</h4>
-          <ul className="space-y-2">
-            {scope.map((item, index) => (
-              <li key={index} className="flex items-start gap-2">
-                <span className="h-2 w-2 bg-indigo-600 rounded-full mt-2" />
-                <span className="text-gray-700">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <Link 
+          to={`/case-studies/${id}`}
+          className="mt-auto inline-flex items-center text-blue-600 font-medium hover:text-blue-800"
+        >
+          Read the full story
+          <ArrowRight className="ml-2 h-4 w-4" />
+        </Link>
       </div>
     </div>
   );

@@ -5,33 +5,33 @@ import TeamMember from './TeamMember';
 const Team = () => {
   const team = [
     {
-      name: 'Dr. Emily Chen',
-      role: 'AI Research Director',
-      image: '/images/team/emily-chen.jpg',
-      bio: 'Ph.D. in Machine Learning with 10+ years experience making AI accessible to businesses.',
+      name: 'Christopher Collins',
+      role: 'CEO/Technology Lead',
+      image: '/images/team/chris-collins.jpg',
+      bio: 'Machine Learning Expert with 10+ years experience making AI accessible to businesses.',
       Icon: Brain,
     },
     {
-      name: 'David Rodriguez',
+      name: 'John Primavesi',
       role: 'Lead Developer',
-      image: '/images/team/david-rodriguez.jpg',
+      image: '/images/team/john-primavesi.jpg',
       bio: 'Full-stack developer specializing in AI integration and automation solutions.',
       Icon: Code,
     },
     {
-      name: 'Sarah Thompson',
-      role: 'Business Strategy Lead',
-      image: '/images/team/sarah-thompson.jpg',
-      bio: 'Former small business owner helping others leverage AI for growth.',
-      Icon: TrendingUp,
-    },
-    {
-      name: 'Michael Foster',
-      role: 'Customer Success Manager',
-      image: '/images/team/michael-foster.jpg',
+      name: 'Harry Godwin',
+      role: 'Infrastructure Lead',
+      image: '/images/team/harry-godwin.jpg',
       bio: 'Dedicated to ensuring businesses get the most from their AI tools.',
       Icon: Users,
     },
+    {
+      name: 'Maria Benitez',
+      role: 'Branding & Design Specialist',
+      image: '/images/team/maria-benitez.png',
+      bio: 'Expert in helping businesses find their identity through branding and design.',
+      Icon: TrendingUp,
+    }
   ];
 
   return (

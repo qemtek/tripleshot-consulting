@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1740517134138",
+    "email": "qemtek@gmail.com",
+    "name": "",
+    "company": "",
+    "conversation": [
+      {
+        "text": "👋 Hi there! I'm the TripleShot Assistant. How can I help you today?",
+        "sender": "bot",
+        "timestamp": "2025-02-25T20:58:31.113Z"
+      },
+      {
+        "text": "I want to enquire about services",
+        "sender": "user",
+        "timestamp": "2025-02-25T20:58:37.274Z"
+      },
+      {
+        "text": "Great! TripleShot Consulting offers a range of services including customer service solutions, marketing automation, financial management tools, business operations optimization, data analysis, and technology skills training. We provide free initial consultations to understand your specific needs. Would you like to schedule a consultation or need more details on any specific service?",
+        "sender": "bot",
+        "timestamp": "2025-02-25T20:58:40.417Z"
+      },
+      {
+        "text": "Would you like to provide your email so we can follow up with you?",
+        "sender": "bot",
+        "timestamp": "2025-02-25T20:58:41.418Z"
+      }
+    ],
+    "createdAt": "2025-02-25T20:58:54.138Z",
+    "status": "new"
+  }
+]

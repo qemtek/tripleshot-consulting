@@ -1,21 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import type { CaseStudy } from '../../types/CaseStudy';
 
-interface CaseStudyCardProps {
-  id: string;
-  title: string;
-  industry: string;
-  summary: string;
-  image: string;
-}
+type CaseStudyCardProps = Pick<CaseStudy, 'id' | 'title' | 'industry' | 'headline' | 'summary' | 'image' | 'transformation'>;
 
 const CaseStudyCard: React.FC<CaseStudyCardProps> = ({
   id,
   title,
   industry,
+  headline,
   summary,
-  image
+  image,
+  transformation
 }) => {
   return (
     <div className="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col h-full transition-all hover:shadow-md">
@@ -36,9 +33,29 @@ const CaseStudyCard: React.FC<CaseStudyCardProps> = ({
       </div>
       
       <div className="p-6 flex-grow flex flex-col">
-        <p className="text-gray-700 mb-6 flex-grow">
-          {summary}
-        </p>
+        <h4 className="text-lg font-semibold text-gray-900 mb-2">{headline}</h4>
+        <p className="text-gray-700 mb-6">{summary}</p>
+        
+        {transformation && (
+          <div className="mb-6 grid grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg">
+            <div>
+              <h5 className="text-sm font-semibold text-gray-600 mb-2">Before</h5>
+              <ul className="space-y-2">
+                {transformation.before.map((item, index) => (
+                  <li key={index} className="text-sm text-gray-700">• {item}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h5 className="text-sm font-semibold text-gray-600 mb-2">After</h5>
+              <ul className="space-y-2">
+                {transformation.after.map((item, index) => (
+                  <li key={index} className="text-sm text-gray-700">• {item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
         
         <Link 
           to={`/case-studies/${id}`}

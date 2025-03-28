@@ -1,3 +1,4 @@
+/** @jsx React.createElement */
 import React from 'react';
 import { FiUsers, FiBarChart2, FiDollarSign, FiSettings, FiDatabase, FiBook } from 'react-icons/fi';
 
@@ -68,8 +69,7 @@ const Services = () => {
             >
               <div className="p-6">
                 <div className="flex items-center mb-4">
-                  <div className="mr-4 p-3 rounded-lg bg-gray-50 group-hover:bg-gradient-to-br group-hover:shadow-md transition-all duration-300 group-hover:text-white"
-                       style={{ backgroundColor: `rgba(var(--${service.color.split('-')[1]}-500-rgb), 0.1)` }}>
+                  <div className="mr-4 p-3 rounded-lg bg-gray-50 group-hover:bg-gray-100 transition-all duration-300">
                     {service.icon}
                   </div>
                   <h3 className="text-xl font-semibold">{service.title}</h3>
@@ -86,7 +86,6 @@ const Services = () => {
                   </ul>
                 </div>
               </div>
-              <div className={`h-1 w-full bg-gradient-to-r ${service.color}`}></div>
             </div>
           ))}
         </div>

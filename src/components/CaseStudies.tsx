@@ -1,3 +1,4 @@
+/** @jsx React.createElement */
 import React from 'react';
 import CaseStudyCard from './case-studies/CaseStudyCard';
 import { caseStudies } from '../data/caseStudies';
@@ -11,7 +12,7 @@ const CaseStudies = () => {
             How We Help Businesses Succeed
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Real-world examples of common challenges and how our approach could help businesses like yours
+            Real success stories from businesses we've helped transform
           </p>
         </div>
 
@@ -22,16 +23,12 @@ const CaseStudies = () => {
               id={study.id}
               title={study.title}
               industry={study.industry}
+              headline={study.headline}
               summary={study.summary}
               image={study.image}
+              transformation={study.transformation}
             />
           ))}
-        </div>
-
-        <div className="mt-12 text-center">
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Each case study shows practical approaches that could work for your business.
-          </p>
         </div>
       </div>
     </section>

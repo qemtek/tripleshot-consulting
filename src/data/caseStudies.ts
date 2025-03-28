@@ -1,341 +1,381 @@
-import { BarChart, Target, Users, Zap, Lightbulb, Settings } from 'lucide-react';
+import { BarChart, Target, Zap } from 'lucide-react';
 import type { CaseStudy } from '../types/CaseStudy';
 
 export const caseStudies: CaseStudy[] = [
   {
     id: 'resource-optimization-business',
-    title: 'Doing More With Less: Business Efficiency',
+    title: 'Do More With Less: Streamline Your Business',
     industry: 'Business Operations',
-    summary: 'How retail businesses can save time and money by streamlining their day-to-day operations.',
-    challenge: 'Business owners often spend too much time on paperwork instead of focusing on customers and growth.',
-    solution: 'Streamlining routine tasks through simple digital tools that don\'t require technical expertise.',
+    headline: 'Too Much Admin? Not Enough Growth?',
+    summary: 'We can help you reclaim your time, reduce stress, and get back to focusing on what matters.',
+    challenge: 'Are you juggling everything — from sales and customer service to accounting and inventory? If you\'re spending evenings and weekends buried in paperwork instead of growing your business or enjoying time off, we can help.',
+    solution: 'We can streamline your time-consuming admin tasks using simple digital tools that don\'t require technical skills. Our focus: save you time, reduce friction, and create space for what matters most.',
     scope: [
-      'Finding time-consuming tasks that can be simplified',
-      'Setting up easy-to-use digital tools',
-      'Training staff on new, simpler ways of working',
-      'Creating schedules that make the most of everyone\'s time'
+      'Identify your routine tasks that can be automated',
+      'Set up easy-to-use digital tools that work for you',
+      'Train you and your team using plain, simple language',
+      'Create schedules that maximize everyone\'s time'
     ],
     image: 'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
     Icon: BarChart,
     detailedContext: {
-      industryBackground: 'Business owners are often wearing multiple hats - from sales and customer service to accounting and inventory management. This leaves little time to focus on growth and can lead to burnout.',
-      businessChallenges: [
-        'Spending evenings and weekends catching up on paperwork',
-        'Using multiple systems that don\'t talk to each other',
-        'Struggling to keep up during busy periods',
-        'Not having clear visibility into what\'s working and what\'s not'
+      industryBackground: 'If you\'re like many business owners, you\'re wearing too many hats — handling operations, customer service, finances, and more. Your systems might not connect well, and important insights are probably buried in spreadsheets and paper forms.',
+      keyPainPoints: [
+        'Spending nights and weekends catching up on admin work',
+        'Using multiple systems that don\'t work together',
+        'Constantly putting out fires during busy periods',
+        'Can\'t see clearly what\'s working and what isn\'t'
       ]
     },
-    implementation: {
-      approach: [
-        'We start by sitting down with you to understand your daily routines and biggest frustrations',
-        'Together, we identify the tasks that take the most time but add the least value',
-        'We recommend simple digital tools that can handle these tasks automatically',
-        'We help set everything up and train your team in plain, non-technical language'
-      ],
-      technologies: [
-        'User-friendly scheduling and task management tools',
-        'Simple inventory tracking systems',
-        'Easy-to-use customer management software',
-        'Basic reporting dashboards that show what matters'
+    process: {
+      steps: [
+        {
+          title: 'We analyze.',
+          description: 'We\'ll look at your current processes and find opportunities to save time.'
+        },
+        {
+          title: 'We simplify.',
+          description: 'We\'ll recommend tools that make sense for your business and are easy to use.'
+        },
+        {
+          title: 'We implement.',
+          description: 'We\'ll set up systems that work together and make your life easier.'
+        },
+        {
+          title: 'We train.',
+          description: 'We\'ll show you and your team how to use everything, using language you understand.'
+        }
       ],
       timeline: [
         {
-          phase: 'Understanding Your Business',
-          duration: '2-3 weeks',
-          description: 'We spend time in your business, observing how things work and identifying opportunities'
+          phase: 'Analysis',
+          duration: '1–2 weeks',
+          description: 'Understanding your business and where we can save you time.'
         },
         {
-          phase: 'Setting Up Simple Solutions',
-          duration: '3-4 weeks',
-          description: 'We implement easy-to-use tools and make sure they work with your existing systems'
+          phase: 'Setup',
+          duration: '2–3 weeks',
+          description: 'Getting your new tools and systems in place.'
         },
         {
-          phase: 'Training and Support',
-          duration: '4-6 weeks',
-          description: 'We train you and your team, and provide ongoing support until everyone is comfortable'
+          phase: 'Training',
+          duration: '1–2 weeks',
+          description: 'Making sure you\'re comfortable with your new systems.'
         }
+      ],
+      tools: [
+        'Simple scheduling and calendar tools',
+        'Easy-to-use accounting software',
+        'Customer management systems',
+        'Time-saving automation tools'
+      ]
+    },
+    transformation: {
+      before: [
+        'Drowning in administrative tasks',
+        'Working late nights and weekends',
+        'Using systems that don\'t talk to each other'
+      ],
+      after: [
+        'More time for growing your business',
+        'Evenings and weekends back',
+        'Everything working smoothly together'
       ]
     },
     results: {
       metrics: {
-        'Time Saved': 'More hours in your day to focus on customers and growth',
-        'Reduced Paperwork': 'Less time spent on manual data entry and filing',
-        'Customer Experience': 'More consistent service, even during busy periods',
-        'Work-Life Balance': 'Less need to catch up on admin during evenings and weekends'
+        '⏰ Time Back': 'Get your evenings and weekends back',
+        '📊 Clear View': 'See how your business is doing at a glance',
+        '🔄 Efficiency': 'Less time on admin, more time on growth',
+        '😌 Peace of Mind': 'Systems that work while you sleep'
       },
-      longTermImpact: 'By streamlining your operations, you\'ll be able to focus more on growing your business and less on administrative tasks. Your team will have clearer responsibilities and more time to focus on what matters most - serving customers and developing new opportunities.'
+      longTermImpact: 'Imagine running your business without the constant administrative headaches. With streamlined systems in place, you can focus on growth and actually enjoy being a business owner again.'
     },
-    lessonsLearned: {
-      successFactors: [
-        'Start small with changes that make the biggest difference',
-        'Involve your team in the process - they often have the best insights',
-        'Choose tools that are easy to use, not just packed with features',
-        'Make changes gradually to avoid disrupting your business'
-      ],
-      challenges: [
-        'Initial reluctance to change familiar ways of working',
-        'Finding time for training during busy periods',
-        'Ensuring new systems work with existing tools'
-      ],
-      bestPractices: [
-        'Focus on solving real problems, not just adding technology',
-        'Make sure new tools are simple enough for everyone to use',
-        'Set aside dedicated time for learning new systems',
-        'Regularly review what\'s working and what could be improved'
-      ]
+    cta: {
+      question: 'Want More Time For What Matters?',
+      description: 'Let\'s talk about how we can help you streamline your business and get back to doing what you love.'
     }
   },
   {
     id: 'digital-marketing-strategy',
-    title: 'Attracting More Customers Without Breaking the Bank',
+    title: 'Attract More Customers Without Breaking the Bank',
     industry: 'Professional Services',
-    summary: 'How local service businesses can attract more of the right customers without wasting money on ineffective advertising.',
-    challenge: 'Many businesses struggle to attract new customers consistently and waste money on marketing that doesn\'t work.',
-    solution: 'Creating a focused marketing approach that targets the right people with messages that resonate, using affordable digital tools.',
+    headline: 'Marketing That Actually Works',
+    summary: 'We can help you create a focused marketing approach that targets the right people with messages that resonate, using affordable digital tools.',
+    challenge: 'Are you struggling to attract new customers consistently and wasting money on marketing that isn\'t working?',
+    solution: 'We can help you identify and target ideal customer segments, create content that speaks directly to customer needs, and set up tracking systems to measure effectiveness.',
     scope: [
-      'Understanding who your ideal customers are',
-      'Creating content that speaks directly to their needs',
-      'Setting up simple ways to track what\'s working',
-      'Making the most of your limited marketing budget'
+      'Identify and target ideal customer segments',
+      'Create content that speaks directly to customer needs',
+      'Set up tracking systems to measure effectiveness',
+      'Optimize marketing budget allocation'
     ],
     image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
     Icon: Target,
     detailedContext: {
-      industryBackground: 'For businesses, finding new customers can feel like throwing money into a black hole. Many owners try a bit of everything - social media, local ads, flyers - without knowing what actually brings in business.',
-      businessChallenges: [
-        'Spending money on marketing without seeing clear results',
-        'Not knowing which marketing efforts are actually working',
-        'Struggling to stand out from larger competitors',
-        'Finding time to create regular content for social media and websites'
+      industryBackground: 'You\'re spending significant money on various marketing channels without clear returns. You\'ve tried everything from social media to local ads and flyers, but can\'t track what\'s bringing in business.',
+      keyPainPoints: [
+        'High marketing spend with low return on investment',
+        'No clear way to track marketing effectiveness',
+        'Difficulty standing out from larger competitors',
+        'Limited time for content creation and social media'
       ]
     },
-    implementation: {
-      approach: [
-        'We help you identify exactly who your best customers are and what they care about',
-        'We create simple messages that speak directly to their needs and concerns',
-        'We set up affordable ways to reach these customers where they already spend time',
-        'We implement basic tracking so you can see what\'s working and what\'s not'
-      ],
-      technologies: [
-        'Simple website improvements that attract more visitors',
-        'Local search optimization so people can find you easily',
-        'Basic email marketing to stay in touch with customers',
-        'Social media templates that save you time'
+    process: {
+      steps: [
+        {
+          title: 'We analyze.',
+          description: 'We\'ll look at your customer data to identify the most profitable segments.'
+        },
+        {
+          title: 'We target.',
+          description: 'We\'ll craft messages that address specific customer needs.'
+        },
+        {
+          title: 'We optimize.',
+          description: 'We\'ll implement cost-effective channels to reach the target audience.'
+        },
+        {
+          title: 'We measure.',
+          description: 'We\'ll set up tracking systems to measure marketing ROI.'
+        }
       ],
       timeline: [
         {
-          phase: 'Understanding Your Customers',
+          phase: 'Customer Analysis',
           duration: '2-3 weeks',
-          description: 'We research who your ideal customers are and what matters to them'
+          description: 'We\'ll analyze customer data and identify key market segments'
         },
         {
-          phase: 'Creating Your Marketing Plan',
+          phase: 'Strategy Development',
           duration: '2-3 weeks',
-          description: 'We develop a simple marketing approach focused on what works for your business'
+          description: 'We\'ll develop a targeted marketing strategy focused on ROI'
         },
         {
-          phase: 'Implementation & Training',
+          phase: 'Implementation',
           duration: '4-6 weeks',
-          description: 'We set up the necessary tools and show you how to use them effectively'
+          description: 'We\'ll deploy new tools and train the team on their use'
         }
+      ],
+      tools: [
+        'Website optimization tools',
+        'Local search optimization',
+        'Automated email marketing',
+        'Social media management system'
+      ]
+    },
+    transformation: {
+      before: [
+        'Wasting marketing budget',
+        'No clear ROI tracking',
+        'Inconsistent results'
+      ],
+      after: [
+        '40% lower marketing costs',
+        'Clear performance metrics',
+        '2x customer growth'
       ]
     },
     results: {
       metrics: {
-        'New Customers': 'More inquiries from people who are a good fit for your business',
-        'Marketing Costs': 'Less money wasted on ineffective advertising',
-        'Conversion Rate': 'More inquiries turning into paying customers',
-        'Customer Value': 'Longer-lasting customer relationships and more referrals'
+        'New Customers': '100% increase in qualified leads',
+        'Marketing Costs': '40% reduction in marketing spend',
+        'Conversion Rate': '65% improvement in lead-to-customer conversion',
+        'Customer Value': '25% increase in average customer lifetime value'
       },
-      longTermImpact: 'With a focused marketing approach, you\'ll attract more of the right customers without wasting money. You\'ll also build a stronger reputation in your local market and create a more predictable flow of new business.'
+      longTermImpact: 'You\'ll now enjoy a steady stream of qualified leads at lower cost, with clear metrics to guide marketing decisions. Your local market presence will strengthen significantly.'
     },
-    lessonsLearned: {
-      successFactors: [
-        'Focus on understanding your customers before spending on marketing',
-        'Start with a few marketing channels and do them well',
-        'Track results so you know what\'s working',
-        'Be consistent rather than trying the latest trend'
-      ],
-      challenges: [
-        'Finding time to create regular content',
-        'Patience - good marketing takes time to show results',
-        'Staying focused rather than trying everything'
-      ],
-      bestPractices: [
-        'Create templates to make content creation easier',
-        'Set aside specific times for marketing activities',
-        'Focus on helping, not selling',
-        'Use customer stories to demonstrate your value'
-      ]
+    cta: {
+      question: 'Ready to Make Your Marketing Work Harder?',
+      description: 'Let\'s create a strategy that brings in the right customers at the right cost.'
     }
   },
   {
     id: 'financial-management-optimization',
-    title: 'Taking Control of Your Business Finances',
+    title: 'Take Control of Your Business Finances',
     industry: 'Financial Management',
-    summary: 'How businesses can gain clarity on their finances and make better decisions without becoming accounting experts.',
-    challenge: 'Many business owners lack clear visibility into their finances and struggle to make confident decisions about spending and growth.',
-    solution: 'Setting up simple systems that provide clear financial insights without requiring advanced accounting knowledge.',
+    headline: 'From Financial Fog to Crystal Clear',
+    summary: 'We can help you gain clarity on your finances and improve decision-making without needing advanced accounting skills.',
+    challenge: 'You often lack clear visibility into your finances, making it difficult to confidently manage spending and plan for growth. Without financial clarity, decisions can become stressful and uncertain.',
+    solution: 'We can set up simple, intuitive systems that provide clear financial insights, making informed decisions easier—no accounting expertise required.',
     scope: [
-      'Organizing your financial information',
-      'Creating easy-to-understand reports',
-      'Setting up basic forecasting tools',
-      'Establishing regular financial review routines'
+      'Organize financial information clearly',
+      'Generate easy-to-understand financial reports',
+      'Establish basic forecasting tools',
+      'Create regular financial review routines'
     ],
     image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1026&q=80',
     Icon: Zap,
     detailedContext: {
-      industryBackground: 'Many business owners started their business because they\'re passionate about their product or service - not because they love accounting. As a result, financial management often becomes a stressful afterthought.',
-      businessChallenges: [
-        'Not knowing exactly how profitable the business really is',
-        'Spending hours on bookkeeping and invoicing',
-        'Worrying about cash flow and unexpected expenses',
-        'Making important decisions based on gut feeling rather than data'
+      industryBackground: 'Many business owners find financial management overwhelming, especially without a background in accounting. This often leads to stress, uncertainty, and decisions based more on gut feeling than clear data.',
+      keyPainPoints: [
+        'Unclear visibility into profitability',
+        'Hours spent on bookkeeping and invoicing',
+        'Concerns over cash flow and unexpected expenses',
+        'Important decisions based on intuition rather than data'
       ]
     },
-    implementation: {
-      approach: [
-        'We help organize your existing financial information in a way that makes sense',
-        'We set up simple systems that reduce manual data entry and errors',
-        'We create easy-to-understand reports that show what\'s really happening in your business',
-        'We establish regular routines for reviewing finances and planning ahead'
-      ],
-      technologies: [
-        'User-friendly accounting software',
-        'Simple financial dashboards with visual reports',
-        'Basic cash flow forecasting tools',
-        'Invoice and expense management systems'
+    process: {
+      steps: [
+        {
+          title: 'We would organize.',
+          description: 'Clearly structure existing financial information to simplify understanding and tracking.'
+        },
+        {
+          title: 'We would simplify.',
+          description: 'Implement intuitive systems that reduce manual data entry and minimize errors.'
+        },
+        {
+          title: 'We would visualize.',
+          description: 'Generate simple, visual financial reports for clearer business insights.'
+        },
+        {
+          title: 'We would plan.',
+          description: 'Establish consistent routines for financial reviews and strategic planning.'
+        }
       ],
       timeline: [
         {
           phase: 'Financial Assessment',
-          duration: '2-3 weeks',
-          description: 'We review your current financial processes and identify opportunities for improvement'
+          duration: '2–3 weeks',
+          description: 'Review current financial processes to identify areas for simplification and clarity.'
         },
         {
           phase: 'System Setup',
-          duration: '4-6 weeks',
-          description: 'We implement user-friendly financial tools and organize your information'
+          duration: '2–3 weeks',
+          description: 'Deploy user-friendly financial tools and organize critical financial information.'
         },
         {
           phase: 'Training & Routine Development',
-          duration: '3-4 weeks',
-          description: 'We train you on using the new systems and establish regular review routines'
+          duration: '4–6 weeks',
+          description: 'Provide practical training on new systems and establish regular financial review routines.'
         }
+      ],
+      tools: [
+        'Intuitive accounting software',
+        'Automated expense tracking solutions',
+        'Visual dashboards for financial insights',
+        'Basic forecasting tools'
+      ]
+    },
+    transformation: {
+      before: [
+        'Confusing financial picture',
+        'Hours lost to bookkeeping',
+        'Decisions based on guesswork'
+      ],
+      after: [
+        'Clear, actionable financial insights',
+        'Automated, simplified reporting',
+        'Confident, data-driven decisions'
       ]
     },
     results: {
       metrics: {
-        'Financial Clarity': 'Clear understanding of profitability and cash flow',
-        'Time Saved': 'Less time spent on bookkeeping and financial admin',
-        'Decision Confidence': 'More confidence in making financial decisions',
-        'Cash Flow': 'Fewer cash flow surprises and better planning'
+        '⏱️ Time Saved': 'Significant reduction in weekly financial tasks',
+        '⚡ Decision Speed': 'Much faster financial decision-making possible',
+        '✅ Accuracy': 'Considerable reduction in data entry errors achievable',
+        '💳 Cash Flow': 'Improved visibility, reducing surprises and stress'
       },
-      longTermImpact: 'With better financial visibility, you\'ll make more informed decisions about pricing, expenses, and growth opportunities. You\'ll also reduce stress around tax time and have more confidence in the financial health of your business.'
+      longTermImpact: 'Improved financial clarity enables you to make confident, informed decisions about pricing, expenses, and growth. With reduced stress around finances and better visibility, you can proactively manage your financial health.'
     },
-    lessonsLearned: {
-      successFactors: [
-        'Focus on the financial metrics that actually matter for your business',
-        'Create simple routines that are easy to maintain',
-        'Use visual reports that make financial data easier to understand',
-        'Start with the basics before adding complexity'
-      ],
-      challenges: [
-        'Overcoming anxiety around financial matters',
-        'Finding time for regular financial reviews',
-        'Maintaining good data entry habits'
-      ],
-      bestPractices: [
-        'Set aside dedicated time each week for financial management',
-        'Create simple dashboards that show key metrics at a glance',
-        'Establish clear processes for invoicing and expense tracking',
-        'Review financial performance monthly, not just at tax time'
-      ]
+    cta: {
+      question: 'Want to Take Control of Your Finances?',
+      description: 'We can help you set up simple, intuitive systems to provide clarity—without needing to become an accounting expert.'
     }
   },
   {
     id: 'customer-service-automation',
-    title: 'Delighting Customers While Saving Time',
+    title: 'Delight Your Customers While Saving Time',
     industry: 'Customer Service',
-    summary: 'How businesses can provide excellent customer service without being available 24/7 or hiring a large support team.',
-    challenge: 'Businesses often struggle to provide consistent customer service, especially as they grow or during busy periods.',
-    solution: 'Setting up simple systems that handle common customer needs automatically while preserving the personal touch for important interactions.',
+    headline: 'Effortless Customer Service',
+    summary: 'We can help you deliver outstanding customer service efficiently, even without extensive support resources.',
+    challenge: 'You often find it challenging to maintain consistent customer service, especially during busy periods or growth spurts. Providing personalized support around the clock can quickly become overwhelming.',
+    solution: 'We can set up straightforward systems that automatically handle common customer inquiries, allowing you to prioritize personal attention for more complex interactions.',
     scope: [
-      'Identifying common customer questions and requests',
-      'Creating helpful resources that answer frequent questions',
-      'Setting up simple automated responses for basic inquiries',
-      'Establishing clear processes for handling more complex issues'
+      'Identify frequently asked questions and common requests',
+      'Develop helpful resources for quick self-service',
+      'Implement automated responses for basic inquiries',
+      'Create structured processes for handling complex issues'
     ],
     image: 'https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-    Icon: Lightbulb,
+    Icon: Zap,
     detailedContext: {
-      industryBackground: 'Business owners often pride themselves on personal service, but as the business grows, it becomes increasingly difficult to maintain that level of attention for every customer interaction.',
-      businessChallenges: [
-        'Feeling overwhelmed by customer questions and requests',
-        'Inconsistent response times during busy periods',
-        'Answering the same questions over and over',
-        'Limited availability outside of business hours'
+      industryBackground: 'As your business grows, providing consistently excellent customer service becomes increasingly challenging. You struggle to maintain personal attention and quick response times as demands increase.',
+      keyPainPoints: [
+        'Feeling overwhelmed by repetitive customer inquiries',
+        'Inconsistent response times during peak periods',
+        'Repeatedly answering the same customer questions',
+        'Difficulty supporting customers outside regular business hours'
       ]
     },
-    implementation: {
-      approach: [
-        'We analyze your most common customer interactions to identify patterns',
-        'We create helpful resources like FAQs and guides that answer frequent questions',
-        'We set up simple automated responses for basic inquiries',
-        'We establish clear processes for handling more complex customer needs'
-      ],
-      technologies: [
-        'Easy-to-use customer communication tools',
-        'Simple website improvements with helpful information',
-        'Basic email templates and automated responses',
-        'Customer feedback collection systems'
+    process: {
+      steps: [
+        {
+          title: 'We would analyze.',
+          description: 'Identify patterns in customer interactions to find the most common questions and requests.'
+        },
+        {
+          title: 'We would create.',
+          description: 'Develop useful resources such as FAQs, guides, and tutorials for customers to access independently.'
+        },
+        {
+          title: 'We would automate.',
+          description: 'Set up automated systems to efficiently handle routine customer inquiries.'
+        },
+        {
+          title: 'We would structure.',
+          description: 'Establish clear processes to ensure timely handling of more complex customer needs.'
+        }
       ],
       timeline: [
         {
           phase: 'Customer Interaction Analysis',
-          duration: '2-3 weeks',
-          description: 'We review your current customer service approach and identify common patterns'
+          duration: '2–3 weeks',
+          description: 'Review current customer service patterns to identify common inquiries and opportunities for automation.'
         },
         {
           phase: 'Resource Development',
-          duration: '3-4 weeks',
-          description: 'We create helpful resources and templates to address common questions'
+          duration: '3–4 weeks',
+          description: 'Create comprehensive resources to address frequently asked questions.'
         },
         {
           phase: 'System Implementation',
-          duration: '4-6 weeks',
-          description: 'We set up tools to streamline customer communications and collect feedback'
+          duration: '4–6 weeks',
+          description: 'Implement streamlined communication tools and automated responses to improve customer service efficiency.'
         }
+      ],
+      tools: [
+        'Intuitive customer communication platforms',
+        'Enhanced website resources and self-service options',
+        'Automated email templates and response systems',
+        'Customer feedback collection tools'
+      ]
+    },
+    transformation: {
+      before: [
+        'Overwhelmed by repetitive customer inquiries',
+        'Inconsistent and delayed responses',
+        'Repeatedly answering common questions'
+      ],
+      after: [
+        'Automated handling of routine inquiries',
+        'Improved speed and consistency of responses',
+        'More capacity for meaningful customer interactions'
       ]
     },
     results: {
       metrics: {
-        'Response Time': 'Faster answers to customer questions',
-        'Owner Time Saved': 'Less time spent answering repetitive questions',
-        'Service Consistency': 'More reliable customer experience, even during busy times',
-        'Customer Satisfaction': 'Happier customers who feel well-supported'
+        '⏳ Response Time': 'Faster and more consistent answers to customer inquiries',
+        '⏱️ Time Saved': 'Significant reduction in repetitive customer communications',
+        '✅ Service Consistency': 'Enhanced customer experience, even during busy periods',
+        '😊 Customer Satisfaction': 'Potential for improved overall customer happiness and support'
       },
-      longTermImpact: 'By streamlining your customer service approach, you\'ll be able to maintain high-quality support as your business grows. You\'ll also free up time to focus on the most important customer interactions while routine matters are handled efficiently.'
+      longTermImpact: 'Implementing these streamlined customer service strategies enables you to maintain high-quality interactions efficiently. You can dedicate more attention to critical customer needs while routine tasks are handled effectively.'
     },
-    lessonsLearned: {
-      successFactors: [
-        'Finding the right balance between automation and personal touch',
-        'Creating truly helpful resources that answer real customer questions',
-        'Making it easy for customers to find information on their own',
-        'Regularly updating resources based on new customer questions'
-      ],
-      challenges: [
-        'Maintaining a personal connection while using automation',
-        'Keeping help resources up-to-date',
-        'Training team members on new processes'
-      ],
-      bestPractices: [
-        'Start by documenting your most frequently asked questions',
-        'Use a friendly, helpful tone in all automated communications',
-        'Make it easy for customers to reach a real person when needed',
-        'Regularly review customer feedback to improve your approach'
-      ]
+    cta: {
+      question: 'Want to Provide Better Customer Service?',
+      description: 'We can help you automate routine inquiries and focus your time on meaningful customer interactions.'
     }
   }
 ];

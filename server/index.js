@@ -205,6 +205,20 @@ app.post('/api/leads', async (req, res) => {
       return res.status(500).json({ error: 'Failed to save lead' });
     }
     
+    console.log('New chatbot lead saved to Supabase:', { name, email, company });
+    
+    // Send notification email for chatbot lead
+    const conversationText = conversation && conversation.length > 0 
+      ? conversation.map(msg => `${msg.sender}: ${msg.text}`).join('\n')
+      : 'No conversation history available';
+    
+    sendLeadNotificationEmail({ 
+      name: name || 'Anonymous', 
+      email, 
+      company: company || 'Not provided', 
+      message: `Chatbot conversation:\n\n${conversationText}` 
+    });
+    
     res.status(201).json({ success: true, lead: data[0] });
   } catch (error) {
     console.error('Error saving lead:', error);

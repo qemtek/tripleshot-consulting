@@ -23,7 +23,7 @@ const Mission = () => {
     },
     {
       title: 'Phase 3\nGetting Ahead',
-      description: 'With the right data in place, we bring in advanced tools to help you spot opportunities, plan ahead, and stay one step ahead of the competition.',
+      description: 'With the right data and processes in place, we bring in advanced tools to help you spot opportunities, plan ahead, and stay one step ahead of the competition.',
       color: '#F39D2D', // Orange
       bgColor: 'rgba(243, 157, 45, 0.1)' // Light orange background
     }

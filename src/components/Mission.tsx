@@ -1,47 +1,91 @@
 /** @jsx React.createElement */
-import React from 'react';
 
-interface Step {
-  icon: string;
+interface Phase {
   title: string;
   description: string;
+  color: string;
+  bgColor: string;
 }
 
 const Mission = () => {
-  const steps: Step[] = [
+  const phases: Phase[] = [
     {
-      icon: '☕',
-      title: 'Discover',
-      description: 'We take the time to understand how your business works, what slows you down, and where you\'re leaving value on the table. No tech talk—just real conversations about what matters to you.'
+      title: 'Phase 1\nGetting Digital',
+      description: 'We lay the groundwork by replacing paper and oversized spreadsheets with digital tools. This includes setting up data infrastructure and defining your online brand presence.',
+      color: '#2465B4', // Blue
+      bgColor: 'rgba(36, 101, 180, 0.1)' // Light blue background
     },
     {
-      icon: '☕',
-      title: 'Design',
-      description: 'Once we know what\'s needed, we design simple, practical solutions—often using AI or automation behind the scenes. Everything is built around your workflow, not the other way around.'
+      title: 'Phase 2\nUnlocking Value',
+      description: 'Once you\'re set up, we help you get real value from your digital tools — using analytics and AI to understand your customers better and improve how you work.',
+      color: '#CB1789', // Magenta
+      bgColor: 'rgba(203, 23, 137, 0.1)' // Light magenta background
     },
     {
-      icon: '☕',
-      title: 'Deliver',
-      description: 'We don\'t just hand you a report and disappear. We put the tools in your hands, train your team, and support you until it sticks. When you win, we win.'
+      title: 'Phase 3\nGetting Ahead',
+      description: 'With the right data in place, we bring in advanced tools to help you spot opportunities, plan ahead, and stay one step ahead of the competition.',
+      color: '#F39D2D', // Orange
+      bgColor: 'rgba(243, 157, 45, 0.1)' // Light orange background
     }
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-40 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <div className="flex justify-center mb-6">
+            <div className="rounded-full bg-white shadow-sm p-3">
+              <img 
+                src="/images/logo_white.png" 
+                alt="Tripleshot Logo" 
+                className="h-12" 
+              />
+            </div>
+          </div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown-500 mb-6">
             The Tripleshot Method
           </h2>
+          <p className="text-lg max-w-3xl mx-auto">
+            Our proven three-phase approach helps businesses transform digitally at their own pace. 
+            Each phase builds on the previous one, creating sustainable growth.
+          </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {steps.map((step) => (
-            <div key={step.title} className="flex flex-col">
-              <div className="flex items-center mb-6">
-                <span className="text-3xl mr-3">{step.icon}</span>
-                <h3 className="text-2xl font-bold text-gray-900">{step.title}</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-20 max-w-7xl mx-auto">
+          {phases.map((phase, index) => (
+            <div 
+              key={index} 
+              className="rounded-xl shadow-sm overflow-hidden h-full relative"
+            >
+              {/* Semi-transparent background */}
+              <div 
+                className="absolute inset-0"
+                style={{ 
+                  backgroundColor: phase.bgColor,
+                  opacity: 0.5
+                }}
+              ></div>
+              
+              {/* Content with full opacity */}
+              <div className="px-6 py-8 h-full flex flex-col relative z-10">
+                <div className="flex items-start mb-6">
+                  <div 
+                    className="mr-3 flex-shrink-0 p-2 rounded-full" 
+                    style={{ backgroundColor: phase.bgColor }}
+                  >
+                    <img 
+                      src="/images/coffee-cup.png" 
+                      alt="Coffee Cup" 
+                      className="h-10 w-10 object-contain"
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold text-brown-500 pt-1">
+                    <span className="font-normal text-base whitespace-pre-line">{phase.title.split('\n')[0]}</span>
+                    <br />
+                    {phase.title.split('\n')[1]}
+                  </h3>
+                </div>
+                <p>{phase.description}</p>
               </div>
-              <p className="text-gray-600 leading-relaxed">{step.description}</p>
             </div>
           ))}
         </div>

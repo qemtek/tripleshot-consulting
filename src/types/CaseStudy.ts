@@ -6,35 +6,22 @@ export interface CaseStudy {
   industry: string;
   headline: string;
   summary: string;
-  challenge: string;
-  solution: string;
-  scope: string[];
-  image: string;
-  Icon: LucideIcon;
-  detailedContext: {
-    industryBackground: string;
-    keyPainPoints: string[];
+  problem: {
+    description: string;
+    painPoints: string[];
   };
-  process: {
-    steps: {
-      title: string;
-      description: string;
-    }[];
-    timeline: {
-      phase: string;
-      duration: string;
-      description: string;
-    }[];
+  solution: {
+    description: string;
+    approach: string[];
     tools: string[];
   };
-  transformation: {
-    before: string[];
-    after: string[];
-  };
-  results: {
+  expectedResults: {
+    benefits: string[];
     metrics: Record<string, string>;
     longTermImpact: string;
   };
+  image: string;
+  Icon: LucideIcon;
   cta: {
     question: string;
     description: string;

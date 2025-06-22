@@ -1,144 +1,298 @@
-/** @jsx React.createElement */
-import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle } from 'lucide-react';
-import { getCaseStudyById } from '../data/caseStudies';
+import { useParams, useNavigate } from 'react-router-dom';
+import { caseStudies } from '../data/caseStudies';
+import type { CaseStudy } from '../types/CaseStudy';
+import { Check, Clock, DollarSign, TrendingUp, Target, Heart, Zap } from 'lucide-react';
+import DetailedCaseStudyPage from './DetailedCaseStudyPage';
 
-const CaseStudyPage = () => {
+export default function CaseStudyPage() {
   const { id } = useParams<{ id: string }>();
-  const caseStudy = getCaseStudyById(id || '');
+  const navigate = useNavigate();
+  
+  // Check if this is a detailed case study ID
+  const detailedCaseStudyIds = ['smart-routing-logistics', 'dynamic-pricing-ai', 'customer-churn-prediction'];
+  if (id && detailedCaseStudyIds.includes(id)) {
+    return <DetailedCaseStudyPage />;
+  }
+  
+  const study: CaseStudy | undefined = caseStudies.find((s) => s.id === id);
 
-  if (!caseStudy) {
-    return (
-      <div className="min-h-screen bg-gray-50 py-12">
-        <div className="container mx-auto px-4">
-          <h1>Case study not found</h1>
-          <Link to="/" className="text-blue-600 hover:text-blue-800">
-            Return to homepage
-          </Link>
-        </div>
-      </div>
-    );
+  const scrollToContact = () => {
+    // Navigate to homepage first
+    navigate('/');
+    
+    // Small delay to ensure page loads, then scroll to contact
+    setTimeout(() => {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
+  if (!study) {
+    return <div>Case study not found</div>;
   }
 
+  // Map metric keys to appropriate icons
+  const getMetricIcon = (key: string) => {
+    if (key.includes('Time') || key.includes('⏱️')) return Clock;
+    if (key.includes('Cost') || key.includes('💰')) return DollarSign;
+    if (key.includes('Growth') || key.includes('📈')) return TrendingUp;
+    if (key.includes('Accuracy') || key.includes('🎯')) return Target;
+    if (key.includes('Peace') || key.includes('😌')) return Heart;
+    if (key.includes('Response') || key.includes('🚀')) return Zap;
+    return TrendingUp; // default
+  };
+
+  // Generate unique story intro for each article
+  const getStoryIntro = (studyId: string): string => {
+    switch (studyId) {
+      case 'resource-optimization-business':
+        return "Does this sound familiar? You started your business to pursue your passion, but somehow you've become a full-time administrator. Here are the daily struggles we hear from business owners just like you:";
+      
+      case 'digital-marketing-strategy':
+        return "Every business owner knows they need marketing to grow, but the reality is often frustrating and expensive. Here's what we consistently hear from businesses struggling with their marketing:";
+      
+      case 'financial-management-optimization':
+        return "Money is the lifeblood of your business, but managing finances often feels overwhelming and time-consuming. Here are the financial challenges that keep business owners up at night:";
+      
+      case 'customer-service-automation':
+        return "Great customer service is what sets successful businesses apart, but as you grow, maintaining that personal touch becomes increasingly difficult. Here's what growing businesses tell us:";
+      
+      case 'price-optimisation':
+        return "Setting the right prices can make or break your business, but many owners struggle with pricing strategy and leaving money on the table. Here are the pricing challenges we see:";
+      
+      case 'brand-identity-evolution':
+        return "Your brand is often the first impression potential customers have of your business. Here's what established businesses tell us about their brand challenges:";
+      
+      default:
+        return "Here's what business owners in your situation typically face:";
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <div className="relative h-[400px] w-full">
+    <div className="min-h-screen bg-white">
+      {/* Hero Section - Brand Consistent */}
+      <div className="relative h-[70vh] bg-gradient-to-br from-brown-700 via-brown-600 to-brown-500">
         <img
-          src={caseStudy.image}
-          alt={caseStudy.title}
-          className="w-full h-full object-cover"
+          src={study.image}
+          alt={study.title}
+          className="w-full h-full object-cover opacity-20"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-transparent" />
-        <div className="container mx-auto px-4 absolute inset-0 flex flex-col justify-center">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium mb-4">
-              {caseStudy.industry}
+        <div className="absolute inset-0 flex items-center">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl">
+              <div className="text-sm font-medium text-tan-500 bg-brown-600/50 backdrop-blur-sm inline-block px-4 py-2 rounded-full mb-6">
+                {study.industry} • Real Results
+              </div>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                {study.headline}
+              </h1>
+              <p className="text-xl sm:text-2xl text-tan-500 mb-8 leading-relaxed">
+                {study.summary}
+              </p>
+              <button 
+                onClick={scrollToContact}
+                className="bg-tan-500 text-brown-700 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-tan-600 transition-colors duration-300 shadow-lg"
+              >
+                Let's Talk About Your Business
+              </button>
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">{caseStudy.title}</h1>
-            <p className="text-lg text-white/90">{caseStudy.headline}</p>
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-12 max-w-4xl">
-        <Link
-          to="/"
-          className="inline-flex items-center text-gray-600 hover:text-gray-900 mb-8"
-        >
-          <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Home
-        </Link>
-
-        {/* Main Content */}
-        <div className="space-y-12">
-          {/* The Problem */}
-          <section className="bg-white rounded-xl shadow-sm p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">The Problem They Faced</h2>
-            <p className="text-gray-700 text-lg mb-6">{caseStudy.challenge}</p>
-            <div className="bg-red-50 p-6 rounded-lg">
-              <h3 className="font-semibold text-gray-900 mb-3">Key Pain Points:</h3>
-              <ul className="space-y-3">
-                {caseStudy.detailedContext.keyPainPoints.map((point, index) => (
-                  <li key={index} className="flex items-start text-gray-700">
-                    <span className="text-red-500 mr-2">•</span>
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-
-          {/* How We Helped */}
-          <section className="bg-white rounded-xl shadow-sm p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">How We Helped</h2>
-            <p className="text-gray-700 text-lg mb-6">{caseStudy.solution}</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {caseStudy.scope.map((item, index) => (
-                <div key={index} className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0 mt-1" />
-                  <span className="text-gray-700">{item}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* The Results */}
-          <section className="bg-white rounded-xl shadow-sm p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">The Results</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-3">Before:</h3>
-                <ul className="space-y-3">
-                  {caseStudy.transformation.before.map((item, index) => (
-                    <li key={index} className="flex items-start text-gray-700">
-                      <span className="text-red-500 mr-2">•</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-3">After:</h3>
-                <ul className="space-y-3">
-                  {caseStudy.transformation.after.map((item, index) => (
-                    <li key={index} className="flex items-start text-gray-700">
-                      <span className="text-green-500 mr-2">•</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-40 space-y-40">
+        {/* The Reality Check - Brand Consistent */}
+        <section>
+          <div className="text-center mb-16">
+            <div className="flex justify-center mb-6">
+              <div className="rounded-full bg-white shadow-sm p-3">
+                <img 
+                  src="/images/logo_white.png" 
+                  alt="Tripleshot Logo" 
+                  className="h-12" 
+                />
               </div>
             </div>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown-500 mb-6">{study.title}</h2>
+            <p className="text-lg text-brown-500 max-w-3xl mx-auto">
+              {getStoryIntro(study.id)}
+            </p>
+          </div>
+          
+          <div className="bg-red-50 border-l-4 border-red-400 p-8 rounded-r-lg mb-12">
+            <p className="text-lg text-gray-800 italic leading-relaxed">
+              "{study.problem.description}"
+            </p>
+          </div>
 
-            <div className="space-y-4">
-              {Object.entries(caseStudy.results.metrics).map(([key, value]) => (
-                <div key={key} className="flex items-start">
-                  <span className="text-lg mr-3">{key.split(' ')[0]}</span>
-                  <div>
-                    <div className="font-medium text-gray-900">{value}</div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {study.problem.painPoints.map((point, index) => (
+              <div key={index} className="bg-white border border-gray-200 p-6 rounded-xl shadow-sm">
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-red-600 font-bold text-sm">!</span>
                   </div>
+                  <p className="text-gray-700 font-medium">{point}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* The Solution - Brand Consistent */}
+        <section>
+          <div className="text-center mb-16">
+            <div className="flex justify-center mb-6">
+              <div className="rounded-full bg-white shadow-sm p-3">
+                <img 
+                  src="/images/coffee-cup.png" 
+                  alt="Coffee Cup" 
+                  className="h-12 w-12 object-contain" 
+                />
+              </div>
+            </div>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown-500 mb-6">Here's How We Change the Game</h2>
+            <p className="text-lg text-brown-500 max-w-3xl mx-auto">
+              No complicated tech jargon. No overwhelming systems. Just practical solutions that work.
+            </p>
+          </div>
+
+          <div className="bg-tan-500/10 border-l-4 border-tan-500 p-8 rounded-r-lg mb-16">
+            <p className="text-lg text-brown-500 leading-relaxed">
+              {study.solution.description}
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 relative overflow-hidden">
+              {/* Background accent */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent"></div>
+              
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold text-brown-500 mb-6 flex items-center">
+                  <div className="w-8 h-8 bg-tan-500 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-brown-700 font-bold">1</span>
+                  </div>
+                  Our Step-by-Step Process
+                </h3>
+                <div className="space-y-4">
+                  {study.solution.approach.map((step, index) => (
+                    <div key={index} className="flex items-start gap-4">
+                      <div className="w-6 h-6 bg-brown-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <Check className="w-4 h-4 text-white" />
+                      </div>
+                      <p className="text-gray-700">{step}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 relative overflow-hidden">
+              {/* Background accent */}
+              <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 to-transparent"></div>
+              
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold text-brown-500 mb-6 flex items-center">
+                  <div className="w-8 h-8 bg-tan-500 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-brown-700 font-bold">2</span>
+                  </div>
+                  What We'll Set Up for You
+                </h3>
+                <div className="space-y-4">
+                  {study.solution.tools.map((tool, index) => (
+                    <div key={index} className="flex items-start gap-4">
+                      <div className="w-6 h-6 bg-brown-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <Check className="w-4 h-4 text-white" />
+                      </div>
+                      <p className="text-gray-700">{tool}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Results - Brand Consistent */}
+        <section>
+          <div className="text-center mb-16">
+            <div className="flex justify-center mb-6">
+              <div className="rounded-full bg-white shadow-sm p-3">
+                <img 
+                  src="/images/logo_white.png" 
+                  alt="Tripleshot Logo" 
+                  className="h-12" 
+                />
+              </div>
+            </div>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown-500 mb-6">The Results Speak for Themselves</h2>
+            <p className="text-lg text-brown-500 max-w-3xl mx-auto">
+              Here's what happens when you stop working harder and start working smarter:
+            </p>
+          </div>
+
+          {/* Metrics Grid - Brand Consistent */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 max-w-5xl mx-auto">
+            {Object.entries(study.expectedResults.metrics).map(([key, value], index) => {
+              const IconComponent = getMetricIcon(key);
+              return (
+                <div key={index} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                  <div className="w-12 h-12 bg-tan-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <IconComponent className="w-6 h-6 text-brown-500" />
+                  </div>
+                  <h4 className="font-bold text-brown-500 mb-2">{key}</h4>
+                  <p className="text-2xl font-bold text-brown-600">{value}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Benefits - Brand Consistent */}
+          <div className="bg-tan-500/10 p-8 rounded-xl mb-12">
+            <h3 className="text-2xl font-bold text-brown-500 mb-6 text-center">What This Means for Your Daily Life</h3>
+            <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+              {study.expectedResults.benefits.map((benefit, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-brown-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Check className="w-4 h-4 text-white" />
+                  </div>
+                  <p className="text-gray-700 font-medium">{benefit}</p>
                 </div>
               ))}
             </div>
-          </section>
+          </div>
 
-          {/* Call to Action */}
-          <section className="bg-blue-600 rounded-xl shadow-sm p-8 text-center text-white">
-            <h2 className="text-2xl font-bold mb-4">{caseStudy.cta.question}</h2>
-            <p className="text-lg mb-8 text-white/90">{caseStudy.cta.description}</p>
-            <Link
-              to="/#contact-us"
-              className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors"
+          {/* Long-term Impact - Brand Consistent */}
+          <div className="bg-gradient-to-r from-brown-600 to-brown-500 p-8 rounded-xl text-white">
+            <h3 className="text-2xl font-bold mb-4 text-center">Picture Your Business in 6 Months</h3>
+            <p className="text-lg leading-relaxed text-center max-w-4xl mx-auto text-tan-500">
+              {study.expectedResults.longTermImpact}
+            </p>
+          </div>
+        </section>
+
+        {/* Enhanced Call to Action - Brand Consistent */}
+        <section className="bg-tan-500/10 p-12 rounded-2xl text-center">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown-500 mb-6">{study.cta.question}</h2>
+          <p className="text-lg text-brown-500 mb-8 max-w-2xl mx-auto">
+            {study.cta.description}
+          </p>
+          <div className="space-y-4">
+            <button 
+              onClick={scrollToContact}
+              className="bg-tan-500 text-brown-700 px-10 py-4 rounded-lg font-semibold text-lg hover:bg-tan-600 transition-colors duration-300 shadow-lg"
             >
-              Let's Talk About Your Business
-            </Link>
-          </section>
-        </div>
+              Schedule a Free Strategy Call
+            </button>
+            <p className="text-sm text-brown-500/70">
+              No pressure, no sales pitch. Just a friendly chat about your business goals.
+            </p>
+          </div>
+        </section>
       </div>
     </div>
   );
-};
-
-export default CaseStudyPage;
+}

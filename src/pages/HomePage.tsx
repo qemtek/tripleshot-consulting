@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Hero from '../components/Hero';
 import Mission from '../components/Mission';
 import Services from '../components/Services';
+import DetailedCaseStudies from '../components/DetailedCaseStudies';
 import CaseStudies from '../components/CaseStudies';
 // Import kept for future use
 import Reviews from '../components/reviews/Reviews';
@@ -28,6 +29,7 @@ export default function HomePage() {
       <Hero />
       <Mission />
       <Services />
+      <DetailedCaseStudies />
       <CaseStudies />
       {/* Reviews section temporarily removed until we have real testimonials */}
       {/* <Reviews /> */}

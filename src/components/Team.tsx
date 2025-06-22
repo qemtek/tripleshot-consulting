@@ -1,4 +1,3 @@
-import React from 'react';
 import { Brain, Code, TrendingUp, Users } from 'lucide-react';
 import TeamMember from './TeamMember';
 
@@ -35,13 +34,22 @@ const Team = () => {
   ];
 
   return (
-    <section id="team" className="py-20 bg-gray-50">
+    <section id="team" className="py-40 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <div className="flex justify-center mb-6">
+            <div className="rounded-full bg-white shadow-sm p-3">
+              <img 
+                src="/images/logo_white.png" 
+                alt="Tripleshot Logo" 
+                className="h-12" 
+              />
+            </div>
+          </div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown-500 mb-6">
             Meet Our Team
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-brown-500 max-w-2xl mx-auto">
             Experts dedicated to making AI accessible and effective for your business
           </p>
         </div>

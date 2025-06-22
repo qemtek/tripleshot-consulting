@@ -2,9 +2,33 @@ import React, { useEffect, useState } from 'react';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [currentWord, setCurrentWord] = useState('Simple');
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const words = ['Simple', 'Effective', 'Accessible'];
   
   useEffect(() => {
     setIsVisible(true);
+    
+    // Animation for changing words
+    const wordInterval = setInterval(() => {
+      // Start transition - fade out
+      setIsTransitioning(true);
+      
+      // After fade out, change the word
+      setTimeout(() => {
+        setCurrentWord(prevWord => {
+          const currentIndex = words.indexOf(prevWord);
+          const nextIndex = (currentIndex + 1) % words.length;
+          return words[nextIndex];
+        });
+        
+        // Start fade in
+        setIsTransitioning(false);
+      }, 500); // Wait for fade out to complete
+      
+    }, 3000); // Change word every 3 seconds
+    
+    return () => clearInterval(wordInterval);
   }, []);
 
   const scrollToContact = () => {
@@ -20,7 +44,7 @@ const Hero = () => {
       <div 
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: 'url("/images/hero.png")',
+          backgroundImage: 'url("/images/hero.jpg")',
           backgroundAttachment: 'fixed',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -33,26 +57,31 @@ const Hero = () => {
 
       {/* Content */}
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <div className="text-center">
+        <div className="max-w-3xl">
           <div 
             className={`transition-all duration-1000 ease-out transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-8">
-              We make modernising{' '}
-              <span className="text-blue-100">simple</span>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl text-white mb-8 font-nunito">
+              <span className="font-normal">We Make<br />
+              Modernisation</span><br />
+              <span 
+                className={`inline-block transition-opacity duration-500 font-bold ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
+              >
+                {currentWord}.
+              </span>
             </h1>
-            <p className="text-xl text-gray-100 mb-12 max-w-2xl mx-auto">
-              Streamline operations, improve customer service, and make better decisions with 
-              practical technology solutions designed for your business needs.
+            <p className="text-[20px] text-gray-200 mb-6 max-w-lg">
+              Streamline operations, improve customer service, and make better decisions with practical technology solutions designed for your business needs.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button 
+            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+              <button
                 onClick={scrollToContact}
-                className="bg-blue-800 text-white px-8 py-3 rounded-md hover:bg-blue-900 transition-colors duration-300 text-lg shadow-lg"
+                className="bg-tan-500 text-brown-700 px-8 py-3 rounded-md hover:bg-tan-600 transition-colors duration-300 text-lg"
               >
                 Schedule a Consultation
               </button>
-              <button 
+              <button
+                onClick={scrollToContact}
                 className="bg-white/20 text-white px-8 py-3 rounded-md hover:bg-white/30 transition-colors duration-300 text-lg"
               >
                 Learn More

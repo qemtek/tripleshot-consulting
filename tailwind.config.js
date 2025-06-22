@@ -3,6 +3,10 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Nunito Sans', 'sans-serif'],
+        nunito: ['Nunito', 'sans-serif'],
+      },
       animation: {
         'pulse': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
@@ -30,6 +34,16 @@ export default {
         },
         red: {
           '500-rgb': '239, 68, 68',
+        },
+        brown: {
+          '500': '#3e2415',
+          '600': '#331d11',
+          '700': '#28170d',
+        },
+        tan: {
+          '500': '#e8c598',
+          '600': '#d9b689',
+          '700': '#caa77a',
         },
       },
     },

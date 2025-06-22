@@ -5,9 +5,32 @@ const fs = require('fs').promises;
 const path = require('path');
 const dotenv = require('dotenv');
 const OpenAI = require('openai');
+const { createClient } = require('@supabase/supabase-js');
+const nodemailer = require('nodemailer');
 
-// Load environment variables
-dotenv.config();
+// Load environment variables from parent directory
+dotenv.config({ path: '../.env' });
+
+// Initialize Supabase client
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+);
+
+// Validate required environment variables
+if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+  console.error('❌ Missing required Supabase environment variables');
+  process.exit(1);
+}
+
+// Initialize email transporter
+const emailTransporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD
+  }
+});
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -25,25 +48,67 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 
-// Ensure data directory exists
-const dataDir = path.join(__dirname, 'data');
-const leadsFile = path.join(dataDir, 'leads.json');
-
-// Initialize data directory and files
-async function initializeDataStorage() {
+// Test Supabase connection
+async function testSupabaseConnection() {
   try {
-    await fs.mkdir(dataDir, { recursive: true });
+    const { data, error } = await supabase
+      .from('leads')
+      .select('count', { count: 'exact', head: true });
     
-    try {
-      await fs.access(leadsFile);
-    } catch (error) {
-      // File doesn't exist, create it with empty array
-      await fs.writeFile(leadsFile, JSON.stringify([]));
+    if (error) {
+      console.error('Supabase connection error:', error);
+    } else {
+      console.log('✅ Supabase connection successful');
     }
-    
-    console.log('Data storage initialized successfully');
   } catch (error) {
-    console.error('Error initializing data storage:', error);
+    console.error('Error testing Supabase connection:', error);
+  }
+}
+
+// Send notification email for new leads
+async function sendLeadNotificationEmail(leadData) {
+  try {
+    const notificationEmail = process.env.NOTIFICATION_EMAIL || 'christopher.collins.ds@gmail.com';
+    
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: notificationEmail,
+      subject: `🚀 New Lead: ${leadData.name} from ${leadData.company || 'Unknown Company'}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #3e2415; border-bottom: 2px solid #e8c598; padding-bottom: 10px;">
+            🎉 New Contact Form Submission
+          </h2>
+          
+          <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #3e2415; margin-top: 0;">Contact Details</h3>
+            <p><strong>Name:</strong> ${leadData.name}</p>
+            <p><strong>Email:</strong> <a href="mailto:${leadData.email}">${leadData.email}</a></p>
+            <p><strong>Company:</strong> ${leadData.company || 'Not provided'}</p>
+          </div>
+          
+          <div style="background: #fff; padding: 20px; border: 1px solid #e8c598; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #3e2415; margin-top: 0;">Message</h3>
+            <p style="line-height: 1.6;">${leadData.message}</p>
+          </div>
+          
+          <div style="background: #3e2415; color: white; padding: 15px; border-radius: 8px; text-align: center; margin: 20px 0;">
+            <p style="margin: 0;"><strong>⏰ Submitted:</strong> ${new Date().toLocaleString()}</p>
+            <p style="margin: 5px 0 0 0; font-size: 14px;">Respond within 24 hours for best conversion rates!</p>
+          </div>
+          
+          <p style="color: #666; font-size: 12px; text-align: center; margin-top: 30px;">
+            This email was sent automatically from your Tripleshot Consulting website contact form.
+          </p>
+        </div>
+      `
+    };
+
+    await emailTransporter.sendMail(mailOptions);
+    console.log('✅ Lead notification email sent successfully');
+  } catch (error) {
+    console.error('❌ Error sending lead notification email:', error);
+    // Don't throw error - we don't want email failures to break the contact form
   }
 }
 
@@ -120,28 +185,27 @@ app.post('/api/leads', async (req, res) => {
       return res.status(400).json({ error: 'Email is required' });
     }
     
-    // Read existing leads
-    const leadsData = await fs.readFile(leadsFile, 'utf8');
-    const leads = JSON.parse(leadsData);
+    // Insert chatbot lead into Supabase
+    const { data, error } = await supabase
+      .from('leads')
+      .insert([
+        {
+          email,
+          name,
+          company,
+          conversation: conversation || [],
+          source: 'chatbot',
+          status: 'new'
+        }
+      ])
+      .select();
     
-    // Create new lead
-    const newLead = {
-      id: Date.now().toString(),
-      email,
-      name,
-      company,
-      conversation: conversation || [],
-      createdAt: new Date().toISOString(),
-      status: 'new'
-    };
+    if (error) {
+      console.error('Supabase error saving chatbot lead:', error);
+      return res.status(500).json({ error: 'Failed to save lead' });
+    }
     
-    // Add to leads array
-    leads.push(newLead);
-    
-    // Save updated leads
-    await fs.writeFile(leadsFile, JSON.stringify(leads, null, 2));
-    
-    res.status(201).json({ success: true, lead: newLead });
+    res.status(201).json({ success: true, lead: data[0] });
   } catch (error) {
     console.error('Error saving lead:', error);
     res.status(500).json({ error: 'Failed to save lead' });
@@ -151,12 +215,79 @@ app.post('/api/leads', async (req, res) => {
 // Get all leads (would be protected in production)
 app.get('/api/leads', async (req, res) => {
   try {
-    const leadsData = await fs.readFile(leadsFile, 'utf8');
-    const leads = JSON.parse(leadsData);
-    res.json(leads);
+    const { data, error } = await supabase
+      .from('leads')
+      .select('*')
+      .order('created_at', { ascending: false });
+    
+    if (error) {
+      console.error('Supabase error fetching leads:', error);
+      return res.status(500).json({ error: 'Failed to fetch leads' });
+    }
+    
+    res.json(data);
   } catch (error) {
     console.error('Error fetching leads:', error);
     res.status(500).json({ error: 'Failed to fetch leads' });
+  }
+});
+
+// Contact form submission endpoint
+app.post('/api/contact', async (req, res) => {
+  try {
+    const { name, email, company, message } = req.body;
+    
+    // Validate required fields
+    if (!name || !email || !message) {
+      return res.status(400).json({ 
+        error: 'Name, email, and message are required' 
+      });
+    }
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ 
+        error: 'Please provide a valid email address' 
+      });
+    }
+    
+    // Insert lead into Supabase
+    const { data, error } = await supabase
+      .from('leads')
+      .insert([
+        {
+          email,
+          name,
+          company: company || '',
+          message,
+          source: 'contact_form',
+          status: 'new'
+        }
+      ])
+      .select();
+    
+    if (error) {
+      console.error('Supabase error:', error);
+      return res.status(500).json({ 
+        error: 'Failed to save your message. Please try again.' 
+      });
+    }
+    
+    console.log('New contact form submission saved to Supabase:', { name, email, company });
+    
+    // Send notification email (don't wait for it to complete)
+    sendLeadNotificationEmail({ name, email, company, message });
+    
+    res.status(201).json({ 
+      success: true, 
+      message: 'Thank you for your message! We\'ll get back to you within 24 hours.' 
+    });
+  } catch (error) {
+    console.error('Error processing contact form:', error);
+    res.status(500).json({ 
+      error: 'Something went wrong. Please try again or email us directly.' 
+    });
   }
 });
 
@@ -200,7 +331,7 @@ app.get('/api/faqs', async (req, res) => {
 });
 
 // Start server
-initializeDataStorage().then(() => {
+testSupabaseConnection().then(() => {
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });

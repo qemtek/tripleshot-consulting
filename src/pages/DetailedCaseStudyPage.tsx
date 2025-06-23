@@ -69,7 +69,7 @@ const detailedCaseStudyData: Record<string, DetailedCaseStudyData> = {
     subtitle: 'Large-Scale Route Optimization with Real-Time Adaptation',
     industry: 'Logistics & Transportation',
     client: 'London-Based Logistics Startup',
-    duration: '24 Months',
+    duration: '6 Months',
     location: 'London, UK',
     teamSize: '1 Data Scientist',
     projectType: 'Production System Development',
@@ -572,11 +572,7 @@ export default function DetailedCaseStudyPage() {
                   <span className="text-slate-400">Duration:</span>
                   <span>{caseStudy.duration}</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Users className="w-4 h-4 text-slate-400" />
-                  <span className="text-slate-400">Team:</span>
-                  <span>{caseStudy.teamSize}</span>
-                </div>
+
                 <div className="flex items-center gap-2">
                   <Code className="w-4 h-4 text-slate-400" />
                   <span className="text-slate-400">Type:</span>
@@ -802,10 +798,7 @@ export default function DetailedCaseStudyPage() {
                     <span className="text-gray-600">Duration:</span>
                     <div className="font-medium text-gray-900">{caseStudy.duration}</div>
                   </div>
-                  <div>
-                    <span className="text-gray-600">Team Size:</span>
-                    <div className="font-medium text-gray-900">{caseStudy.teamSize}</div>
-                  </div>
+
                 </div>
               </div>
 

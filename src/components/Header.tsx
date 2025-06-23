@@ -68,7 +68,7 @@ const Header: React.FC = () => {
               onClick={() => handleNavClick('our-approach-in-action')}
               className="text-brown-600 hover:text-brown-700 transition-colors py-1 border-b-2"
             >
-              How We Can Help
+              Our Services
             </button>
             <button
               onClick={() => handleNavClick('team')}
@@ -118,7 +118,7 @@ const Header: React.FC = () => {
                 onClick={() => handleNavClick('our-approach-in-action')}
                 className="block px-3 py-2 text-brown-600 hover:text-brown-700 transition-colors w-full text-left"
               >
-                How We Can Help
+                Our Services
               </button>
               <button
                 onClick={() => handleNavClick('team')}

@@ -153,19 +153,7 @@ export default function DetailedCaseStudies() {
                       </ul>
                     </div>
 
-                    <div>
-                      <h4 className="font-semibold text-brown-500 mb-2">Technologies Used</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {study.technologies.map((tech, idx) => (
-                          <span 
-                            key={idx}
-                            className="bg-brown-100 text-brown-700 px-3 py-1 rounded-full text-sm font-medium"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+
                   </div>
 
                   <div className="pt-4">

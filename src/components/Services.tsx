@@ -180,7 +180,7 @@ const Services: React.FC = () => {
             </div>
           </div>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown-500 mb-6">
-            How We Can Help
+            Our Services
           </h2>
           <p className="text-lg text-brown-500 max-w-3xl mx-auto mb-12">
             Here are some examples of the types of projects we work on at each phase of your digital journey. Click the buttons to learn more about each project.

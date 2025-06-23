@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import { Users, Target, Lightbulb, Award, ChevronLeft, ChevronRight } from 'lucide-react';
+import React from 'react';
+import { Users, Target, Lightbulb, Award } from 'lucide-react';
 
 const AboutUs = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  
   const values = [
     {
       icon: Target,
@@ -27,14 +25,6 @@ const AboutUs = () => {
     }
   ];
 
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % values.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + values.length) % values.length);
-  };
-
   return (
     <section className="py-12 bg-gradient-to-br from-white to-gray-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,7 +41,7 @@ const AboutUs = () => {
               </div>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brown-500 mb-4 leading-tight">
-              About Tripleshot Consulting
+              Our Story
             </h2>
             <p className="text-lg sm:text-xl text-brown-600 max-w-3xl mx-auto leading-relaxed">
               We're a team of experienced consultants who believe that modern technology should work for your business, not against it.
@@ -63,7 +53,7 @@ const AboutUs = () => {
             {/* Story Section */}
             <div className="text-center max-w-4xl mx-auto space-y-6">
               <h3 className="text-2xl sm:text-3xl font-bold text-brown-500 leading-tight">
-                Making Technology Simple for UK Businesses
+                Making AI Accessible for Everyone
               </h3>
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p>
@@ -80,65 +70,8 @@ const AboutUs = () => {
 
             {/* Values Section */}
             <div className="space-y-6">
-              {/* Mobile Carousel */}
-              <div className="sm:hidden relative">
-                <div className="overflow-hidden">
-                  <div 
-                    className="flex transition-transform duration-300 ease-in-out"
-                    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-                  >
-                    {values.map((value, index) => {
-                      const IconComponent = value.icon;
-                      return (
-                        <div key={index} className="w-full flex-shrink-0 px-2">
-                          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                            <div className="w-12 h-12 bg-tan-500/20 rounded-lg flex items-center justify-center mb-4">
-                              <IconComponent className="w-6 h-6 text-brown-500" />
-                            </div>
-                            <h4 className="font-semibold text-brown-500 mb-2">{value.title}</h4>
-                            <p className="text-gray-600 text-sm leading-relaxed">
-                              {value.description}
-                            </p>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-                
-                {/* Navigation Buttons */}
-                <button
-                  onClick={prevSlide}
-                  className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors -translate-x-2"
-                  aria-label="Previous value"
-                >
-                  <ChevronLeft className="w-5 h-5 text-brown-600" />
-                </button>
-                <button
-                  onClick={nextSlide}
-                  className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors translate-x-2"
-                  aria-label="Next value"
-                >
-                  <ChevronRight className="w-5 h-5 text-brown-600" />
-                </button>
-                
-                {/* Dots Indicator */}
-                <div className="flex justify-center mt-4 space-x-2">
-                  {values.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentIndex(index)}
-                      className={`w-2 h-2 rounded-full transition-colors ${
-                        index === currentIndex ? 'bg-brown-600' : 'bg-gray-300'
-                      }`}
-                      aria-label={`Go to value ${index + 1}`}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Desktop Grid */}
-              <div className="hidden sm:grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Mobile & Desktop Grid - Simple vertical layout on mobile, 2-column on larger screens */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {values.map((value, index) => {
                   const IconComponent = value.icon;
                   return (
@@ -158,7 +91,7 @@ const AboutUs = () => {
           </div>
 
           {/* Bottom CTA */}
-          <div className="text-center bg-tan-500/10 p-8 rounded-2xl">
+          <div className="text-center sm:bg-tan-500/10 p-8 sm:rounded-2xl">
             <h3 className="text-2xl font-bold text-brown-500 mb-4">
               Ready to Work with a Team That Gets It?
             </h3>

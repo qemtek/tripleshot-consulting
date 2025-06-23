@@ -86,10 +86,10 @@ export default function DetailedCaseStudies() {
             />
             </div>
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown-500 mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brown-500 mb-6 leading-tight">
             Technical Case Studies
           </h2>
-          <p className="text-xl text-brown-600 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-brown-600 max-w-3xl mx-auto leading-relaxed">
             Deep dives into real-world AI and data science solutions that delivered measurable business impact
           </p>
         </div>
@@ -122,30 +122,30 @@ export default function DetailedCaseStudies() {
 
                 <div className="lg:w-1/2 space-y-6 flex flex-col justify-center">
                   <div>
-                    <h3 className="text-3xl sm:text-4xl font-bold text-brown-500 mb-3">
+                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-brown-500 mb-3 leading-tight">
                       {study.title}
                     </h3>
-                    <p className="text-lg text-brown-600 font-medium mb-6">
+                    <p className="text-base sm:text-lg text-brown-600 font-medium mb-6 leading-relaxed">
                       {study.subtitle}
                     </p>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     <div>
-                      <h4 className="font-semibold text-brown-500 mb-2">The Challenge</h4>
-                      <p className="text-gray-700">{study.challenge}</p>
+                      <h4 className="text-lg font-semibold text-brown-500 mb-3">The Challenge</h4>
+                      <p className="text-gray-700 leading-relaxed">{study.challenge}</p>
                     </div>
 
                     <div>
-                      <h4 className="font-semibold text-brown-500 mb-2">Our Solution</h4>
-                      <p className="text-gray-700">{study.solution}</p>
+                      <h4 className="text-lg font-semibold text-brown-500 mb-3">Our Solution</h4>
+                      <p className="text-gray-700 leading-relaxed">{study.solution}</p>
                     </div>
 
                     <div>
-                      <h4 className="font-semibold text-brown-500 mb-2">Key Results</h4>
-                      <ul className="space-y-2">
+                      <h4 className="text-lg font-semibold text-brown-500 mb-3">Key Results</h4>
+                      <ul className="space-y-3">
                         {study.results.map((result, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-gray-700">
+                          <li key={idx} className="flex items-start gap-3 text-gray-700 leading-relaxed">
                             <div className="w-2 h-2 bg-tan-500 rounded-full mt-2 flex-shrink-0" />
                             {result}
                           </li>

@@ -81,10 +81,10 @@ const Contact = () => {
             />
               </div>
             </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown-500 mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brown-500 mb-6 leading-tight">
               Get Started Today
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
               Ready to transform your business with practical technology solutions? Contact us for a free consultation.
             </p>
           </div>
@@ -179,7 +179,7 @@ const Contact = () => {
                           name="name"
                           value={formData.name}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-600 focus:border-blue-600"
+                          className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-blue-600 focus:border-blue-600 min-h-[48px]"
                           required
                         />
                       </div>
@@ -193,7 +193,7 @@ const Contact = () => {
                           name="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-600 focus:border-blue-600"
+                          className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-blue-600 focus:border-blue-600 min-h-[48px]"
                           required
                         />
                       </div>
@@ -209,7 +209,7 @@ const Contact = () => {
                         name="company"
                         value={formData.company}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-600 focus:border-blue-600"
+                        className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-blue-600 focus:border-blue-600 min-h-[48px]"
                       />
                     </div>
                     
@@ -223,7 +223,7 @@ const Contact = () => {
                         value={formData.message}
                         onChange={handleInputChange}
                         rows={4}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-600 focus:border-blue-600"
+                        className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-blue-600 focus:border-blue-600 resize-vertical"
                         required
                       ></textarea>
                     </div>
@@ -231,7 +231,7 @@ const Contact = () => {
                     <button
                       type="submit"
                       disabled={formStatus === 'submitting'}
-                      className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-md hover:from-blue-700 hover:to-blue-800 transition-all duration-300 flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed text-lg font-semibold min-h-[56px]"
                     >
                       {formStatus === 'submitting' ? (
                         <span>Sending...</span>

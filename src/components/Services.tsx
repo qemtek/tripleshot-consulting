@@ -179,10 +179,10 @@ const Services: React.FC = () => {
               />
             </div>
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown-500 mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brown-500 mb-6 leading-tight">
             Our Services
           </h2>
-          <p className="text-lg text-brown-500 max-w-3xl mx-auto mb-12">
+          <p className="text-lg sm:text-xl text-brown-500 max-w-3xl mx-auto mb-12 leading-relaxed">
             Here are some examples of the types of projects we work on at each phase of your digital journey. Click the buttons to learn more about each project.
           </p>
         </div>
@@ -191,30 +191,35 @@ const Services: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-8 max-w-7xl mx-auto">
           {/* Service Buttons - Left Column */}
           <div className="lg:w-1/2">
-            <div className="sticky top-8 space-y-4">
+            <div className="sticky top-8 space-y-6">
               {['Phase 1: Getting Digital', 'Phase 2: Unlocking Value', 'Phase 3: Getting Ahead'].map((phase) => (
-                <div key={phase} className="flex gap-2">
-                  {services.filter(s => s.phase === phase).map((service) => {
-                    const index = services.findIndex(s => s.title === service.title);
-                    const isSelected = selectedService === index;
-                    const color = phaseColors[phase];
-                    return (
-                      <button
-                        key={service.title}
-                        onClick={() => setSelectedService(index)}
-                        className={`flex items-center p-2.5 rounded-full transition-all duration-300 hover:scale-[1.03] cursor-pointer text-left ${isSelected ? 'shadow-md' : 'shadow-sm'}`}
-                        style={{
-                          border: `2px solid ${color}80`,
-                          backgroundColor: isSelected ? `${color}10` : 'transparent',
-                        }}
-                      >
-                        <>
-                          {service.icon}
-                          <span className="ml-2 text-brown-500">{service.title}</span>
-                        </>
-                      </button>
-                    );
-                  })}
+                <div key={phase} className="space-y-3">
+                  <h3 className="text-lg font-semibold text-brown-500 mb-3">{phase}</h3>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    {services.filter(s => s.phase === phase).map((service) => {
+                      const index = services.findIndex(s => s.title === service.title);
+                      const isSelected = selectedService === index;
+                      const color = phaseColors[phase];
+                      return (
+                        <button
+                          key={service.title}
+                          onClick={() => setSelectedService(index)}
+                          className={`flex items-center p-4 rounded-xl transition-all duration-300 hover:scale-[1.02] cursor-pointer text-left min-h-[56px] ${isSelected ? 'shadow-lg' : 'shadow-sm'}`}
+                          style={{
+                            border: `2px solid ${color}80`,
+                            backgroundColor: isSelected ? `${color}15` : 'white',
+                          }}
+                        >
+                          <>
+                            <div className="flex-shrink-0 mr-3">
+                              {service.icon}
+                            </div>
+                            <span className="text-brown-500 font-medium text-sm sm:text-base">{service.title}</span>
+                          </>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               ))}
             </div>
@@ -224,7 +229,7 @@ const Services: React.FC = () => {
           <div className="lg:w-1/2">
             <div 
               key={`service-panel-${selectedService}`}
-              className="rounded-3xl shadow-md p-6 mb-8 transition-all duration-300 w-full bg-white"
+              className="rounded-3xl shadow-lg p-6 sm:p-8 mb-8 transition-all duration-300 w-full bg-white"
               style={{ 
                 border: `2px solid ${currentColor}80`
               }}
@@ -244,24 +249,24 @@ const Services: React.FC = () => {
                 </div>
                 
                 <div className="pr-16">
-                  <h3 className="text-3xl font-bold text-brown-500 mb-2">{currentService.title}</h3>
-                  <p className="text-brown-500 opacity-70 text-lg">{currentService.phase}</p>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-brown-500 mb-2 leading-tight">{currentService.title}</h3>
+                  <p className="text-brown-500 opacity-70 text-base sm:text-lg">{currentService.phase}</p>
                 </div>
               </div>
               
-              <div className="flex flex-col md:flex-row gap-6">
-                <div className="md:w-2/5">
-                  <h4 className="text-lg font-semibold text-brown-500 mb-4">Introduction:</h4>
-                  <p className="text-gray-600 max-w-prose">{currentService.description}</p>
+              <div className="flex flex-col gap-8">
+                <div>
+                  <h4 className="text-lg sm:text-xl font-semibold text-brown-500 mb-4">Introduction:</h4>
+                  <p className="text-gray-600 text-base sm:text-lg leading-relaxed">{currentService.description}</p>
                 </div>
                 
-                <div className="md:w-3/5">
-                  <h4 className="text-lg font-semibold text-brown-500 mb-4">Key Features:</h4>
-                  <ul className="space-y-3">
+                <div>
+                  <h4 className="text-lg sm:text-xl font-semibold text-brown-500 mb-4">Key Features:</h4>
+                  <ul className="space-y-4">
                     {currentService.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start">
                         <span 
-                          className="inline-flex items-center justify-center h-5 w-5 rounded-full mr-3 mt-0.5 flex-shrink-0" 
+                          className="inline-flex items-center justify-center h-6 w-6 rounded-full mr-4 mt-0.5 flex-shrink-0" 
                           style={{ 
                             backgroundColor: beigeColor
                           }}
@@ -276,7 +281,7 @@ const Services: React.FC = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                           </svg>
                         </span>
-                        <span className="text-brown-500">{feature}</span>
+                        <span className="text-brown-500 text-base sm:text-lg leading-relaxed">{feature}</span>
                       </li>
                     ))}
                   </ul>

@@ -6,4 +6,27 @@
   html {
     @apply text-brown-500;
   }
+  
+  /* Improve mobile readability */
+  @media (max-width: 768px) {
+    body {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      line-height: 1.3;
+    }
+    
+    /* Ensure minimum touch target size */
+    button, a, input, textarea, select {
+      min-height: 44px;
+    }
+    
+    /* Better spacing for mobile */
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
 }

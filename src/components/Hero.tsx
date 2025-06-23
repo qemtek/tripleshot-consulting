@@ -61,7 +61,7 @@ const Hero = () => {
           <div 
             className={`transition-all duration-1000 ease-out transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
           >
-            <h1 className="text-5xl sm:text-6xl md:text-7xl text-white mb-8 font-nunito">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-8 font-nunito leading-tight">
               <span className="font-normal">We Make<br />
               Modernisation</span><br />
               <span 
@@ -70,19 +70,19 @@ const Hero = () => {
                 {currentWord}.
               </span>
             </h1>
-            <p className="text-[20px] text-gray-200 mb-6 max-w-lg">
+            <p className="text-lg sm:text-xl text-gray-200 mb-8 max-w-lg leading-relaxed">
               Streamline operations, improve customer service, and make better decisions with practical technology solutions designed for your business needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
               <button
                 onClick={scrollToContact}
-                className="bg-tan-500 text-brown-700 px-8 py-3 rounded-md hover:bg-tan-600 transition-colors duration-300 text-lg"
+                className="bg-tan-500 text-brown-700 px-8 py-4 rounded-lg hover:bg-tan-600 transition-colors duration-300 text-lg font-semibold min-h-[48px]"
               >
                 Schedule a Consultation
               </button>
               <button
                 onClick={scrollToContact}
-                className="bg-white/20 text-white px-8 py-3 rounded-md hover:bg-white/30 transition-colors duration-300 text-lg"
+                className="bg-white/20 text-white px-8 py-4 rounded-lg hover:bg-white/30 transition-colors duration-300 text-lg font-semibold min-h-[48px]"
               >
                 Learn More
               </button>

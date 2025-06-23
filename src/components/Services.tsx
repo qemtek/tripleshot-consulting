@@ -188,7 +188,7 @@ const Services: React.FC = () => {
         </div>
 
         {/* Main Content Area - Side by Side Layout */}
-        <div className="flex flex-col lg:flex-row gap-8 max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto">
           {/* Service Buttons - Left Column */}
           <div className="lg:w-1/2">
             <div className="sticky top-8 space-y-6">

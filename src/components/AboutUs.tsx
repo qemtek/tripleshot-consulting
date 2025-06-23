@@ -38,7 +38,7 @@ const AboutUs = () => {
   return (
     <section className="py-12 bg-gradient-to-br from-white to-gray-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
             <div className="flex justify-center mb-4">

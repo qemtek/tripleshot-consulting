@@ -35,7 +35,7 @@ const Reviews = () => {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="relative">
             <div className="overflow-hidden">
               <div

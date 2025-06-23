@@ -70,7 +70,7 @@ const Contact = () => {
       <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-gradient-to-tr from-purple-50 to-blue-100 rounded-tr-full opacity-70" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <div className="flex justify-center mb-4">
               <div className="rounded-full bg-white shadow-sm p-3">

@@ -61,7 +61,7 @@ const AboutUs = () => {
           {/* Main Content */}
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
             {/* Left Column - Story */}
-            <div className="space-y-6">
+            <div className="space-y-6 max-w-2xl mx-auto lg:mx-0">
               <h3 className="text-2xl sm:text-3xl font-bold text-brown-500 leading-tight">
                 Making Technology Simple for UK Businesses
               </h3>

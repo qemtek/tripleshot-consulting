@@ -68,9 +68,9 @@ const AboutUs = () => {
               </div>
             </div>
 
-            {/* Values Section */}
-            <div className="space-y-6">
-              {/* Mobile & Desktop Grid - Simple vertical layout on mobile, 2-column on larger screens */}
+            {/* Values Section - Hidden on mobile, visible on desktop */}
+            <div className="space-y-6 hidden sm:block">
+              {/* Desktop Grid - 2-column on larger screens */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {values.map((value, index) => {
                   const IconComponent = value.icon;

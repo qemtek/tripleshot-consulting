@@ -65,19 +65,7 @@ export default function CaseStudies() {
               <ChevronRight className="w-6 h-6 text-brown-600" />
             </button>
             
-            {/* Dots Indicator */}
-            <div className="flex justify-center mt-6 space-x-2">
-              {caseStudies.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    index === currentIndex ? 'bg-brown-600' : 'bg-gray-300'
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
+
           </div>
 
           {/* Desktop Grid */}

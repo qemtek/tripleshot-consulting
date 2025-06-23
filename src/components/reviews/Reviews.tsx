@@ -64,17 +64,7 @@ const Reviews = () => {
             </button>
           </div>
 
-          <div className="flex justify-center mt-8 gap-2">
-            {reviews.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrentIndex(i)}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  i === currentIndex ? 'bg-brown-500' : 'bg-tan-200'
-                }`}
-              />
-            ))}
-          </div>
+
         </div>
       </div>
     </section>

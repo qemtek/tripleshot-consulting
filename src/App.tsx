@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage';
 // import Blog from './pages/Blog';
 // import BlogPost from './pages/BlogPost';
 import CaseStudyPage from './pages/CaseStudyPage';
+import AdminPage from './pages/AdminPage';
 import { useScrollToTop } from './hooks/useScrollToTop';
 import ChatbotComponent from './components/chatbot/ChatbotComponent';
 
@@ -29,6 +30,7 @@ export default function App() {
             {/* <Route path="/blog" element={<Blog />} /> */}
             {/* <Route path="/blog/:slug" element={<BlogPost />} /> */}
             <Route path="/case-studies/:id" element={<CaseStudyPage />} />
+            <Route path="/admin" element={<AdminPage />} />
           </Routes>
           <Footer />
           <ChatbotComponent 

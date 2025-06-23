@@ -34,7 +34,7 @@ const detailedCaseStudies: DetailedCaseStudy[] = [
     ],
     technologies: ['Python', 'Google OR-Tools', 'Docker', 'AWS ECS', 'GraphHopper', 'Uber H3'],
     icon: Truck,
-    image: '/images/case-studies/modern-website-desk.jpg'
+    image: '/images/case-studies/smart-routing.png'
   },
   {
     id: 'dynamic-pricing-ai',
@@ -53,7 +53,7 @@ const detailedCaseStudies: DetailedCaseStudy[] = [
     ],
     technologies: ['Python', 'Scikit-learn', 'AWS Lambda', 'PostgreSQL', 'REST APIs', 'A/B Testing'],
     icon: DollarSign,
-    image: '/images/case-studies/pricing-strategy.png'
+    image: '/images/case-studies/dynamic-pricing.jpg'
   },
   {
     id: 'customer-churn-prediction',

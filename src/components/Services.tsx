@@ -36,99 +36,126 @@ const Services: React.FC = () => {
   const services: Service[] = [
     {
       title: 'Workflow Automation',
-      description: 'Save time and reduce paperwork by digitizing your core business processes.',
+      description: 'Transform your business operations by digitizing processes and eliminating manual work.',
       features: [
-        'Replace paper forms with digital workflows',
-        'Automate repetitive tasks',
-        'Automate invoices, follow-ups, stock level alerts, etc.'
+        'Process digitization and documentation',
+        'Task automation and approval workflows',
+        'Data migration from spreadsheets/paper systems',
+        'Integration between different software tools',
+        'Standard operating procedure creation',
+        'Employee onboarding and training systems'
       ],
       icon: <FiLayers className="w-6 h-6" />,
       phase: 'Phase 1: Getting Digital'
     },
     {
       title: 'Digital Branding',
-      description: 'Establish a professional online presence that attracts and engages customers.',
+      description: 'Build a cohesive digital presence that reflects your business values and attracts ideal customers.',
       features: [
-        'Develop a modern, responsive website',
-        'Create consistent branding across platforms',
-        'Integrate your website with CRM systems'
+        'Brand identity and visual design systems',
+        'Website development and optimization',
+        'Social media presence establishment',
+        'Digital asset management and consistency',
+        'Online reputation setup and monitoring',
+        'E-commerce platform development'
       ],
       icon: <FiGlobe className="w-6 h-6" />,
       phase: 'Phase 1: Getting Digital'
     },
     {
       title: 'Online Marketing',
-      description: 'Get in front of your ideal customers at the right time.',
+      description: 'Create marketing systems that consistently generate qualified leads and grow your customer base.',
       features: [
-        'Analyze customer behavior and preferences',
-        'Track key performance indicators',
-        'Identify the marketing channels that work best for your business'
+        'Social media strategy and management',
+        'Content marketing and SEO',
+        'Email marketing automation',
+        'Pay-per-click advertising management',
+        'Marketing funnel optimization',
+        'Lead generation and nurturing systems'
       ],
       icon: <FiTrendingUp className="w-6 h-6" />,
-      phase: 'Phase 1: Getting Digital'
+      phase: 'Phase 2: Unlocking Value'
     },
     {
       title: 'Analytics',
-      description: 'Gain insights from your business data to make better decisions.',
+      description: 'Transform your data into actionable insights that drive better business decisions.',
       features: [
-        'Set up dashboards to track key metrics',
-        'Analyze trends and patterns in your data',
-        'Create interactive dashboards for real-time monitoring'
+        'Business intelligence dashboards',
+        'Financial performance tracking',
+        'Operational efficiency metrics',
+        'Website and marketing analytics',
+        'Employee productivity analysis',
+        'Key performance indicator (KPI) frameworks'
       ],
       icon: <FiBarChart2 className="w-6 h-6" />,
       phase: 'Phase 2: Unlocking Value'
     },
     {
       title: 'Customer Base Analysis',
-      description: 'Understand your customers better to increase sales and retention.',
+      description: 'Understand your customers deeply to improve retention, increase sales, and identify new opportunities.',
       features: [
-        'Segment customers based on behavior',
-        'Track customer journey and touchpoints',
-        'Learn how to appeal to each customer segment'
+        'Customer segmentation and profiling',
+        'Buying behavior pattern analysis',
+        'Customer lifetime value calculation',
+        'Churn prediction and retention strategies',
+        'Market research and surveys',
+        'Competitive positioning analysis'
       ],
       icon: <FiUsers className="w-6 h-6" />,
       phase: 'Phase 2: Unlocking Value'
     },
     {
       title: 'Generative AI',
-      description: 'Leverage AI to enhance communication and engagement with your customers.',
+      description: 'Leverage AI to automate content creation and enhance customer interactions.',
       features: [
-        'Implement AI-powered chatbots',
-        'Create personalized marketing campaigns',
-        'Create emails, social media posts, brochures, FAQs'
+        'Content creation automation',
+        'Customer service chatbots',
+        'Personalized marketing materials',
+        'Automated report generation',
+        'Product description and copy writing',
+        'Training material development'
       ],
       icon: <FiCpu className="w-6 h-6" />,
-      phase: 'Phase 2: Unlocking Value'
+      phase: 'Phase 3: Getting Ahead'
     },
     {
       title: 'Predictive Modelling',
-      description: 'Use advanced analytics to predict future outcomes and behaviors.',
+      description: 'Use advanced analytics to predict future outcomes and make data-driven strategic decisions.',
       features: [
-        'Churn - Predict which customers are likely to leave',
-        'Cross-sell - Predict which products customers will buy next',
-        'Lifetime Value - Predict which customers will spend the most'
+        'Sales forecasting models',
+        'Market trend analysis',
+        'Risk assessment frameworks',
+        'Customer behavior prediction',
+        'Resource planning optimization',
+        'Scenario planning and stress testing'
       ],
       icon: <FiActivity className="w-6 h-6" />,
       phase: 'Phase 3: Getting Ahead'
     },
     {
       title: 'Optimisation',
-      description: 'Optimize your business processes and resource allocation.',
+      description: 'Maximize efficiency and profitability across all aspects of your business operations.',
       features: [
-        'Optimize inventory levels to minimize costs',
-        'Route optimization for delivery and service teams',
-        'Find prices that balance sales volume and profit margins'
+        'Supply chain and inventory management',
+        'Pricing strategy optimization',
+        'Resource allocation improvement',
+        'Process efficiency enhancement',
+        'Cost reduction identification',
+        'Performance bottleneck elimination'
       ],
       icon: <FiZap className="w-6 h-6" />,
       phase: 'Phase 3: Getting Ahead'
     },
     {
       title: 'Forecasting',
-      description: 'Predict future trends and demand to stay ahead of the market.',
+      description: 'Predict future trends and demands to stay ahead of market changes and plan strategically.',
       features: [
-        'Forecast sales and demand for better inventory management',
-        'Predict seasonal trends and plan accordingly',
-        'Predict when a customer will need a new product'
+        'Financial planning and budgeting',
+        'Demand forecasting',
+        'Market expansion planning',
+        'Cash flow prediction',
+        'Seasonal trend analysis',
+        'Strategic planning support'
       ],
       icon: <FiTrendingUp className="w-6 h-6" />,
       phase: 'Phase 3: Getting Ahead'

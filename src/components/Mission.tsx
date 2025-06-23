@@ -1,5 +1,3 @@
-/** @jsx React.createElement */
-
 interface Phase {
   title: string;
   description: string;

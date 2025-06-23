@@ -2,15 +2,104 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>Tripleshot Consulting - We Make Modernisation Simple</title>
+    <meta name="description" content="Transform your business with practical technology solutions. Our 3-phase approach helps SMBs streamline operations, improve customer service, and make better decisions through AI and automation." />
+    <meta name="keywords" content="business automation, AI consulting, digital transformation, workflow automation, predictive analytics, small business technology" />
+    <meta name="author" content="Tripleshot Consulting" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Tripleshot Consulting - We Make Modernisation Simple" />
+    <meta property="og:description" content="Transform your business with practical technology solutions. Our 3-phase approach helps SMBs streamline operations and improve customer service." />
+    <meta property="og:image" content="/images/hero.jpg" />
+    <meta property="og:url" content="https://tripleshot-consulting.com" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tripleshot Consulting - We Make Modernisation Simple" />
+    <meta name="twitter:description" content="Transform your business with practical technology solutions. Our 3-phase approach helps SMBs streamline operations and improve customer service." />
+    <meta name="twitter:image" content="/images/hero.jpg" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://tripleshot-consulting.com" />
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200..1000;1,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-    <title>Tripleshot Consulting - AI Solutions for Business</title>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Tripleshot Consulting",
+      "description": "Technology consulting company specializing in AI, automation, and digital transformation for small and medium businesses.",
+      "url": "https://tripleshot-consulting.com",
+      "logo": "https://tripleshot-consulting.com/images/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+44-74-022-474-06",
+        "contactType": "customer service",
+        "email": "tripleshot.consulting@gmail.com"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "GB"
+      },
+      "sameAs": [
+        "https://tripleshot-consulting.com"
+      ]
+    }
+    </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Fallback content for crawlers and slow connections -->
+      <noscript>
+        <div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px;">
+          <header style="text-align: center; margin-bottom: 40px;">
+            <img src="/images/logo.png" alt="Tripleshot Consulting Logo" style="height: 60px; margin-bottom: 20px;">
+            <h1 style="color: #3E2415; margin: 0;">Tripleshot Consulting</h1>
+            <p style="color: #666; font-size: 18px;">We Make Modernisation Simple</p>
+          </header>
+          
+          <main>
+            <section style="margin-bottom: 40px;">
+              <h2 style="color: #3E2415;">Transform Your Business with Practical Technology Solutions</h2>
+              <p>Streamline operations, improve customer service, and make better decisions with our proven 3-phase approach to digital transformation.</p>
+            </section>
+            
+            <section style="margin-bottom: 40px;">
+              <h2 style="color: #3E2415;">Our 3-Phase Method</h2>
+              <div style="margin-bottom: 20px;">
+                <h3 style="color: #2465B4;">Phase 1: Getting Digital</h3>
+                <p>We lay the groundwork by replacing paper and oversized spreadsheets with digital tools. This includes setting up data infrastructure and defining your online brand presence.</p>
+              </div>
+              <div style="margin-bottom: 20px;">
+                <h3 style="color: #CB1789;">Phase 2: Unlocking Value</h3>
+                <p>Once you're set up, we help you get real value from your digital tools — using analytics and AI to understand your customers better and improve how you work.</p>
+              </div>
+              <div style="margin-bottom: 20px;">
+                <h3 style="color: #F39D2D;">Phase 3: Getting Ahead</h3>
+                <p>With the right data and processes in place, we bring in advanced tools to help you spot opportunities, plan ahead, and stay one step ahead of the competition.</p>
+              </div>
+            </section>
+            
+            <section>
+              <h2 style="color: #3E2415;">Contact Us</h2>
+              <p>Ready to transform your business? Contact us for a free consultation.</p>
+              <p><strong>Phone:</strong> +44 74 022 474 06</p>
+              <p><strong>Email:</strong> tripleshot.consulting@gmail.com</p>
+            </section>
+          </main>
+        </div>
+      </noscript>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

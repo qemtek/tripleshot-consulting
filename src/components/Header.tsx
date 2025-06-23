@@ -39,7 +39,7 @@ const Header: React.FC = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <img 
-                src="/images/logo_white.png" 
+                src="/images/logo-no-background.png" 
                 alt="Tripleshot Consulting Logo" 
                 className="h-14 w-auto mr-4"
               />

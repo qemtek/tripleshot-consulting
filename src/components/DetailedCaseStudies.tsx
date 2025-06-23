@@ -79,11 +79,11 @@ export default function DetailedCaseStudies() {
         <div className="text-center mb-20">
           <div className="flex justify-center mb-6">
             <div className="rounded-full bg-white shadow-sm p-3">
-              <img 
-                src="/images/logo_white.png" 
-                alt="Tripleshot Logo" 
-                className="h-12" 
-              />
+                          <img 
+              src="/images/logo-no-background.png" 
+              alt="Tripleshot Logo" 
+              className="h-12" 
+            />
             </div>
           </div>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown-500 mb-6">

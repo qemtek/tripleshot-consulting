@@ -173,7 +173,7 @@ const Services: React.FC = () => {
           <div className="flex justify-center mb-6">
             <div className="rounded-full bg-white shadow-sm p-3">
               <img 
-                src="/images/logo_white.png" 
+                src="/images/logo-no-background.png" 
                 alt="Tripleshot Logo" 
                 className="h-12" 
               />

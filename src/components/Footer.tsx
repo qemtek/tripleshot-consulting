@@ -48,7 +48,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center mb-4">
               <img 
-                src="/images/logo_white.png" 
+                src="/images/logo-no-background.png" 
                 alt="Tripleshot Logo" 
                 className="h-8 mr-3" 
               />

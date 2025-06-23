@@ -80,12 +80,6 @@ const Hero = () => {
               >
                 Schedule a Consultation
               </button>
-              <button
-                onClick={scrollToContact}
-                className="bg-white/20 text-white px-8 py-4 rounded-lg hover:bg-white/30 transition-colors duration-300 text-lg font-semibold min-h-[48px]"
-              >
-                Learn More
-              </button>
             </div>
           </div>
         </div>

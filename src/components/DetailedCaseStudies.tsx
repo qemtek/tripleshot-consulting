@@ -32,7 +32,7 @@ const detailedCaseStudies: DetailedCaseStudy[] = [
     ],
     technologies: ['Python', 'Google OR-Tools', 'Docker', 'AWS ECS', 'GraphHopper', 'Uber H3'],
     icon: Truck,
-    image: '/images/case-studies/smart-routing.png'
+    image: '/images/case-studies/smart-routing-dashboard.jpg'
   },
   {
     id: 'dynamic-pricing-ai',
@@ -102,11 +102,11 @@ export default function DetailedCaseStudies() {
                 index % 2 === 1 ? 'lg:flex-row-reverse' : ''
               }`}>
                 <div className="lg:w-1/2">
-                  <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+                  <div className="relative overflow-hidden rounded-2xl shadow-2xl h-full">
                     <img 
                       src={study.image} 
                       alt={study.title}
-                      className="w-full h-80 object-cover"
+                      className="w-full h-64 lg:h-full lg:min-h-96 object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                     <div className="absolute bottom-6 left-6 text-white">
@@ -120,7 +120,7 @@ export default function DetailedCaseStudies() {
                   </div>
                 </div>
 
-                <div className="lg:w-1/2 space-y-6">
+                <div className="lg:w-1/2 space-y-6 flex flex-col justify-center">
                   <div>
                     <h3 className="text-3xl sm:text-4xl font-bold text-brown-500 mb-3">
                       {study.title}

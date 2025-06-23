@@ -76,7 +76,7 @@ const detailedCaseStudyData: Record<string, DetailedCaseStudyData> = {
     complexity: 'High',
     impact: 'Enterprise',
     
-    executiveSummary: 'Engineered a production-grade route optimization system capable of handling 100,000+ delivery nodes with sub-30 minute computation times. The system enabled scaling from 1,000 to 50,000 weekly deliveries without operational team expansion, achieving 90% reduction in manual intervention through advanced algorithmic optimization and real-time adaptation capabilities.',
+    executiveSummary: 'Engineered a production-grade route optimization system capable of handling 100,000+ delivery nodes with sub-30 minute computation times. The system enabled scaling from 1,000 to 10,000 weekly deliveries without operational team expansion, achieving 90% reduction in manual intervention through advanced algorithmic optimization and real-time adaptation capabilities.',
     
     businessContext: 'The client was revolutionizing logistics in London, but manual route planning was becoming a critical bottleneck. The operations team spent 3-4 hours daily building routes, and this approach couldn\'t scale beyond 1,000 deliveries per week. As the business grew exponentially, the complexity was increasing faster than the team could handle, threatening the company\'s ability to capitalize on market opportunities.',
     
@@ -133,8 +133,8 @@ const detailedCaseStudyData: Record<string, DetailedCaseStudyData> = {
       {
         metric: 'Weekly Delivery Capacity',
         before: '1,000 deliveries',
-        after: '50,000 deliveries',
-        improvement: '5000% increase',
+        after: '10,000 deliveries',
+        improvement: '1000% increase',
         impact: 'Enabled business scaling without operational team expansion'
       },
       {

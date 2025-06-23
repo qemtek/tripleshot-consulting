@@ -15,10 +15,10 @@ const Reviews = () => {
   };
 
   return (
-    <section className="py-40 bg-white">
+    <section className="py-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="flex justify-center mb-6">
+        <div className="text-center mb-12">
+          <div className="flex justify-center mb-4">
             <div className="rounded-full bg-white shadow-sm p-3">
               <img 
                 src="/images/logo-no-background.png" 
@@ -27,7 +27,7 @@ const Reviews = () => {
               />
             </div>
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown-500 mb-6">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown-500 mb-4">
             Client Success Stories
           </h2>
           <p className="text-lg text-brown-500 max-w-3xl mx-auto">

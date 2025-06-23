@@ -41,10 +41,10 @@ const Mission = () => {
   };
 
   return (
-    <section className="py-40 bg-white">
+    <section className="py-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="flex justify-center mb-6">
+        <div className="text-center mb-12">
+          <div className="flex justify-center mb-4">
             <div className="rounded-full bg-white shadow-sm p-3">
                           <img 
               src="/images/logo-no-background.png" 
@@ -53,7 +53,7 @@ const Mission = () => {
             />
             </div>
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown-500 mb-6">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown-500 mb-4">
             The Tripleshot Method
           </h2>
           <p className="text-lg max-w-3xl mx-auto">
@@ -62,7 +62,7 @@ const Mission = () => {
           </p>
         </div>
         {/* Mobile Carousel */}
-        <div className="md:hidden relative mt-20">
+        <div className="md:hidden relative mt-12">
           <div className="overflow-hidden">
             <div 
               className="flex transition-transform duration-300 ease-in-out"
@@ -139,7 +139,7 @@ const Mission = () => {
         </div>
 
         {/* Desktop Grid */}
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-12 mt-20 max-w-7xl mx-auto">
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-12 mt-12 max-w-7xl mx-auto">
           {phases.map((phase, index) => (
             <div 
               key={index} 

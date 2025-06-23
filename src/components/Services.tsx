@@ -167,10 +167,10 @@ const Services: React.FC = () => {
   const currentColor = phaseColors[currentService.phase];
 
   return (
-    <section id="services" className="py-40 bg-white">
+    <section id="services" className="py-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="flex justify-center mb-6">
+        <div className="text-center mb-12">
+          <div className="flex justify-center mb-4">
             <div className="rounded-full bg-white shadow-sm p-3">
               <img 
                 src="/images/logo-no-background.png" 
@@ -179,10 +179,10 @@ const Services: React.FC = () => {
               />
             </div>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brown-500 mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brown-500 mb-4 leading-tight">
             Our Services
           </h2>
-          <p className="text-lg sm:text-xl text-brown-500 max-w-3xl mx-auto mb-12 leading-relaxed">
+          <p className="text-lg sm:text-xl text-brown-500 max-w-3xl mx-auto mb-8 leading-relaxed">
             Here are some examples of the types of projects we work on at each phase of your digital journey. Click the buttons to learn more about each project.
           </p>
         </div>

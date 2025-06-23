@@ -64,15 +64,15 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 relative overflow-hidden">
+    <section id="contact" className="py-16 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-blue-50 to-blue-100 rounded-bl-full opacity-70" />
       <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-gradient-to-tr from-purple-50 to-blue-100 rounded-tr-full opacity-70" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="flex justify-center mb-6">
+          <div className="text-center mb-12">
+            <div className="flex justify-center mb-4">
               <div className="rounded-full bg-white shadow-sm p-3">
                             <img 
               src="/images/logo-no-background.png" 
@@ -81,7 +81,7 @@ const Contact = () => {
             />
               </div>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brown-500 mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brown-500 mb-4 leading-tight">
               Get Started Today
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">

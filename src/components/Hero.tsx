@@ -40,15 +40,11 @@ const Hero = () => {
 
   return (
     <div className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Parallax Background */}
+      {/* Background Image - Mobile Friendly */}
       <div 
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat md:bg-fixed"
         style={{
           backgroundImage: 'url("/images/hero.jpg")',
-          backgroundAttachment: 'fixed',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover'
         }}
       >
         {/* Light professional overlay */}

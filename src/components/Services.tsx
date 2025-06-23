@@ -74,7 +74,7 @@ const Services: React.FC = () => {
         'Lead generation and nurturing systems'
       ],
       icon: <FiTrendingUp className="w-6 h-6" />,
-      phase: 'Phase 2: Unlocking Value'
+      phase: 'Phase 1: Getting Digital'
     },
     {
       title: 'Analytics',
@@ -116,7 +116,7 @@ const Services: React.FC = () => {
         'Training material development'
       ],
       icon: <FiCpu className="w-6 h-6" />,
-      phase: 'Phase 3: Getting Ahead'
+      phase: 'Phase 2: Unlocking Value'
     },
     {
       title: 'Predictive Modelling',

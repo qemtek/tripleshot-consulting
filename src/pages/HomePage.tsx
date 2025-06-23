@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Hero from '../components/Hero';
+import AboutUs from '../components/AboutUs';
 import Mission from '../components/Mission';
 import Services from '../components/Services';
 import DetailedCaseStudies from '../components/DetailedCaseStudies';
@@ -27,10 +28,17 @@ export default function HomePage() {
   return (
     <main>
       <Hero />
+      <AboutUs />
       <Mission />
-      <Services />
+      {/* Services section - Desktop only */}
+      <div className="hidden lg:block">
+        <Services />
+      </div>
       <Reviews />
-      <DetailedCaseStudies />
+      {/* Detailed Case Studies - Desktop only */}
+      <div className="hidden lg:block">
+        <DetailedCaseStudies />
+      </div>
       <CaseStudies />
       {/* Companies section temporarily removed */}
       {/* <Companies /> */}

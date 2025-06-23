@@ -3,6 +3,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SEOHead from './components/SEOHead';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 // import Blog from './pages/Blog';
 // import BlogPost from './pages/BlogPost';
@@ -29,11 +30,7 @@ export default function App() {
             {/* <Route path="/blog/:slug" element={<BlogPost />} /> */}
             <Route path="/case-studies/:id" element={<CaseStudyPage />} />
           </Routes>
-          <footer className="bg-gray-900 text-white py-8">
-            <div className="container mx-auto px-4 text-center">
-              <p>&copy; 2025 Tripleshot Consulting. All rights reserved.</p>
-            </div>
-          </footer>
+          <Footer />
           <ChatbotComponent 
             initialMessage="👋 Hi there! How can I help you today?" 
             position="bottom-right"

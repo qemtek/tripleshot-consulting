@@ -226,6 +226,26 @@ app.post('/api/leads', async (req, res) => {
   }
 });
 
+// Get newsletter subscribers (would be protected in production)
+app.get('/api/newsletter', async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('newsletter_subscribers')
+      .select('*')
+      .order('subscribed_at', { ascending: false });
+    
+    if (error) {
+      console.error('Supabase error fetching newsletter subscribers:', error);
+      return res.status(500).json({ error: 'Failed to fetch subscribers' });
+    }
+    
+    res.json(data);
+  } catch (error) {
+    console.error('Error fetching newsletter subscribers:', error);
+    res.status(500).json({ error: 'Failed to fetch subscribers' });
+  }
+});
+
 // Get all leads (would be protected in production)
 app.get('/api/leads', async (req, res) => {
   try {
@@ -243,6 +263,75 @@ app.get('/api/leads', async (req, res) => {
   } catch (error) {
     console.error('Error fetching leads:', error);
     res.status(500).json({ error: 'Failed to fetch leads' });
+  }
+});
+
+// Newsletter subscription endpoint
+app.post('/api/newsletter', async (req, res) => {
+  try {
+    const { email } = req.body;
+    
+    if (!email) {
+      return res.status(400).json({ 
+        error: 'Email is required' 
+      });
+    }
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ 
+        error: 'Please provide a valid email address' 
+      });
+    }
+    
+    // Check if email already exists
+    const { data: existingSubscriber, error: checkError } = await supabase
+      .from('newsletter_subscribers')
+      .select('email')
+      .eq('email', email)
+      .single();
+    
+    if (existingSubscriber) {
+      return res.status(400).json({ 
+        error: 'This email is already subscribed to our newsletter' 
+      });
+    }
+    
+    // Insert newsletter subscription into Supabase
+    const { data, error } = await supabase
+      .from('newsletter_subscribers')
+      .insert([
+        {
+          email,
+          subscribed_at: new Date().toISOString(),
+          status: 'active',
+          source: 'website_footer'
+        }
+      ])
+      .select();
+    
+    if (error) {
+      console.error('Supabase error saving newsletter subscription:', error);
+      return res.status(500).json({ 
+        error: 'Failed to subscribe. Please try again.' 
+      });
+    }
+    
+    console.log('New newsletter subscription:', { email });
+    
+    // Send welcome email notification (optional)
+    // You can add this later if you want to send welcome emails
+    
+    res.status(201).json({ 
+      success: true, 
+      message: 'Thank you for subscribing! You\'ll receive our latest insights and updates.' 
+    });
+  } catch (error) {
+    console.error('Error processing newsletter subscription:', error);
+    res.status(500).json({ 
+      error: 'Something went wrong. Please try again.' 
+    });
   }
 });
 

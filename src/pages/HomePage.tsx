@@ -29,10 +29,9 @@ export default function HomePage() {
       <Hero />
       <Mission />
       <Services />
+      <Reviews />
       <DetailedCaseStudies />
       <CaseStudies />
-      {/* Reviews section temporarily removed until we have real testimonials */}
-      {/* <Reviews /> */}
       {/* Companies section temporarily removed */}
       {/* <Companies /> */}
       <Team />

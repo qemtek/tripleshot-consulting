@@ -7,7 +7,6 @@ interface DetailedCaseStudy {
   title: string;
   subtitle: string;
   industry: string;
-  client: string;
   challenge: string;
   solution: string;
   results: string[];
@@ -20,13 +19,12 @@ const detailedCaseStudies: DetailedCaseStudy[] = [
   {
     id: 'smart-routing-logistics',
     title: 'Smart Routing Engine',
-    subtitle: 'Scaling from 1K to 50K Weekly Deliveries with AI-Powered Route Optimization',
+    subtitle: 'Scaling from 1K to 10K Weekly Deliveries with AI-Powered Route Optimization',
     industry: 'Logistics & Transportation',
-    client: 'London-Based Logistics Startup',
     challenge: 'Manual route planning was consuming 3-4 hours daily and couldn\'t scale beyond 1,000 deliveries per week. The operations team was becoming a bottleneck as the business grew exponentially.',
     solution: 'Built an intelligent route optimization system using Google OR-Tools, handling 100K+ delivery nodes with real-time adaptation. Implemented hexagon-based location clustering, self-hosted routing APIs, and divide-and-conquer algorithms for massive scale.',
     results: [
-      'Scaled from 1K to 50K weekly bookings with no team expansion',
+      'Scaled from 1K to 10K weekly bookings with no team expansion',
       'Reduced route planning time from 4 hours to 5 minutes daily',
       'Achieved 90%+ reduction in manual intervention (100% to ~10%)',
       'Enabled real-time route adaptation for changing conditions',
@@ -40,8 +38,7 @@ const detailedCaseStudies: DetailedCaseStudy[] = [
     id: 'dynamic-pricing-ai',
     title: 'AI-Driven Dynamic Pricing',
     subtitle: 'Increasing Profit Margins by 20% Through Machine Learning Price Optimization',
-    industry: 'Pricing Strategy',
-    client: 'Comparison Platform for Moving Services',
+    industry: 'Transportation & Storage',
     challenge: 'Quote pricing was based on simple cost-plus formulas, missing opportunities for profit optimization. Different customer segments had varying price sensitivities that weren\'t being captured.',
     solution: 'Developed machine learning models to predict customer conversion probability at different price points. Built real-time pricing API that optimizes quotes based on customer behavior, market conditions, and competitive landscape.',
     results: [
@@ -59,8 +56,7 @@ const detailedCaseStudies: DetailedCaseStudy[] = [
     id: 'customer-churn-prediction',
     title: 'Predictive Customer Churn Modeling',
     subtitle: 'Reducing Customer Loss by 40% Through Early Warning Systems',
-    industry: 'Customer Retention',
-    client: 'SaaS Platform with High Churn Risk',
+    industry: 'Food Delivery',
     challenge: 'Customer churn was reactive - by the time patterns were noticed, valuable customers had already left. Marketing spend on retention was inefficient without targeting insights.',
     solution: 'Built predictive models analyzing customer behavior patterns, engagement metrics, and satisfaction indicators. Created automated early warning systems with 60-90 day advance notice of churn risk.',
     results: [
@@ -129,12 +125,9 @@ export default function DetailedCaseStudies() {
                     <h3 className="text-3xl sm:text-4xl font-bold text-brown-500 mb-3">
                       {study.title}
                     </h3>
-                    <p className="text-lg text-brown-600 font-medium mb-4">
+                    <p className="text-lg text-brown-600 font-medium mb-6">
                       {study.subtitle}
                     </p>
-                    <div className="text-sm text-gray-600 mb-6">
-                      <span className="font-medium">Client:</span> {study.client}
-                    </div>
                   </div>
 
                   <div className="space-y-4">

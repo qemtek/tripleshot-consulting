@@ -15,14 +15,23 @@ const Reviews = () => {
   };
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-40 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <div className="flex justify-center mb-6">
+            <div className="rounded-full bg-white shadow-sm p-3">
+              <img 
+                src="/images/logo_white.png" 
+                alt="Tripleshot Logo" 
+                className="h-12" 
+              />
+            </div>
+          </div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown-500 mb-6">
             Client Success Stories
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            See what our clients say about their experience with our AI solutions
+          <p className="text-lg text-brown-500 max-w-3xl mx-auto">
+            See how UK businesses have transformed their operations with our 3-phase approach
           </p>
         </div>
 
@@ -43,15 +52,15 @@ const Reviews = () => {
 
             <button
               onClick={prev}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-50"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-tan-50 border border-tan-200"
             >
-              <ChevronLeft className="w-6 h-6 text-gray-600" />
+              <ChevronLeft className="w-6 h-6 text-brown-500" />
             </button>
             <button
               onClick={next}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-50"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-tan-50 border border-tan-200"
             >
-              <ChevronRight className="w-6 h-6 text-gray-600" />
+              <ChevronRight className="w-6 h-6 text-brown-500" />
             </button>
           </div>
 
@@ -61,7 +70,7 @@ const Reviews = () => {
                 key={i}
                 onClick={() => setCurrentIndex(i)}
                 className={`w-2 h-2 rounded-full transition-colors ${
-                  i === currentIndex ? 'bg-indigo-600' : 'bg-gray-300'
+                  i === currentIndex ? 'bg-brown-500' : 'bg-tan-200'
                 }`}
               />
             ))}

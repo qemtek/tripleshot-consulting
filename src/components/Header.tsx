@@ -8,6 +8,7 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
 
   const navigation = [
+    { name: 'Our Story', href: '/#about' },
     { name: 'White Papers', href: '/#our-approach-in-action' },
     { name: 'Case Studies', href: '/#our-approach-in-action' },
     { name: 'Team', href: '/#team' },
@@ -53,6 +54,12 @@ const Header: React.FC = () => {
           
           <div className="hidden md:flex items-center space-x-10">
             <button
+              onClick={() => handleNavClick('about')}
+              className="text-brown-600 hover:text-brown-700 transition-colors py-1 border-b-2"
+            >
+              Our Story
+            </button>
+            <button
               onClick={() => handleNavClick('our-approach-in-action')}
               className="text-brown-600 hover:text-brown-700 transition-colors py-1 border-b-2"
             >
@@ -95,6 +102,12 @@ const Header: React.FC = () => {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="pt-2 pb-3 space-y-1">
+              <button
+                onClick={() => handleNavClick('about')}
+                className="block px-3 py-2 text-brown-600 hover:text-brown-700 transition-colors w-full text-left"
+              >
+                Our Story
+              </button>
               <button
                 onClick={() => handleNavClick('our-approach-in-action')}
                 className="block px-3 py-2 text-brown-600 hover:text-brown-700 transition-colors w-full text-left"

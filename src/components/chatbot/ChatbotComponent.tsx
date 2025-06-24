@@ -288,7 +288,7 @@ const ChatbotComponent: React.FC<ChatbotProps> = ({
         <div className={`absolute bottom-16 w-80 sm:w-96 h-96 bg-white rounded-lg shadow-xl flex flex-col overflow-hidden ${position === 'bottom-right' ? 'right-0' : 'left-0'}`}>
           {/* Header */}
           <div className="p-4" style={{ backgroundColor: primaryColor }}>
-            <h3 className="text-white font-medium">TripleShot Assistant</h3>
+            <h3 className="text-white font-medium">Tripleshot Assistant</h3>
           </div>
 
           {/* Messages */}

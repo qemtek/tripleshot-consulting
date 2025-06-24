@@ -8,8 +8,8 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
 
   const navigation = [
-    { name: 'Services', href: '/#services' },
-    { name: 'Case Studies', href: '/#case-studies' },
+    { name: 'White Papers', href: '/#our-approach-in-action' },
+    { name: 'Case Studies', href: '/#our-approach-in-action' },
     { name: 'Team', href: '/#team' },
     { name: 'Contact', href: '/#contact' },
   ];
@@ -53,13 +53,13 @@ const Header: React.FC = () => {
           
           <div className="hidden md:flex items-center space-x-10">
             <button
-              onClick={() => handleNavClick('services')}
+              onClick={() => handleNavClick('our-approach-in-action')}
               className="text-brown-600 hover:text-brown-700 transition-colors py-1 border-b-2"
             >
-              Services
+              White Papers
             </button>
             <button
-              onClick={() => handleNavClick('case-studies')}
+              onClick={() => handleNavClick('our-approach-in-action')}
               className="text-brown-600 hover:text-brown-700 transition-colors py-1 border-b-2"
             >
               Case Studies
@@ -96,10 +96,10 @@ const Header: React.FC = () => {
           <div className="md:hidden">
             <div className="pt-2 pb-3 space-y-1">
               <button
-                onClick={() => handleNavClick('case-studies')}
+                onClick={() => handleNavClick('our-approach-in-action')}
                 className="block px-3 py-2 text-brown-600 hover:text-brown-700 transition-colors w-full text-left"
               >
-                Case Studies
+                White Papers
               </button>
               <button
                 onClick={() => handleNavClick('team')}

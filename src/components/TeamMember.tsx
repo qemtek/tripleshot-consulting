@@ -16,6 +16,7 @@ const TeamMember = ({ name, role, image, bio, Icon }: TeamMemberProps) => {
           src={image}
           alt={name}
           className="w-32 h-32 rounded-full object-cover"
+          style={{ imageRendering: 'auto' }}
         />
         <div className="absolute bottom-0 right-0 p-2 rounded-full" style={{ backgroundColor: '#2465B4' }}>
           <Icon className="h-5 w-5 text-white" />

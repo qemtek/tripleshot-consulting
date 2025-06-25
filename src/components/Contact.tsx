@@ -128,7 +128,7 @@ const Contact = () => {
                   </div>
                   <div className="flex items-center">
                     <Mail className="h-5 w-5 text-gray-600 mr-3" />
-                    <span className="text-gray-600">tripleshot.consulting@gmail.com</span>
+                    <span className="text-gray-600">tripleshotconsultingltd@gmail.com</span>
                   </div>
                   <div className="flex items-center">
                     <MessageSquare className="h-5 w-5 text-gray-600 mr-3" />

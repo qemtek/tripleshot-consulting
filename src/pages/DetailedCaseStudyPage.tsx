@@ -76,9 +76,9 @@ const detailedCaseStudyData: Record<string, DetailedCaseStudyData> = {
     complexity: 'High',
     impact: 'Enterprise',
     
-    executiveSummary: 'Engineered a production-grade route optimization system capable of handling 100,000+ delivery nodes with sub-30 minute computation times. The system enabled scaling from 1,000 to 10,000 weekly deliveries without operational team expansion, achieving 90% reduction in manual intervention through advanced algorithmic optimization and real-time adaptation capabilities.',
+    executiveSummary: 'Developed a production-grade route optimization engine capable of handling millions of delivery nodes with sub-15 minute computation times. The system enabled scaling from 1,000 to 10,000 weekly deliveries without operations team expansion, achieving 10% manual intervention rate and 90% reduction in operational costs versus scaling the team linearly.',
     
-    businessContext: 'The client was revolutionizing logistics in London, but manual route planning was becoming a critical bottleneck. The operations team spent 3-4 hours daily building routes, and this approach couldn\'t scale beyond 1,000 deliveries per week. As the business grew exponentially, the complexity was increasing faster than the team could handle, threatening the company\'s ability to capitalize on market opportunities.',
+    businessContext: 'The client was on a mission to revolutionise logistics in London, but manual route planning was becoming a critical bottleneck. The operations team spent 3-4 hours daily building routes, and this approach couldn\'t scale beyond 1,000 deliveries per week. As the business grew exponentially, the complexity was increasing faster than the team could handle, threatening the company\'s ability to capitalize on market opportunities.',
     
     technicalChallenges: [
       'Route planning complexity increasing exponentially with delivery volume (O(n!) complexity)',
@@ -86,18 +86,19 @@ const detailedCaseStudyData: Record<string, DetailedCaseStudyData> = {
       'Multiple optimization constraints: vehicle capacity, time windows, driver availability, traffic',
       'Required sub-30 minute computation time for practical deployment',
       'No access to affordable traffic-aware routing APIs at required scale',
-      'System needed to adapt to real-time changes (cancellations, urgent deliveries)'
+      'System needed to adapt to real-time changes (cancellations, urgent deliveries)',
+      'Routing individual addresses at scale is too complex, locations must be grouped whilst still being accurate'
     ],
     
     constraints: [
-      'Budget limitations for external routing APIs (£5000+ per optimization run)',
-      'Legacy systems integration requirements',
-      'Peak computation times during morning planning sessions',
+      'Routing APIs are expensive. Populating a 1000x1000 time matrix costs £5000 at Google Maps API pricing',
+      'The system must work with operations staff, and not overwrite their changes',
+      'Opeations staff need to be aware of what is going on, without being overloaded with information',
       'Need for 99.9% system availability during business hours',
       'Compliance with UK data protection regulations'
     ],
     
-    solutionOverview: 'Developed a comprehensive route optimization engine using Google OR-Tools as the core solver, enhanced with custom algorithms for scale and performance. The solution combined mathematical optimization with practical engineering to handle real-world constraints while maintaining computational efficiency.',
+    solutionOverview: 'We developed a comprehensive route optimization engine using Google OR-Tools as the core solver, enhanced with custom algorithms for scale and performance. The solution combined mathematical optimization with practical engineering to handle real-world constraints while maintaining computational efficiency.',
     
     architecture: 'The system follows a microservices architecture with containerized components: (1) Data ingestion layer for real-time delivery updates, (2) Preprocessing engine with hexagon-based clustering, (3) Optimization core using OR-Tools with custom heuristics, (4) Results processing and route generation, (5) Real-time adaptation service for dynamic changes.',
     
@@ -105,16 +106,16 @@ const detailedCaseStudyData: Record<string, DetailedCaseStudyData> = {
       {
         title: 'Hexagon-Based Location Clustering',
         content: 'Implemented Uber H3 hexagon library to group nearby delivery locations, reducing API calls by 1500x and computation time from 55 hours to 5 minutes. This spatial indexing approach groups deliveries within 1KM diameter hexagons, dramatically reducing the cost matrix size while maintaining routing accuracy.',
-
+        diagram: '/images/uber-h3.png'
       },
       {
         title: 'Self-Hosted Routing Infrastructure',
-        content: 'Built custom routing API using GraphHopper and OpenStreetMap data, eliminating per-request costs and achieving sub-second response times. The system maintains a routing database with regular OSM updates and provides distance/duration calculations for optimization algorithms.',
+        content: 'Built custom routing API using GraphHopper and OpenStreetMap data, eliminating per-request costs and achieving sub-second response times. The system maintains a routing database with regular OSM updates and provides distance/duration calculations for optimization algorithms. Building the time matrix (required to solve routing problems) can be done for pennies with this approach, compared with £5000 per run using Google Maps.',
 
       },
       {
         title: 'OR-Tools Optimization Engine',
-        content: 'Leveraged Google OR-Tools Vehicle Routing Problem (VRP) solver with custom constraints and objectives. Implemented capacity constraints, time windows, and driver availability while optimizing for minimal total travel time and balanced workload distribution.',
+        content: 'Leveraged Google OR-Tools Vehicle Routing Problem (VRP) solver with custom constraints and objectives. Implemented capacity constraints, time windows, and driver availability while optimizing for minimal total travel time and balanced workload distribution. Building the solver ourselves provides complete flexibility to add business-specific constraints that would be impossible with third-party routing services.',
 
       }
     ],
@@ -150,13 +151,6 @@ const detailedCaseStudyData: Record<string, DetailedCaseStudyData> = {
         after: '~10% routes need adjustment',
         improvement: '90% reduction',
         impact: 'Significant reduction in human error and workload'
-      },
-      {
-        metric: 'API Cost Optimization',
-        before: '£5,000 per run',
-        after: '£0 per run',
-        improvement: '100% cost elimination',
-        impact: 'Massive operational cost savings'
       },
       {
         metric: 'Computation Performance',
@@ -290,13 +284,6 @@ const detailedCaseStudyData: Record<string, DetailedCaseStudyData> = {
         after: '85%+ accuracy',
         improvement: 'New capability',
         impact: 'Data-driven pricing decisions with high confidence'
-      },
-      {
-        metric: 'API Response Time',
-        before: 'N/A (manual pricing)',
-        after: '<100ms average',
-        improvement: 'Real-time capability',
-        impact: 'Seamless integration with existing quote workflow'
       },
       {
         metric: 'Quote Processing Volume',
@@ -663,19 +650,78 @@ export default function DetailedCaseStudyPage() {
                 
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">System Architecture</h3>
-                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                    <p className="text-gray-700 leading-relaxed">{caseStudy.architecture}</p>
+                  <div className="space-y-6">
+                    <p className="text-gray-700 leading-relaxed mb-4">{caseStudy.architecture}</p>
+                    {caseStudy.id === 'smart-routing-logistics' && (
+                      <div className="flex flex-col items-center">
+                        <img 
+                          src="/images/architecture-diagram-sr.png" 
+                          alt="Smart Routing System Architecture Diagram"
+                          className="w-full max-w-4xl h-auto rounded-lg border border-gray-300 mb-3"
+                        />
+                        <p className="text-sm text-gray-600 text-center max-w-md">
+                          Microservices architecture with containerized components for scalable route optimization.
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
                 
                 {/* Technical Implementation Sections */}
                 {caseStudy.technicalSections.map((section, idx) => (
-                  <div key={idx} className="border border-gray-200 rounded-lg overflow-hidden">
-                    <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
-                      <h3 className="text-lg font-semibold text-gray-900">{section.title}</h3>
-                    </div>
-                    <div className="p-6">
-                      <p className="text-gray-700 leading-relaxed mb-4">{section.content}</p>
+                  <div key={idx}>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{section.title}</h3>
+                    <div>
+                      {section.diagram ? (
+                        <div className="space-y-6">
+                          <div className="space-y-4">
+                            <p className="text-gray-700 leading-relaxed">{section.content}</p>
+                            {section.title === 'Hexagon-Based Location Clustering' && (
+                              <p className="text-gray-700 leading-relaxed">
+                                The challenge was processing thousands of individual deliveries without losing routing accuracy. 
+                                Our solution first calculates the optimal route within each group of nearby deliveries, measuring the actual 
+                                distance and time needed. We then combine these into a single number representing the total time for that group. 
+                                This lets us plan routes between areas quickly while maintaining real-world accuracy.
+                              </p>
+                            )}
+                          </div>
+                          
+                          {section.title === 'Hexagon-Based Location Clustering' ? (
+                            <div className="grid md:grid-cols-2 gap-6">
+                              <div className="flex flex-col items-center">
+                                <img 
+                                  src={section.diagram} 
+                                  alt={`${section.title} Visualization`}
+                                  className="w-48 h-48 object-contain rounded-lg border border-gray-300 mb-3"
+                                />
+                                <p className="text-sm text-gray-600 text-center max-w-md">
+                                  Uber H3 hexagonal grid system efficiently clusters delivery locations for optimized route calculations at massive scale.
+                                </p>
+                              </div>
+                              <div className="flex flex-col items-center">
+                                <img 
+                                  src="/images/routing-groups.png" 
+                                  alt="Routing Groups Process Visualization"
+                                  className="h-48 object-contain rounded-lg border border-gray-300 mb-3"
+                                />
+                                <p className="text-sm text-gray-600 text-center max-w-md">
+                                  The three-step process: cluster nearby deliveries, optimize routes between groups, then treat each group as a single waypoint.
+                                </p>
+                              </div>
+                            </div>
+                          ) : section.diagram && (
+                            <div className="flex flex-col items-center">
+                              <img 
+                                src={section.diagram} 
+                                alt={`${section.title} Visualization`}
+                                className="w-48 h-48 object-contain rounded-lg border border-gray-300 mb-3"
+                              />
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <p className="text-gray-700 leading-relaxed mb-4">{section.content}</p>
+                      )}
                       {section.codeExample && (
                         <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
                           <pre className="text-green-400 text-sm">
@@ -747,36 +793,7 @@ export default function DetailedCaseStudyPage() {
               </div>
             </section>
 
-            {/* Lessons & Future */}
-            <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Lessons Learned & Future Enhancements</h2>
-              
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Lessons Learned</h3>
-                  <ul className="space-y-2">
-                    {caseStudy.lessonsLearned.map((lesson, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">{lesson}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Future Enhancements</h3>
-                  <ul className="space-y-2">
-                    {caseStudy.futureEnhancements.map((enhancement, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">{enhancement}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </section>
+
           </div>
 
           {/* Sidebar */}

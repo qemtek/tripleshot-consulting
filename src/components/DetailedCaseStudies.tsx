@@ -21,14 +21,13 @@ const detailedCaseStudies: DetailedCaseStudy[] = [
     title: 'Smart Routing Engine',
     subtitle: 'Scaling from 1K to 10K Weekly Deliveries with AI-Powered Route Optimization',
     industry: 'Logistics & Transportation',
-    challenge: 'Manual route planning was consuming 3-4 hours daily and couldn\'t scale beyond 1,000 deliveries per week. The operations team was becoming a bottleneck as the business grew exponentially.',
-    solution: 'Built an intelligent route optimization system using Google OR-Tools, handling 100K+ delivery nodes with real-time adaptation. Implemented hexagon-based location clustering, self-hosted routing APIs, and divide-and-conquer algorithms for massive scale.',
+    challenge: 'Manual route planning was consuming 3-4 hours daily and couldn\'t scale beyond 1,000 deliveries per week. The operations team was becoming a bottleneck to growth.',
+    solution: 'Built an intelligent route optimization system using Google\'s OR-Tools, handling 50K+ delivery nodes in real-time. The system was designed for the future, with horizontal scaling capabilities (through AWS ECS) allowing it to handle millions of nodes. Analytics dashboards and slack integrations helped the operations team stay on top of changes.',
     results: [
       'Scaled from 1K to 10K weekly bookings with no team expansion',
       'Reduced route planning time from 4 hours to 5 minutes daily',
-      'Achieved 90%+ reduction in manual intervention (100% to ~10%)',
-      'Enabled real-time route adaptation for changing conditions',
-      'Reduced operational costs by 35% through optimization'
+      'Reduced operational costs by 90% versus scaling the team linearly',
+      'Efficient caching reduced API costs by 99%'
     ],
     technologies: ['Python', 'Google OR-Tools', 'Docker', 'AWS ECS', 'GraphHopper', 'Uber H3'],
     icon: Truck,

@@ -10,7 +10,7 @@ import CaseStudies from '../components/CaseStudies';
 import Reviews from '../components/reviews/Reviews';
 // Import kept for future use
 // import Companies from '../components/companies/Companies';
-import Team from '../components/Team';
+
 import Contact from '../components/Contact';
 
 export default function HomePage() {
@@ -42,7 +42,6 @@ export default function HomePage() {
       <CaseStudies />
       {/* Companies section temporarily removed */}
       {/* <Companies /> */}
-      <Team />
       <Contact />
     </main>
   );

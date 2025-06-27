@@ -2,33 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [currentWord, setCurrentWord] = useState('Simple');
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const words = ['Simple', 'Effective', 'Accessible'];
   
   useEffect(() => {
     setIsVisible(true);
-    
-    // Animation for changing words
-    const wordInterval = setInterval(() => {
-      // Start transition - fade out
-      setIsTransitioning(true);
-      
-      // After fade out, change the word
-      setTimeout(() => {
-        setCurrentWord(prevWord => {
-          const currentIndex = words.indexOf(prevWord);
-          const nextIndex = (currentIndex + 1) % words.length;
-          return words[nextIndex];
-        });
-        
-        // Start fade in
-        setIsTransitioning(false);
-      }, 500); // Wait for fade out to complete
-      
-    }, 3000); // Change word every 3 seconds
-    
-    return () => clearInterval(wordInterval);
   }, []);
 
   const scrollToContact = () => {
@@ -58,13 +34,8 @@ const Hero = () => {
             className={`transition-all duration-1000 ease-out transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
           >
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-8 font-nunito leading-tight">
-              <span className="font-normal">We Make<br />
-              Modernisation</span><br />
-              <span 
-                className={`inline-block transition-opacity duration-500 font-bold ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
-              >
-                {currentWord}.
-              </span>
+              <span className="font-normal">Unsure how to benefit from the AI revolution?</span><br />
+              <span className="font-bold">We're here to help.</span>
             </h1>
             <p className="text-lg sm:text-xl text-gray-200 mb-8 max-w-lg leading-relaxed">
               Streamline operations, improve customer service, and make better decisions with practical technology solutions designed for your business needs.
@@ -74,7 +45,7 @@ const Hero = () => {
                 onClick={scrollToContact}
                 className="bg-tan-500 text-brown-700 px-8 py-4 rounded-lg hover:bg-tan-600 transition-colors duration-300 text-lg font-semibold min-h-[48px]"
               >
-                Schedule a Consultation
+                Grab a coffee with our team
               </button>
             </div>
           </div>

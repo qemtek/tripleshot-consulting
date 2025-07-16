@@ -5,10 +5,14 @@ import SEOHead from './components/SEOHead';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
-// import Blog from './pages/Blog';
-// import BlogPost from './pages/BlogPost';
+import AboutPage from './pages/AboutPage';
+import CaseStudiesPage from './pages/CaseStudiesPage';
+import ArticlesPage from './pages/ArticlesPage';
+import ContactPage from './pages/ContactPage';
 import CaseStudyPage from './pages/CaseStudyPage';
 import AdminPage from './pages/AdminPage';
+// import Blog from './pages/Blog';
+// import BlogPost from './pages/BlogPost';
 import { useScrollToTop } from './hooks/useScrollToTop';
 import ChatbotComponent from './components/chatbot/ChatbotComponent';
 
@@ -27,10 +31,14 @@ export default function App() {
           <Header />
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/case-studies" element={<CaseStudiesPage />} />
+            <Route path="/case-studies/:id" element={<CaseStudyPage />} />
+            <Route path="/articles" element={<ArticlesPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/admin" element={<AdminPage />} />
             {/* <Route path="/blog" element={<Blog />} /> */}
             {/* <Route path="/blog/:slug" element={<BlogPost />} /> */}
-            <Route path="/case-studies/:id" element={<CaseStudyPage />} />
-            <Route path="/admin" element={<AdminPage />} />
           </Routes>
           <Footer />
           <ChatbotComponent 

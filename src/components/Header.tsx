@@ -8,11 +8,11 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
 
   const navigation = [
-    { name: 'Our Story', href: '/#about' },
-    { name: 'White Papers', href: '/#our-approach-in-action' },
-    { name: 'Case Studies', href: '/#our-approach-in-action' },
-    { name: 'Team', href: '/#team' },
-    { name: 'Contact', href: '/#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Case Studies', href: '/case-studies' },
+    { name: 'Articles', href: '/articles' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -53,36 +53,36 @@ const Header: React.FC = () => {
           </div>
           
           <div className="hidden md:flex items-center space-x-10">
-            <button
-              onClick={() => handleNavClick('about')}
+            <Link
+              to="/"
               className="text-brown-600 hover:text-brown-700 transition-colors py-1 border-b-2"
             >
-              Our Story
-            </button>
-            <button
-              onClick={() => handleNavClick('our-approach-in-action')}
+              Home
+            </Link>
+            <Link
+              to="/about"
               className="text-brown-600 hover:text-brown-700 transition-colors py-1 border-b-2"
             >
-              White Papers
-            </button>
-            <button
-              onClick={() => handleNavClick('our-approach-in-action')}
+              About
+            </Link>
+            <Link
+              to="/case-studies"
               className="text-brown-600 hover:text-brown-700 transition-colors py-1 border-b-2"
             >
               Case Studies
-            </button>
-            <button
-              onClick={() => handleNavClick('team')}
+            </Link>
+            <Link
+              to="/articles"
               className="text-brown-600 hover:text-brown-700 transition-colors py-1 border-b-2"
             >
-              Team
-            </button>
-            <button
-              onClick={() => handleNavClick('contact')}
+              Articles
+            </Link>
+            <Link
+              to="/contact"
               className="text-brown-600 hover:text-brown-700 transition-colors py-1 border-b-2"
             >
               Contact
-            </button>
+            </Link>
           </div>
 
           <div className="md:hidden flex items-center">
@@ -102,30 +102,41 @@ const Header: React.FC = () => {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="pt-2 pb-3 space-y-1">
-              <button
-                onClick={() => handleNavClick('about')}
+              <Link
+                to="/"
+                onClick={() => setIsMenuOpen(false)}
                 className="block px-3 py-2 text-brown-600 hover:text-brown-700 transition-colors w-full text-left"
               >
-                Our Story
-              </button>
-              <button
-                onClick={() => handleNavClick('our-approach-in-action')}
+                Home
+              </Link>
+              <Link
+                to="/about"
+                onClick={() => setIsMenuOpen(false)}
                 className="block px-3 py-2 text-brown-600 hover:text-brown-700 transition-colors w-full text-left"
               >
-                White Papers
-              </button>
-              <button
-                onClick={() => handleNavClick('team')}
+                About
+              </Link>
+              <Link
+                to="/case-studies"
+                onClick={() => setIsMenuOpen(false)}
                 className="block px-3 py-2 text-brown-600 hover:text-brown-700 transition-colors w-full text-left"
               >
-                Team
-              </button>
-              <button
-                onClick={() => handleNavClick('contact')}
+                Case Studies
+              </Link>
+              <Link
+                to="/articles"
+                onClick={() => setIsMenuOpen(false)}
+                className="block px-3 py-2 text-brown-600 hover:text-brown-700 transition-colors w-full text-left"
+              >
+                Articles
+              </Link>
+              <Link
+                to="/contact"
+                onClick={() => setIsMenuOpen(false)}
                 className="block px-3 py-2 text-brown-600 hover:text-brown-700 transition-colors w-full text-left"
               >
                 Contact
-              </button>
+              </Link>
             </div>
           </div>
         )}

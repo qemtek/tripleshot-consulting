@@ -1,39 +1,30 @@
 import React from 'react';
+import CaseStudies from '../components/CaseStudies';
 
 export default function ArticlesPage() {
   return (
     <main className="pt-16">
-      <div className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="bg-gradient-to-b from-warm-50 to-white py-16 relative overflow-hidden">
+        {/* Background elements */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-10 left-1/4 w-64 h-64 bg-brand-primary rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-brand-accent rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-warm-900 mb-6">
               Articles & Insights
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <div className="w-24 h-1.5 bg-gradient-to-r from-brand-primary to-brand-accent mx-auto mb-8 rounded-full"></div>
+            <p className="text-lg md:text-xl text-warm-600 max-w-3xl mx-auto leading-relaxed">
               Stay updated with the latest trends in technology, business optimization, and digital transformation.
             </p>
           </div>
         </div>
       </div>
       
-      <div className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="bg-white p-12 rounded-lg shadow-sm">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                Coming Soon
-              </h2>
-              <p className="text-gray-600 mb-6">
-                We're working on creating valuable content about technology trends, 
-                business optimization strategies, and digital transformation insights.
-              </p>
-              <p className="text-sm text-gray-500">
-                Check back soon for technical articles, case study deep-dives, and industry analysis.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <CaseStudies />
     </main>
   );
 }

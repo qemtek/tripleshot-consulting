@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Zap } from 'lucide-react';
+import Button from './ui/Button';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,86 +10,85 @@ const Header: React.FC = () => {
 
   const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
     { name: 'Case Studies', href: '/case-studies' },
     { name: 'Articles', href: '/articles' },
     { name: 'Contact', href: '/contact' },
   ];
 
-  const scrollToSection = (sectionId: string) => {
-    if (location.pathname !== '/') {
-      // If not on homepage, navigate to homepage first, then scroll
-      window.location.href = `/#${sectionId}`;
-    } else {
-      // If on homepage, scroll directly
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-    setIsMenuOpen(false);
-  };
 
-  const handleNavClick = (sectionId: string) => {
-    scrollToSection(sectionId);
-  };
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="fixed w-full bg-white shadow-md z-50">
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 sm:h-20">
+    <header className={`fixed w-full z-50 transition-all duration-300 ${
+      scrolled 
+        ? 'bg-white/95 backdrop-blur-md shadow-soft border-b border-warm-200/50' 
+        : 'bg-white/80 backdrop-blur-sm'
+    }`}>
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16 sm:h-20">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center">
-              <img 
-                src="/images/logo-no-background.png" 
-                alt="Tripleshot Consulting Logo" 
-                className="h-8 sm:h-10 md:h-14 w-auto mr-2 sm:mr-4"
-              />
-              <img 
-                src="/images/text_white.png" 
-                alt="Tripleshot Consulting" 
-                className="hidden sm:block h-6 md:h-9 w-auto"
-              />
+            <Link to="/" className="flex items-center group">
+              <div className="relative">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-xl flex items-center justify-center mr-3 group-hover:scale-105 transition-transform">
+                  <Zap className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                </div>
+              </div>
+              <div className="hidden sm:flex flex-col">
+                <span className="font-display text-lg sm:text-xl font-bold text-warm-900 leading-tight">
+                  Tripleshot
+                </span>
+                <span className="text-xs sm:text-sm text-brand-primary font-medium -mt-1">
+                  Solutions
+                </span>
+              </div>
             </Link>
           </div>
           
-          <div className="hidden md:flex items-center space-x-10">
-            <Link
-              to="/"
-              className="text-brown-600 hover:text-brown-700 transition-colors py-1 border-b-2"
+          <div className="hidden md:flex items-center space-x-8">
+            {navigation.map((item) => {
+              const isActive = location.pathname === item.href;
+              return (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`relative px-3 py-2 text-sm font-medium transition-all duration-200 hover:scale-105 ${
+                    isActive 
+                      ? 'text-brand-primary' 
+                      : 'text-warm-700 hover:text-brand-primary'
+                  }`}
+                >
+                  {item.name}
+                  {isActive && (
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-brand-primary rounded-full" />
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+          
+          <div className="hidden md:flex items-center">
+            <Button 
+              variant="primary" 
+              size="sm"
+              onClick={() => navigate('/contact')}
+              className="shadow-soft hover:shadow-medium"
             >
-              Home
-            </Link>
-            <Link
-              to="/about"
-              className="text-brown-600 hover:text-brown-700 transition-colors py-1 border-b-2"
-            >
-              About
-            </Link>
-            <Link
-              to="/case-studies"
-              className="text-brown-600 hover:text-brown-700 transition-colors py-1 border-b-2"
-            >
-              Case Studies
-            </Link>
-            <Link
-              to="/articles"
-              className="text-brown-600 hover:text-brown-700 transition-colors py-1 border-b-2"
-            >
-              Articles
-            </Link>
-            <Link
-              to="/contact"
-              className="text-brown-600 hover:text-brown-700 transition-colors py-1 border-b-2"
-            >
-              Contact
-            </Link>
+              Let's Chat
+            </Button>
           </div>
 
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-brown-600 hover:text-brown-700 p-2 rounded-md transition-colors"
+              className="p-2 rounded-xl text-warm-700 hover:text-brand-primary hover:bg-warm-100 transition-all duration-200"
             >
               {isMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -100,43 +100,41 @@ const Header: React.FC = () => {
         </div>
 
         {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="pt-2 pb-3 space-y-1">
-              <Link
-                to="/"
-                onClick={() => setIsMenuOpen(false)}
-                className="block px-3 py-2 text-brown-600 hover:text-brown-700 transition-colors w-full text-left"
-              >
-                Home
-              </Link>
-              <Link
-                to="/about"
-                onClick={() => setIsMenuOpen(false)}
-                className="block px-3 py-2 text-brown-600 hover:text-brown-700 transition-colors w-full text-left"
-              >
-                About
-              </Link>
-              <Link
-                to="/case-studies"
-                onClick={() => setIsMenuOpen(false)}
-                className="block px-3 py-2 text-brown-600 hover:text-brown-700 transition-colors w-full text-left"
-              >
-                Case Studies
-              </Link>
-              <Link
-                to="/articles"
-                onClick={() => setIsMenuOpen(false)}
-                className="block px-3 py-2 text-brown-600 hover:text-brown-700 transition-colors w-full text-left"
-              >
-                Articles
-              </Link>
-              <Link
-                to="/contact"
-                onClick={() => setIsMenuOpen(false)}
-                className="block px-3 py-2 text-brown-600 hover:text-brown-700 transition-colors w-full text-left"
-              >
-                Contact
-              </Link>
+          <div className="md:hidden border-t border-warm-200/50 bg-white/95 backdrop-blur-md">
+            <div className="py-4 space-y-2">
+              {navigation.map((item) => {
+                const isActive = location.pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`flex items-center justify-between px-4 py-3 rounded-xl mx-3 transition-all duration-200 ${
+                      isActive 
+                        ? 'bg-brand-primary/10 text-brand-primary border border-brand-primary/20' 
+                        : 'text-warm-700 hover:bg-warm-100 hover:text-brand-primary'
+                    }`}
+                  >
+                    <span className="font-medium">{item.name}</span>
+                    {isActive && (
+                      <div className="w-2 h-2 bg-brand-primary rounded-full" />
+                    )}
+                  </Link>
+                );
+              })}
+              <div className="px-3 pt-4 border-t border-warm-200/50 mt-4">
+                <Button 
+                  variant="primary" 
+                  size="sm"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    navigate('/contact');
+                  }}
+                  className="w-full"
+                >
+                  Let's Chat
+                </Button>
+              </div>
             </div>
           </div>
         )}

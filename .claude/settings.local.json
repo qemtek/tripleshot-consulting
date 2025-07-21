@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev:*)",
+      "Bash(echo $PATH)",
+      "Bash(ls:*)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "Bash(npm bin:*)",
+      "Bash(npm config:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(ln:*)",
+      "Bash(claude --version)",
+      "Bash(/Users/christophercollins/.nvm/versions/node/v21.7.1/bin/claude --version)",
+      "Bash(chmod:*)",
+      "Bash(npm install:*)",
+      "Bash(rm:*)",
+      "Bash(curl:*)",
+      "Bash(npm run lint)",
+      "Bash(grep:*)",
+      "Bash(npm run build:*)",
+      "Bash(find:*)"
+    ],
+    "deny": []
+  }
+}

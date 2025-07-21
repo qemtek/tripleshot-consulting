@@ -16,17 +16,8 @@ export default function CaseStudyPage() {
   
   const study: CaseStudy | undefined = caseStudies.find((s) => s.id === id);
 
-  const scrollToContact = () => {
-    // Navigate to homepage first
-    navigate('/');
-    
-    // Small delay to ensure page loads, then scroll to contact
-    setTimeout(() => {
-      const contactSection = document.getElementById('contact');
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
+  const goToContact = () => {
+    navigate('/contact');
   };
 
   if (!study) {
@@ -92,7 +83,7 @@ export default function CaseStudyPage() {
                 {study.summary}
               </p>
               <button 
-                onClick={scrollToContact}
+                onClick={goToContact}
                 className="bg-tan-500 text-brown-700 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-tan-600 transition-colors duration-300 shadow-lg"
               >
                 Let's Talk About Your Business

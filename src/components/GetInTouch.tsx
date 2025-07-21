@@ -79,8 +79,8 @@ export default function GetInTouch() {
                     if (starter.title === 'Drop us a Line') {
                       window.location.href = '/contact';
                     } else if (starter.title === 'Book a Call') {
-                      // Replace with your actual Google Calendar/Calendly link
-                      window.open('https://calendar.google.com/calendar/appointments/schedules/AcZssZ1Y7zGnJKGCqiGKX7G8Q4vt5TvwJb4KzDfTk2_example', '_blank');
+                      // Open Calendly booking page
+                      window.open('https://calendly.com/tripleshotconsultingltd/30min', '_blank');
                     }
                   }}
                 >

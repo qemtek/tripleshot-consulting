@@ -161,13 +161,13 @@ export default function DetailedCaseStudies() {
             <p className="text-warm-600 mb-6 leading-relaxed">
               These case studies represent just a fraction of what's possible when you combine domain expertise with cutting-edge AI and data science techniques.
             </p>
-            <a 
-              href="#contact"
+            <Link 
+              to="/contact"
               className="inline-flex items-center gap-2 bg-gradient-to-r from-brand-accent to-orange-500 text-white px-8 py-4 rounded-lg font-semibold hover:from-orange-500 hover:to-red-500 shadow-medium hover:shadow-large transition-all duration-300"
             >
               Discuss Your Project
               <ExternalLink className="w-4 h-4" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

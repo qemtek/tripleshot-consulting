@@ -73,25 +73,8 @@ const detailedCaseStudies: DetailedCaseStudy[] = [
 
 export default function DetailedCaseStudies() {
   return (
-    <section id="case-studies" className="py-40 bg-gradient-to-br from-gray-50 to-white">
+    <section id="case-studies" className="py-16 bg-gradient-to-b from-warm-50 via-white to-warm-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
-          <div className="flex justify-center mb-6">
-            <div className="rounded-full bg-white shadow-sm p-3">
-                          <img 
-              src="/images/logo-no-background.png" 
-              alt="Tripleshot Logo" 
-              className="h-12" 
-            />
-            </div>
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brown-500 mb-6 leading-tight">
-            Technical Case Studies
-          </h2>
-          <p className="text-lg sm:text-xl text-brown-600 max-w-3xl mx-auto leading-relaxed">
-            Deep dives into real-world AI and data science solutions that delivered measurable business impact
-          </p>
-        </div>
 
         <div className="space-y-20">
           {detailedCaseStudies.map((study, index) => {
@@ -121,31 +104,31 @@ export default function DetailedCaseStudies() {
 
                 <div className="lg:w-1/2 space-y-6 flex flex-col justify-center">
                   <div>
-                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-brown-500 mb-3 leading-tight">
+                    <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-warm-900 mb-3 leading-tight">
                       {study.title}
                     </h3>
-                    <p className="text-base sm:text-lg text-brown-600 font-medium mb-6 leading-relaxed">
+                    <p className="text-base sm:text-lg text-warm-600 font-medium mb-6 leading-relaxed">
                       {study.subtitle}
                     </p>
                   </div>
 
                   <div className="space-y-6">
                     <div>
-                      <h4 className="text-lg font-semibold text-brown-500 mb-3">The Challenge</h4>
-                      <p className="text-gray-700 leading-relaxed">{study.challenge}</p>
+                      <h4 className="text-lg font-semibold text-warm-900 mb-3">The Challenge</h4>
+                      <p className="text-warm-700 leading-relaxed">{study.challenge}</p>
                     </div>
 
                     <div>
-                      <h4 className="text-lg font-semibold text-brown-500 mb-3">Our Solution</h4>
-                      <p className="text-gray-700 leading-relaxed">{study.solution}</p>
+                      <h4 className="text-lg font-semibold text-warm-900 mb-3">Our Solution</h4>
+                      <p className="text-warm-700 leading-relaxed">{study.solution}</p>
                     </div>
 
                     <div>
-                      <h4 className="text-lg font-semibold text-brown-500 mb-3">Key Results</h4>
+                      <h4 className="text-lg font-semibold text-warm-900 mb-3">Key Results</h4>
                       <ul className="space-y-3">
                         {study.results.map((result, idx) => (
-                          <li key={idx} className="flex items-start gap-3 text-gray-700 leading-relaxed">
-                            <div className="w-2 h-2 bg-tan-500 rounded-full mt-2 flex-shrink-0" />
+                          <li key={idx} className="flex items-start gap-3 text-warm-700 leading-relaxed">
+                            <div className="w-2 h-2 bg-brand-accent rounded-full mt-2 flex-shrink-0" />
                             {result}
                           </li>
                         ))}
@@ -158,7 +141,7 @@ export default function DetailedCaseStudies() {
                   <div className="pt-4">
                     <Link
                       to={`/case-studies/${study.id}`}
-                      className="inline-flex items-center gap-2 bg-brown-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-brown-600 transition-colors duration-300"
+                      className="inline-flex items-center gap-2 bg-gradient-to-r from-brand-primary to-brand-secondary text-white px-6 py-3 rounded-lg font-semibold hover:from-brand-secondary hover:to-brand-accent shadow-medium hover:shadow-large transition-all duration-300"
                     >
                       Read Full Case Study
                       <ArrowRight className="w-4 h-4" />
@@ -171,16 +154,16 @@ export default function DetailedCaseStudies() {
         </div>
 
         <div className="text-center mt-20">
-          <div className="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-brown-500 mb-4">
+          <div className="bg-gradient-to-br from-white to-warm-50 rounded-2xl shadow-soft border border-warm-200/50 p-8 max-w-2xl mx-auto">
+            <h3 className="font-display text-2xl font-bold text-warm-900 mb-4">
               Ready to Solve Your Complex Business Challenge?
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-warm-600 mb-6 leading-relaxed">
               These case studies represent just a fraction of what's possible when you combine domain expertise with cutting-edge AI and data science techniques.
             </p>
             <a 
               href="#contact"
-              className="inline-flex items-center gap-2 bg-tan-500 text-brown-700 px-8 py-4 rounded-lg font-semibold hover:bg-tan-600 transition-colors duration-300"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-brand-accent to-orange-500 text-white px-8 py-4 rounded-lg font-semibold hover:from-orange-500 hover:to-red-500 shadow-medium hover:shadow-large transition-all duration-300"
             >
               Discuss Your Project
               <ExternalLink className="w-4 h-4" />

@@ -16,23 +16,9 @@ export default function CaseStudies() {
   };
 
   return (
-    <section id="our-approach-in-action" className="py-16 bg-white">
+    <section id="articles" className="py-16 bg-gradient-to-b from-white via-warm-50 to-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="flex justify-center mb-4">
-              <div className="rounded-full bg-white shadow-sm p-3">
-                <img 
-                  src="/images/logo-no-background.png" 
-                  alt="Tripleshot Logo" 
-                  className="h-12" 
-                />
-              </div>
-            </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown-500 mb-4">
-              White Papers
-            </h2>
-          </div>
           
           {/* Mobile Carousel */}
           <div className="lg:hidden relative">
@@ -52,17 +38,17 @@ export default function CaseStudies() {
             {/* Navigation Buttons */}
             <button
               onClick={prevSlide}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow-soft rounded-full p-2 hover:bg-warm-100 transition-all duration-200 hover:scale-110"
               aria-label="Previous case study"
             >
-              <ChevronLeft className="w-6 h-6 text-brown-600" />
+              <ChevronLeft className="w-6 h-6 text-warm-700" />
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow-soft rounded-full p-2 hover:bg-warm-100 transition-all duration-200 hover:scale-110"
               aria-label="Next case study"
             >
-              <ChevronRight className="w-6 h-6 text-brown-600" />
+              <ChevronRight className="w-6 h-6 text-warm-700" />
             </button>
             
 

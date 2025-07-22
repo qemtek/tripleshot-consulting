@@ -75,6 +75,15 @@ export default function SEOHead({
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       <link rel="preconnect" href="https://www.google-analytics.com" />
       
+      {/* Preload critical hero image */}
+      <link rel="preload" as="image" href="/images/hero.webp" type="image/webp" />
+      <link rel="preload" as="image" href="/images/hero.jpg" type="image/jpeg" />
+      
+      {/* Resource hints for key pages */}
+      <link rel="prefetch" href="/case-studies" />
+      <link rel="prefetch" href="/contact" />
+      <link rel="prefetch" href="/articles" />
+      
       {/* Favicon and Icons */}
       <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />

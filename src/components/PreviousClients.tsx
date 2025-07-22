@@ -64,6 +64,7 @@ export default function PreviousClients() {
                             <img 
                               src={client.logo} 
                               alt={client.name}
+                              loading="lazy"
                               className="h-16 md:h-20 max-w-xs mx-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-500"
                             />
                           </div>

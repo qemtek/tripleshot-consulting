@@ -124,6 +124,7 @@ export default function MeetTheTeam() {
                     <img 
                       src={member.image} 
                       alt={member.name}
+                      loading="lazy"
                       className="w-full h-full rounded-3xl object-cover shadow-large border-3 border-white"
                     />
                     <div className={`absolute -bottom-3 -right-3 w-10 h-10 rounded-2xl bg-gradient-to-r ${member.color} flex items-center justify-center shadow-large border-3 border-white`}>

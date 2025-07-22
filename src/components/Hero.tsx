@@ -13,13 +13,17 @@ const Hero = () => {
 
   return (
     <div className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Image - Mobile Friendly */}
-      <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat md:bg-fixed"
-        style={{
-          backgroundImage: 'url("/images/hero.jpg")',
-        }}
-      >
+      {/* Background Image - Mobile Friendly with WebP support */}
+      <div className="absolute inset-0 z-0">
+        <picture>
+          <source srcSet="/images/hero.webp" type="image/webp" />
+          <img
+            src="/images/hero.jpg"
+            alt="Hero background"
+            className="w-full h-full object-cover object-center"
+            style={{ filter: 'none' }}
+          />
+        </picture>
         {/* Light professional overlay */}
         <div className="absolute inset-0 bg-gray-600/50" />
       </div>

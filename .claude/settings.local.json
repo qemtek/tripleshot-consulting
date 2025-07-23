@@ -19,7 +19,9 @@
       "Bash(grep:*)",
       "Bash(npm run build:*)",
       "Bash(find:*)",
-      "Bash(cwebp:*)"
+      "Bash(cwebp:*)",
+      "Bash(convert:*)",
+      "Bash(magick:*)"
     ],
     "deny": []
   }

@@ -9,21 +9,37 @@ export default function NewHero() {
 
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-brand-primary via-indigo-600 to-brand-secondary text-white overflow-hidden">
-      {/* Simplified background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-brand-accent/20 to-yellow-400/20 rounded-full mix-blend-multiply filter blur-3xl"></div>
-        <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full mix-blend-multiply filter blur-3xl"></div>
+    <section className="relative min-h-screen text-white overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <picture>
+          <source srcSet="/images/hero.webp" type="image/webp" />
+          <img
+            src="/images/hero.jpeg"
+            alt="Team collaboration"
+            className="w-full h-full object-cover object-center"
+            loading="eager"
+          />
+        </picture>
+      </div>
+      
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/75 via-indigo-600/75 to-brand-secondary/75 z-10"></div>
+      
+      {/* Decorative elements */}
+      <div className="absolute inset-0 z-20">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-brand-accent/10 to-yellow-400/10 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full mix-blend-multiply filter blur-3xl"></div>
       </div>
       
       {/* Subtle grid pattern */}
-      <div className="absolute inset-0 bg-black/10" 
+      <div className="absolute inset-0 z-30 bg-black/5" 
            style={{
-             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
            }}>
       </div>
       
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center min-h-screen">
+      <div className="relative z-40 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center min-h-screen">
         <div className="text-center animate-fade-in">
           {/* Simplified icon */}
           <div className="mb-8 flex justify-center">

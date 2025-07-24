@@ -11,12 +11,12 @@ export default function WhoWeAre() {
   const features = [
     {
       icon: Users,
-      description: "We're a small group of professionals who excel at delivering high quality solutions to complex problems.",
+      description: "we're a small group of professionals (and friends) with decades of combined experience in high performing businesses.",
       gradient: "from-brand-primary to-blue-600"
     },
     {
       icon: Target,
-      description: "We're experts in modern technology, and we use this expertise to help businesses level up.",
+      description: "We're experts in modern technology, and use this expertise to supercharge businesses in industries far and wide, from freight to football.",
       gradient: "from-brand-accent to-orange-600"
     },
     {

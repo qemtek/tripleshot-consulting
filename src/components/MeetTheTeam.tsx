@@ -1,10 +1,9 @@
-import React from 'react';
-import { Brain, Palette, TrendingUp, Code, Heart } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Brain, Palette, TrendingUp, Code, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 import Button from './ui/Button';
 
 export default function MeetTheTeam() {
-
   const teamMembers = [
     {
       name: 'Chris',
@@ -80,6 +79,53 @@ export default function MeetTheTeam() {
     }
   ];
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+  
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+    
+    const distance = touchStartX.current - touchEndX.current;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+    
+    if (isLeftSwipe && currentIndex < teamMembers.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+    if (isRightSwipe && currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+  
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : teamMembers.length - 1));
+  };
+  
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev < teamMembers.length - 1 ? prev + 1 : 0));
+  };
+
   return (
     <section className="py-24 bg-gradient-to-b from-warm-50 via-white to-warm-50 relative overflow-hidden">
       {/* Background elements */}
@@ -110,8 +156,122 @@ export default function MeetTheTeam() {
           
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 mb-20">
-          {teamMembers.map((member, index) => (
+        {/* Desktop Grid / Mobile Carousel */}
+        {isMobile ? (
+          <div className="relative mb-20">
+            <div 
+              ref={carouselRef}
+              className="overflow-hidden"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <div 
+                className="flex transition-transform duration-300 ease-in-out"
+                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              >
+                {teamMembers.map((member, index) => (
+                  <div key={index} className="w-full flex-shrink-0 px-4">
+                    <Card 
+                      hover
+                      className="group text-center h-full mx-auto max-w-sm"
+                    >
+                      <CardContent className={`p-6 bg-gradient-to-br ${member.bgColor} h-full relative overflow-hidden`}>
+                        {/* Profile */}
+                        <div className="relative mb-6">
+                          <div className="relative w-28 h-28 mx-auto group-hover:scale-105 transition-all duration-300">
+                            <img 
+                              src={member.image} 
+                              alt={member.name}
+                              loading="lazy"
+                              className="w-full h-full rounded-3xl object-cover shadow-large border-3 border-white"
+                            />
+                            <div className={`absolute -bottom-3 -right-3 w-10 h-10 rounded-2xl bg-gradient-to-r ${member.color} flex items-center justify-center shadow-large border-3 border-white`}>
+                              <member.icon className="h-5 w-5 text-white" />
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <h3 className="font-display text-lg font-bold text-warm-900 mb-1">
+                          {member.name}
+                        </h3>
+                        
+                        <p className={`text-sm font-medium mb-2 bg-gradient-to-r ${member.color} bg-clip-text text-transparent`}>
+                          {member.personality}
+                        </p>
+                        
+                        <p className="text-xs font-semibold mb-4 text-warm-500">
+                          {member.role}
+                        </p>
+                        
+                        {/* Experience */}
+                        <p className="text-xs text-warm-600 mb-6 leading-relaxed">
+                          {member.experience}
+                        </p>
+                        
+                        {/* Top Trumps Stats */}
+                        <div className="space-y-3">
+                          {member.stats.map((stat, statIndex) => (
+                            <div key={statIndex} className="flex items-center justify-between">
+                              <span className="text-xs font-medium text-warm-700">
+                                {stat.name}
+                              </span>
+                              <div className="flex items-center">
+                                <div className="w-16 h-2 bg-warm-200 rounded-full mr-2 overflow-hidden">
+                                  <div 
+                                    className={`h-full bg-gradient-to-r ${member.color} rounded-full transition-all duration-500`}
+                                    style={{ width: `${stat.value}%` }}
+                                  />
+                                </div>
+                                <span className="text-xs font-bold text-warm-900 w-6 text-right">
+                                  {stat.value}
+                                </span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Navigation Arrows */}
+            <button
+              onClick={goToPrevious}
+              className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm p-2 rounded-r-lg shadow-medium hover:bg-white transition-colors"
+              aria-label="Previous team member"
+            >
+              <ChevronLeft className="h-6 w-6 text-warm-700" />
+            </button>
+            <button
+              onClick={goToNext}
+              className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm p-2 rounded-l-lg shadow-medium hover:bg-white transition-colors"
+              aria-label="Next team member"
+            >
+              <ChevronRight className="h-6 w-6 text-warm-700" />
+            </button>
+            
+            {/* Carousel Indicators */}
+            <div className="flex justify-center mt-6 gap-2">
+              {teamMembers.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    index === currentIndex 
+                      ? 'w-8 bg-brand-primary' 
+                      : 'w-2 bg-warm-300 hover:bg-warm-400'
+                  }`}
+                  aria-label={`Go to team member ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 mb-20">
+            {teamMembers.map((member, index) => (
             <Card 
               key={index} 
               hover
@@ -174,7 +334,8 @@ export default function MeetTheTeam() {
               </CardContent>
             </Card>
           ))}
-        </div>
+          </div>
+        )}
         
         {/* CTA Section */}
         <div className="text-center max-w-4xl mx-auto">

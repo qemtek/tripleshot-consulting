@@ -24,7 +24,7 @@ export default function NewHero() {
       </div>
       
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/50 via-indigo-600/50 to-brand-secondary/50 z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/65 via-indigo-600/65 to-brand-secondary/65 z-10"></div>
       
       {/* Decorative elements */}
       <div className="absolute inset-0 z-20">

@@ -158,25 +158,52 @@ export default function MeetTheTeam() {
         
         {/* Desktop Grid / Mobile Carousel */}
         {isMobile ? (
-          <div className="relative mb-20">
+          <div className="relative mb-20 h-[650px] perspective-1000">
             <div 
               ref={carouselRef}
-              className="overflow-hidden"
+              className="relative h-full flex items-center justify-center preserve-3d"
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
+              style={{ perspective: '1000px' }}
             >
-              <div 
-                className="flex transition-transform duration-300 ease-in-out"
-                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-              >
-                {teamMembers.map((member, index) => (
-                  <div key={index} className="w-full flex-shrink-0 px-4">
+              {teamMembers.map((member, index) => {
+                const offset = index - currentIndex;
+                const isActive = offset === 0;
+                const isPrev = offset === -1;
+                const isNext = offset === 1;
+                const isVisible = Math.abs(offset) <= 1;
+                
+                return (
+                  <div 
+                    key={index} 
+                    className={`absolute w-full max-w-sm px-4 transition-all duration-300 ${
+                      isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                    }`}
+                    style={{
+                      transform: `
+                        translateX(${offset * 50}px)
+                        translateY(${Math.abs(offset) * 20}px)
+                        scale(${isActive ? 1 : 0.9 - Math.abs(offset) * 0.1})
+                        rotateY(${offset * -10}deg)
+                      `,
+                      zIndex: isActive ? 10 : 5 - Math.abs(offset),
+                      filter: isActive ? 'none' : 'brightness(0.7)',
+                    }}
+                  >
                     <Card 
                       hover
-                      className="group text-center h-full mx-auto max-w-sm"
+                      className="group text-center h-full mx-auto max-w-sm shadow-xl border-4 border-warm-200 rounded-2xl transform transition-all duration-300 hover:scale-105 hover:rotate-1"
                     >
-                      <CardContent className={`p-6 bg-gradient-to-br ${member.bgColor} h-full relative overflow-hidden`}>
+                      <CardContent className={`p-6 h-full relative overflow-hidden rounded-xl`}>
+                        {/* Card Background Pattern */}
+                        <div className={`absolute inset-0 bg-gradient-to-br ${member.bgColor} opacity-30`}></div>
+                        <div className="absolute inset-0 bg-white/90 backdrop-blur-sm"></div>
+                        
+                        {/* Card Header Banner */}
+                        <div className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${member.color}`}></div>
+                        
+                        <div className="relative z-10">
                         {/* Profile */}
                         <div className="relative mb-6">
                           <div className="relative w-28 h-28 mx-auto group-hover:scale-105 transition-all duration-300">
@@ -209,8 +236,9 @@ export default function MeetTheTeam() {
                           {member.experience}
                         </p>
                         
-                        {/* Top Trumps Stats */}
-                        <div className="space-y-3">
+                        {/* Stats Section with Card Border */}
+                        <div className="border-t-2 border-warm-200 pt-4 mt-4">
+                          <div className="space-y-3">
                           {member.stats.map((stat, statIndex) => (
                             <div key={statIndex} className="flex items-center justify-between">
                               <span className="text-xs font-medium text-warm-700">
@@ -229,12 +257,14 @@ export default function MeetTheTeam() {
                               </div>
                             </div>
                           ))}
+                          </div>
+                        </div>
                         </div>
                       </CardContent>
                     </Card>
                   </div>
-                ))}
-              </div>
+                );
+              })}
             </div>
             
             {/* Navigation Arrows */}
@@ -272,12 +302,20 @@ export default function MeetTheTeam() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 mb-20">
             {teamMembers.map((member, index) => (
-            <Card 
+              <Card 
               key={index} 
               hover
-              className="group text-center h-full"
+              className="group text-center h-full shadow-xl border-4 border-warm-200 rounded-2xl transform transition-all duration-300 hover:scale-105 hover:rotate-1 hover:shadow-2xl"
             >
-              <CardContent className={`p-6 bg-gradient-to-br ${member.bgColor} h-full relative overflow-hidden`}>
+              <CardContent className={`p-6 h-full relative overflow-hidden rounded-xl`}>
+                {/* Card Background Pattern */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${member.bgColor} opacity-30`}></div>
+                <div className="absolute inset-0 bg-white/90 backdrop-blur-sm"></div>
+                
+                {/* Card Header Banner */}
+                <div className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${member.color}`}></div>
+                
+                <div className="relative z-10">
                 {/* Profile */}
                 <div className="relative mb-6">
                   <div className="relative w-28 h-28 mx-auto group-hover:scale-105 transition-all duration-300">
@@ -310,8 +348,9 @@ export default function MeetTheTeam() {
                   {member.experience}
                 </p>
                 
-                {/* Top Trumps Stats */}
-                <div className="space-y-3">
+                {/* Stats Section with Card Border */}
+                <div className="border-t-2 border-warm-200 pt-4 mt-4">
+                  <div className="space-y-3">
                   {member.stats.map((stat, statIndex) => (
                     <div key={statIndex} className="flex items-center justify-between">
                       <span className="text-xs font-medium text-warm-700">
@@ -330,6 +369,8 @@ export default function MeetTheTeam() {
                       </div>
                     </div>
                   ))}
+                  </div>
+                </div>
                 </div>
               </CardContent>
             </Card>

@@ -48,16 +48,13 @@ export default function NewHero() {
             </div>
           </div>
           
-          <h1 className="font-display text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-white to-gray-200 bg-clip-text text-transparent leading-tight">
-            Tripleshot Solutions
+          <h1 className="font-display text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-8 bg-gradient-to-r from-white via-white to-gray-200 bg-clip-text text-transparent leading-tight">
+            Looking to<br />
+            <span className="text-[calc(1em+10px)]">level up your business?</span>
           </h1>
           
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-4 max-w-4xl mx-auto text-gray-200 leading-relaxed font-medium">
-            Delivering high quality solutions to complex problems
-          </p>
-          
-          <p className="text-sm sm:text-base md:text-lg mb-12 max-w-2xl mx-auto text-gray-300 leading-relaxed">
-            A small group of professionals helping businesses reach their next level through modern technology and close partnerships.
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-12 max-w-3xl mx-auto text-gray-200 leading-relaxed font-medium">
+            We supercharge businesses with modern technology, helping you stay competitive in a crowded market.
           </p>
           
           <div className="flex justify-center mb-16">

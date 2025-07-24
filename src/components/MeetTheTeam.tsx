@@ -130,9 +130,9 @@ export default function MeetTheTeam() {
     <section className="py-24 bg-gradient-to-b from-warm-50 via-white to-warm-50 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-40 h-40 bg-brand-primary rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-48 h-48 bg-brand-accent rounded-full blur-3xl animate-pulse delay-700"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-brand-secondary rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-10 w-40 h-40 bg-brand-primary rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-48 h-48 bg-brand-accent rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-brand-secondary rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -177,7 +177,7 @@ export default function MeetTheTeam() {
                 return (
                   <div 
                     key={index} 
-                    className={`absolute w-full max-w-sm px-4 transition-all duration-300 ${
+                    className={`absolute w-full max-w-sm px-4 transition-transform duration-200 ${
                       isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
                     }`}
                     style={{
@@ -193,7 +193,7 @@ export default function MeetTheTeam() {
                   >
                     <Card 
                       hover
-                      className="group text-center h-full mx-auto max-w-sm shadow-xl border-4 border-warm-200 rounded-2xl transform transition-all duration-300 hover:scale-105 hover:rotate-1"
+                      className="group text-center h-full mx-auto max-w-sm shadow-xl border-4 border-warm-200 rounded-2xl"
                     >
                       <CardContent className={`p-6 h-full relative overflow-hidden rounded-xl`}>
                         {/* Card Background Pattern */}
@@ -206,7 +206,7 @@ export default function MeetTheTeam() {
                         <div className="relative z-10">
                         {/* Profile */}
                         <div className="relative mb-6">
-                          <div className="relative w-28 h-28 mx-auto group-hover:scale-105 transition-all duration-300">
+                          <div className="relative w-28 h-28 mx-auto">
                             <img 
                               src={member.image} 
                               alt={member.name}
@@ -247,7 +247,7 @@ export default function MeetTheTeam() {
                               <div className="flex items-center">
                                 <div className="w-16 h-2 bg-warm-200 rounded-full mr-2 overflow-hidden">
                                   <div 
-                                    className={`h-full bg-gradient-to-r ${member.color} rounded-full transition-all duration-500`}
+                                    className={`h-full bg-gradient-to-r ${member.color} rounded-full`}
                                     style={{ width: `${stat.value}%` }}
                                   />
                                 </div>
@@ -305,7 +305,7 @@ export default function MeetTheTeam() {
               <Card 
               key={index} 
               hover
-              className="group text-center h-full shadow-xl border-4 border-warm-200 rounded-2xl transform transition-all duration-300 hover:scale-105 hover:rotate-1 hover:shadow-2xl"
+              className="group text-center h-full shadow-xl border-4 border-warm-200 rounded-2xl hover:shadow-2xl transition-shadow duration-200"
             >
               <CardContent className={`p-6 h-full relative overflow-hidden rounded-xl`}>
                 {/* Card Background Pattern */}
@@ -318,7 +318,7 @@ export default function MeetTheTeam() {
                 <div className="relative z-10">
                 {/* Profile */}
                 <div className="relative mb-6">
-                  <div className="relative w-28 h-28 mx-auto group-hover:scale-105 transition-all duration-300">
+                  <div className="relative w-28 h-28 mx-auto">
                     <img 
                       src={member.image} 
                       alt={member.name}
@@ -359,7 +359,7 @@ export default function MeetTheTeam() {
                       <div className="flex items-center">
                         <div className="w-16 h-2 bg-warm-200 rounded-full mr-2 overflow-hidden">
                           <div 
-                            className={`h-full bg-gradient-to-r ${member.color} rounded-full transition-all duration-500`}
+                            className={`h-full bg-gradient-to-r ${member.color} rounded-full`}
                             style={{ width: `${stat.value}%` }}
                           />
                         </div>

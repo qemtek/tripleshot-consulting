@@ -53,11 +53,7 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="flex items-center mb-6">
-              <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-xl flex items-center justify-center mr-3">
-                  <Zap className="h-6 w-6 text-white" />
-                </div>
-              </div>
+              <img src="/images/new_logo.svg" alt="Tripleshot Logo" className="h-12 mr-3" />
               <div className="flex flex-col">
                 <span className="font-display text-xl font-bold text-white leading-tight">
                   Tripleshot

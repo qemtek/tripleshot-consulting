@@ -193,42 +193,38 @@ export default function MeetTheTeam() {
                   >
                     <Card 
                       hover
-                      className="group text-center h-full mx-auto max-w-sm shadow-xl border-4 border-warm-200 rounded-2xl"
+                      className="group text-center h-full mx-auto max-w-sm"
                     >
-                      <CardContent className={`p-6 h-full relative overflow-hidden rounded-xl`}>
-                        {/* Card Background Pattern */}
-                        <div className={`absolute inset-0 bg-gradient-to-br ${member.bgColor} opacity-30`}></div>
-                        <div className="absolute inset-0 bg-white/90 backdrop-blur-sm"></div>
-                        
+                      <CardContent className="p-6 h-full relative overflow-hidden">
                         {/* Card Header Banner */}
-                        <div className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${member.color}`}></div>
+                        <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${member.color}`}></div>
                         
                         <div className="relative z-10">
                         {/* Profile */}
                         <div className="relative mb-6">
-                          <div className="relative w-28 h-28 mx-auto">
+                          <div className="relative w-24 h-24 mx-auto">
                             <img 
                               src={member.image} 
                               alt={member.name}
                               loading="lazy"
-                              className="w-full h-full rounded-3xl object-cover shadow-large border-3 border-white"
+                              className="w-full h-full rounded-2xl object-cover shadow-medium"
                             />
-                            <div className={`absolute -bottom-3 -right-3 w-10 h-10 rounded-2xl bg-gradient-to-r ${member.color} flex items-center justify-center shadow-large border-3 border-white`}>
-                              <member.icon className="h-5 w-5 text-white" />
+                            <div className={`absolute -bottom-2 -right-2 w-8 h-8 rounded-lg bg-gradient-to-r ${member.color} flex items-center justify-center shadow-medium`}>
+                              <member.icon className="h-4 w-4 text-white" />
                             </div>
                           </div>
                         </div>
                         
-                        <h3 className="font-display text-lg font-bold text-warm-900 mb-1">
+                        <h3 className="font-display text-lg font-bold text-warm-900 mb-2">
                           {member.name}
                         </h3>
                         
-                        <p className={`text-sm font-medium mb-2 bg-gradient-to-r ${member.color} bg-clip-text text-transparent`}>
-                          {member.personality}
+                        <p className="text-sm font-semibold mb-1 text-warm-700">
+                          {member.role}
                         </p>
                         
-                        <p className="text-xs font-semibold mb-4 text-warm-500">
-                          {member.role}
+                        <p className={`text-xs font-medium mb-4 bg-gradient-to-r ${member.color} bg-clip-text text-transparent`}>
+                          {member.personality}
                         </p>
                         
                         {/* Experience */}
@@ -236,8 +232,8 @@ export default function MeetTheTeam() {
                           {member.experience}
                         </p>
                         
-                        {/* Stats Section with Card Border */}
-                        <div className="border-t-2 border-warm-200 pt-4 mt-4">
+                        {/* Stats Section */}
+                        <div className="border-t border-warm-200 pt-4 mt-4">
                           <div className="space-y-3">
                           {member.stats.map((stat, statIndex) => (
                             <div key={statIndex} className="flex items-center justify-between">

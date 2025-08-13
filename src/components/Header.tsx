@@ -36,19 +36,7 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center h-16 sm:h-20">
           <div className="flex items-center">
             <Link to="/" className="flex items-center group">
-              <div className="relative">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-xl flex items-center justify-center mr-3 group-hover:scale-105 transition-transform">
-                  <Zap className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
-                </div>
-              </div>
-              <div className="hidden sm:flex flex-col">
-                <span className="font-display text-lg sm:text-xl font-bold text-warm-900 leading-tight">
-                  Tripleshot
-                </span>
-                <span className="text-xs sm:text-sm text-brand-primary font-medium -mt-1">
-                  Solutions
-                </span>
-              </div>
+              <img src="/images/new_tripleshot.svg" alt="Tripleshot Logo" className="h-10" />
             </Link>
           </div>
           

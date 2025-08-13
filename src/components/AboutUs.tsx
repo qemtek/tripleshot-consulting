@@ -46,7 +46,7 @@ const AboutUs = () => {
             <div className="flex justify-center mb-4">
               <div className="rounded-full bg-white shadow-sm p-3">
                 <img 
-                  src="/images/logo-no-background.png" 
+                  src="/images/new_logo.svg" 
                   alt="Tripleshot Logo" 
                   className="h-12" 
                 />
@@ -103,7 +103,7 @@ const AboutUs = () => {
               <div className="flex justify-center mb-4">
                 <div className="rounded-full bg-white shadow-sm p-3">
                   <img 
-                    src="/images/logo-no-background.png" 
+                    src="/images/new_logo.svg" 
                     alt="Tripleshot Logo" 
                     className="h-12" 
                   />
@@ -174,7 +174,7 @@ const AboutUs = () => {
               <div className="flex justify-center mb-4">
                 <div className="rounded-full bg-white shadow-sm p-3">
                   <img 
-                    src="/images/logo-no-background.png" 
+                    src="/images/new_logo.svg" 
                     alt="Tripleshot Logo" 
                     className="h-12" 
                   />

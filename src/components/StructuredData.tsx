@@ -15,7 +15,7 @@ export default function StructuredData({ type = 'organization', data }: Structur
           "name": "Tripleshot Solutions",
           "alternateName": "Tripleshot",
           "url": "https://tripleshotsolutions.com",
-          "logo": "https://tripleshotsolutions.com/images/logo-no-background.png",
+          "logo": "new_logo.svg",
           "description": "Professional but personal business automation consultants. We build close working relationships while delivering expert solutions in AI, web development, and process optimization.",
           "foundingDate": "2023",
           "founders": [
@@ -102,7 +102,7 @@ export default function StructuredData({ type = 'organization', data }: Structur
             "name": "Tripleshot Solutions",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://tripleshotsolutions.com/images/logo-no-background.png"
+              "url": "new_logo.svg"
             }
           },
           "datePublished": data?.publishedTime,
@@ -186,7 +186,7 @@ export function LocalBusinessStructuredData() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Tripleshot Solutions",
-    "image": "https://tripleshotsolutions.com/images/logo-no-background.png",
+    "image": "new_logo.svg",
     "description": "Professional but personal business automation consultants specializing in AI, web development, and process optimization.",
     "url": "https://tripleshotsolutions.com",
     "telephone": "+1-555-TRIPLESHOT",

@@ -64,7 +64,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-warm-200 mb-6 leading-relaxed">
-              We deliver high-quality solutions to complex problems. 
+              We deliver high-quality solutions to complex problems in AI, Data, Software Engineering and Digital Branding. 
               A small group of professionals helping businesses reach their next level through modern technology and close partnerships.
             </p>
             <div className="space-y-3">
@@ -89,7 +89,7 @@ const Footer = () => {
               <div className="w-8 h-8 rounded-lg bg-brand-secondary/20 flex items-center justify-center mr-3">
                 <Heart className="h-4 w-4 text-brand-secondary" />
               </div>
-              <h3 className="font-display text-xl font-bold text-white">Stay in Touch</h3>
+              <h3 className="font-display text-xl font-bold text-white">Join our Newsletter</h3>
             </div>
             <p className="text-warm-200 mb-6 leading-relaxed">
               Get practical insights and success stories delivered to your inbox. No spam, just valuable content.
@@ -119,7 +119,7 @@ const Footer = () => {
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="w-full bg-gradient-to-r from-brand-primary to-brand-secondary text-white px-6 py-3 rounded-xl hover:from-brand-secondary hover:to-brand-accent transition-all duration-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed shadow-medium hover:shadow-large hover:scale-[1.02]"
+                  className="w-full bg-brand-logo hover:bg-brand-logo/80 text-white px-6 py-3 rounded-xl transition-all duration-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed shadow-medium hover:shadow-large hover:scale-[1.02]"
                 >
                   {status === 'submitting' ? 'Subscribing...' : 'Keep Me Updated'}
                 </button>

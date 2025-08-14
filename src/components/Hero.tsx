@@ -44,7 +44,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
               <button
                 onClick={goToContact}
-                className="bg-gradient-to-r from-brand-accent to-orange-500 text-white px-8 py-4 rounded-lg hover:from-orange-500 hover:to-red-500 transition-all duration-300 text-lg font-semibold min-h-[48px] shadow-medium hover:shadow-large"
+                className="bg-brand-logo hover:bg-brand-logo/80 text-white px-8 py-4 rounded-lg transition-all duration-300 text-lg font-semibold min-h-[48px] shadow-medium hover:shadow-large"
               >
                 Grab a coffee with our team
               </button>

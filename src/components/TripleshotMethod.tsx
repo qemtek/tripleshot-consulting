@@ -16,8 +16,8 @@ export default function TripleshotMethod() {
         "Automate manual processes like quote generation and invoicing to save 15+ hours/week", 
         "Build dashboards to track what matters most"
       ],
-      color: "from-brand-primary to-blue-600",
-      bgColor: "from-brand-primary/5 to-blue-50"
+      bgClass: "bg-brand-green",
+      bgColor: "from-white to-white"
     },
     {
       id: 1,
@@ -29,8 +29,8 @@ export default function TripleshotMethod() {
         "Build an authentic presence on the platforms that matter",
         "Maximize search rankings and optimize every marketing dollar"
       ],
-      color: "from-brand-secondary to-purple-600",
-      bgColor: "from-brand-secondary/5 to-purple-50"
+      bgClass: "bg-brand-orange",
+      bgColor: "from-white to-white"
     },
     {
       id: 2,
@@ -44,13 +44,13 @@ export default function TripleshotMethod() {
         "Automate support so your team focuses on growth",
         "Optimize operations for maximum efficiency"
       ],
-      color: "from-brand-accent to-orange-600",
-      bgColor: "from-brand-accent/5 to-orange-50"
+      bgClass: "bg-brand-secondary",
+      bgColor: "from-white to-white"
     }
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-b from-white via-warm-50 to-white relative overflow-hidden">
+    <section className="py-24 bg-white relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-10 left-1/4 w-64 h-64 bg-brand-primary rounded-full blur-3xl animate-pulse"></div>
@@ -59,9 +59,9 @@ export default function TripleshotMethod() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent rounded-3xl mb-8 relative">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-brand-logo rounded-full mb-8 relative">
             <Sparkles className="h-10 w-10 text-white" />
-            <div className="absolute -top-1 -right-1 w-6 h-6 bg-brand-accent rounded-full animate-ping"></div>
+            <div className="absolute -top-1 -right-1 w-6 h-6 bg-brand-logo/60 rounded-full animate-ping"></div>
           </div>
           
           <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-warm-900 mb-6 leading-tight">
@@ -80,20 +80,20 @@ export default function TripleshotMethod() {
         <div className="hidden lg:block">
           <div className="grid lg:grid-cols-3 gap-8">
             {steps.map((step) => (
-              <Card key={step.id} hover className="group relative h-full">
-                <CardContent className={`p-8 bg-gradient-to-br ${step.bgColor} h-full`}>
+              <Card key={step.id} hover className="group border-0 bg-white/80 backdrop-blur-sm h-full" variant="elevated">
+                <CardContent className={`p-8 text-center bg-gradient-to-br ${step.bgColor} h-full`}>
                   
-                  <div className="mb-6">
-                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${step.color} flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-medium mb-4`}>
-                      <step.icon className="h-8 w-8 text-white" />
+                  <div className="mb-8">
+                    <div className={`w-20 h-20 ${step.bgClass} rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-all duration-300 shadow-medium`}>
+                      <step.icon className="h-10 w-10 text-white" />
                     </div>
                   </div>
                   
-                  <h3 className="font-display text-xl font-bold text-warm-900 mb-4 leading-tight">
+                  <h3 className="font-display text-xl font-bold text-warm-900 mb-4">
                     {step.title}
                   </h3>
                   
-                  <p className="text-warm-600 mb-6 leading-relaxed">
+                  <p className="text-warm-600 leading-relaxed text-sm mb-6">
                     {step.description}
                   </p>
                   
@@ -124,7 +124,7 @@ export default function TripleshotMethod() {
                   aria-label={`View step ${step.number}: ${step.title}`}
                   className={`relative flex-1 h-12 sm:h-14 rounded-xl flex items-center justify-center font-bold transition-all duration-300 ${
                     activeStep === index
-                      ? `bg-gradient-to-r ${step.color} text-white shadow-medium transform scale-105`
+                      ? `bg-gray-200 text-gray-700 shadow-medium transform scale-105`
                       : 'bg-warm-100 text-warm-600 hover:bg-warm-200'
                   }`}
                 >
@@ -137,10 +137,10 @@ export default function TripleshotMethod() {
             </div>
           </div>
 
-          <Card variant="elevated" className={`bg-gradient-to-br ${steps[activeStep].bgColor} animate-fade-in`}>
-            <CardContent className="p-8">
+          <Card variant="elevated" className="border-0 bg-white/80 backdrop-blur-sm animate-fade-in">
+            <CardContent className={`p-8 bg-gradient-to-br ${steps[activeStep].bgColor}`}>
               <div className="flex items-center mb-6">
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${steps[activeStep].color} flex items-center justify-center mr-4`}>
+                <div className={`w-12 h-12 ${steps[activeStep].bgClass} rounded-full flex items-center justify-center mr-4 shadow-medium`}>
                   {React.createElement(steps[activeStep].icon, { className: "h-6 w-6 text-white" })}
                 </div>
                 <div>

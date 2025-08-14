@@ -73,7 +73,7 @@ const detailedCaseStudies: DetailedCaseStudy[] = [
 
 export default function DetailedCaseStudies() {
   return (
-    <section id="case-studies" className="py-16 bg-gradient-to-b from-warm-50 via-white to-warm-50">
+    <section id="case-studies" className="py-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="space-y-20">
@@ -128,7 +128,7 @@ export default function DetailedCaseStudies() {
                       <ul className="space-y-3">
                         {study.results.map((result, idx) => (
                           <li key={idx} className="flex items-start gap-3 text-warm-700 leading-relaxed">
-                            <div className="w-2 h-2 bg-brand-accent rounded-full mt-2 flex-shrink-0" />
+                            <div className="w-2 h-2 bg-brand-primary rounded-full mt-2 flex-shrink-0" />
                             {result}
                           </li>
                         ))}
@@ -141,7 +141,7 @@ export default function DetailedCaseStudies() {
                   <div className="pt-4">
                     <Link
                       to={`/case-studies/${study.id}`}
-                      className="inline-flex items-center gap-2 bg-gradient-to-r from-brand-primary to-brand-secondary text-white px-6 py-3 rounded-lg font-semibold hover:from-brand-secondary hover:to-brand-accent shadow-medium hover:shadow-large transition-all duration-300"
+                      className="inline-flex items-center gap-2 bg-brand-logo hover:bg-brand-logo/80 text-white px-6 py-3 rounded-lg font-semibold shadow-medium hover:shadow-large transition-all duration-300"
                     >
                       Read Full Case Study
                       <ArrowRight className="w-4 h-4" />
@@ -163,7 +163,7 @@ export default function DetailedCaseStudies() {
             </p>
             <Link 
               to="/contact"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-brand-accent to-orange-500 text-white px-8 py-4 rounded-lg font-semibold hover:from-orange-500 hover:to-red-500 shadow-medium hover:shadow-large transition-all duration-300"
+              className="inline-flex items-center gap-2 bg-brand-logo hover:bg-brand-logo/80 text-white px-8 py-4 rounded-lg font-semibold shadow-medium hover:shadow-large transition-all duration-300"
             >
               Discuss Your Project
               <ExternalLink className="w-4 h-4" />

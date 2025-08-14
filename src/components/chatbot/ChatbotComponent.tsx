@@ -17,7 +17,7 @@ interface ChatbotProps {
 const ChatbotComponent: React.FC<ChatbotProps> = ({
   initialMessage = "Hi there! How can I help you today?",
   position = 'bottom-right',
-  primaryColor = '#4f46e5',
+  primaryColor = '#ff1217',
   apiBaseUrl = 'http://localhost:3001',
 }) => {
   // State
@@ -303,7 +303,7 @@ const ChatbotComponent: React.FC<ChatbotProps> = ({
                 <div
                   className={`inline-block p-3 rounded-lg ${
                     message.sender === 'user'
-                      ? 'bg-blue-100 text-gray-800'
+                      ? 'bg-gray-100 text-gray-800'
                       : 'bg-gray-100 text-gray-800'
                   }`}
                 >
@@ -333,7 +333,7 @@ const ChatbotComponent: React.FC<ChatbotProps> = ({
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder={isWaitingForEmail ? "Enter your email..." : "Type your message..."}
-                className="flex-1 p-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="flex-1 p-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-red-500"
                 disabled={isSubmitting}
               />
               <button

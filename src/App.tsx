@@ -41,7 +41,7 @@ export default function App() {
         <SEOHead />
         <StructuredData type="organization" />
         <Analytics />
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-white font-sans">
           <Header />
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>

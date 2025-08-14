@@ -56,7 +56,7 @@ const AboutUs = () => {
               Our Mission
             </h2>
             <p className="text-lg sm:text-xl text-brown-600 max-w-3xl mx-auto leading-relaxed">
-              We're a group of friends, each experienced professionals in their own field, with a common belief- modern technology should work for your business, not against it.
+              We're a group of friends, each experienced professionals in AI, Data Science, Software Engineering and Digital Branding, with a common belief- modern technology should work for your business, not against it.
             </p>
           </div>
 

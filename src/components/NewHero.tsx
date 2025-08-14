@@ -24,13 +24,7 @@ export default function NewHero() {
       </div>
       
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/65 via-indigo-600/65 to-brand-secondary/65 z-10"></div>
-      
-      {/* Decorative elements */}
-      <div className="absolute inset-0 z-20">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-brand-accent/10 to-yellow-400/10 rounded-full mix-blend-multiply filter blur-3xl"></div>
-        <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full mix-blend-multiply filter blur-3xl"></div>
-      </div>
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0A1958]/60 via-[#0A1958]/50 to-black/60 z-10"></div>
       
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 z-30 bg-black/5" 
@@ -43,9 +37,7 @@ export default function NewHero() {
         <div className="text-center animate-fade-in">
           {/* Simplified icon */}
           <div className="mb-8 flex justify-center">
-            <div className="bg-gradient-to-r from-brand-accent to-yellow-400 p-4 rounded-2xl">
-              <Zap className="h-12 w-12 text-white" />
-            </div>
+            <img src="/images/new_logo.svg" alt="Tripleshot Logo" className="h-16 w-16" />
           </div>
           
           <h1 className="font-display text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-8 bg-gradient-to-r from-white via-white to-gray-200 bg-clip-text text-transparent leading-tight">
@@ -54,16 +46,16 @@ export default function NewHero() {
           </h1>
           
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-12 max-w-3xl mx-auto text-gray-200 leading-relaxed font-medium">
-            We supercharge businesses with modern technology, helping you stay competitive in a crowded market.
+            We supercharge businesses with AI, Data Science, Software Engineering and Digital Branding solutions, helping you stay competitive in a crowded market.
           </p>
           
           <div className="flex justify-center mb-16">
             <Button 
+              variant="cta"
               size="lg"
               onClick={goToContact}
-              className="bg-gradient-to-r from-brand-accent to-orange-500 hover:from-orange-500 hover:to-red-500 shadow-large text-lg px-10 py-4"
             >
-              Let's Chat
+              Get Started Today
             </Button>
           </div>
           

@@ -9,37 +9,37 @@ export default function WhatWeDo() {
 
   const services = [
     {
-      icon: Palette,
-      title: "Branding & Web Design",
-      description: "Professional websites and visual identities that customers actually remember. From logos to full digital experiences.",
-      color: "from-brand-secondary to-purple-600", 
-      bgColor: "from-brand-secondary/5 to-purple-50"
+      icon: Brain,
+      title: "AI & Data Science",
+      description: "Custom machine learning systems, predictive analytics, and data-driven insights that turn your business data into competitive advantage.",
+      bgClass: "bg-brand-green",
+      bgColor: "from-white to-white"
     },
     {
       icon: TrendingUp,
       title: "Marketing & SEO",
       description: "Strategic digital marketing that generates qualified leads and improves search rankings. Turn your marketing budget into predictable growth.",
-      color: "from-brand-success to-green-600",
-      bgColor: "from-brand-success/5 to-green-50"
+      bgClass: "bg-brand-orange",
+      bgColor: "from-white to-white"
     },
     {
       icon: Code,
       title: "Software Development",
       description: "Scalable systems and custom applications that actually work. From APIs to full platforms, built for performance and reliability.",
-      color: "from-brand-accent to-orange-600",
-      bgColor: "from-brand-accent/5 to-orange-50"
+      bgClass: "bg-brand-secondary",
+      bgColor: "from-white to-white"
     },
     {
-      icon: Brain,
-      title: "AI & Data Science",
-      description: "Custom machine learning systems, predictive analytics, and data-driven insights that turn your business data into competitive advantage.",
-      color: "from-brand-primary to-blue-600",
-      bgColor: "from-brand-primary/5 to-blue-50"
+      icon: Palette,
+      title: "Branding & Web Design",
+      description: "Professional websites and visual identities that customers actually remember. From logos to full digital experiences.",
+      bgClass: "bg-brand-logo", 
+      bgColor: "from-white to-white"
     }
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-b from-white via-warm-50 to-white relative overflow-hidden">
+    <section className="py-24 bg-white relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-1/4 w-64 h-64 bg-brand-primary rounded-full blur-3xl"></div>
@@ -55,8 +55,8 @@ export default function WhatWeDo() {
               : 'opacity-0 transform translate-y-8'
           }`}
         >
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-2xl mb-6">
-            <Code className="h-8 w-8 text-white" />
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-brand-logo rounded-full mb-8 relative">
+            <Code className="h-10 w-10 text-white" />
           </div>
           
           <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-warm-900 mb-6 leading-tight">
@@ -66,7 +66,7 @@ export default function WhatWeDo() {
           <div className="w-20 h-1 bg-gradient-to-r from-brand-accent to-brand-primary mx-auto mb-8 rounded-full"></div>
           
           <p className="text-lg md:text-xl text-warm-600 max-w-3xl mx-auto leading-relaxed">
-            We deliver practical solutions across four key areas that drive business growth
+            We deliver practical solutions across four key areas
           </p>
         </div>
 
@@ -87,7 +87,7 @@ export default function WhatWeDo() {
             >
               <CardContent className={`p-8 text-center bg-gradient-to-br ${service.bgColor} h-full`}>
                 <div className="mb-8">
-                  <div className={`w-20 h-20 bg-gradient-to-r ${service.color} rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-medium`}>
+                  <div className={`w-20 h-20 ${service.bgClass} rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-all duration-300 shadow-medium`}>
                     <service.icon className="h-10 w-10 text-white" />
                   </div>
                 </div>

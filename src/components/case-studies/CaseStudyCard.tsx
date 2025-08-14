@@ -32,7 +32,7 @@ export function CaseStudyCard({ study }: CaseStudyCardProps) {
         <div className="mt-auto">
           <Link 
             to={`/case-studies/${id}`}
-            className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-brand-primary/10 to-brand-secondary/10 text-brand-primary font-semibold hover:from-brand-primary hover:to-brand-secondary hover:text-white rounded-lg transition-all duration-300 group/link border border-brand-primary/20 hover:border-transparent shadow-soft hover:shadow-medium"
+            className="inline-flex items-center px-4 py-2 bg-brand-secondary/10 text-brand-secondary font-semibold hover:bg-brand-secondary hover:text-white rounded-lg transition-all duration-300 group/link border border-brand-secondary/20 hover:border-transparent shadow-soft hover:shadow-medium"
           >
             Read Case Study
             <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />

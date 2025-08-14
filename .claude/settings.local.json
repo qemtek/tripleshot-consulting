@@ -23,6 +23,7 @@
       "Bash(convert:*)",
       "Bash(magick:*)"
     ],
-    "deny": []
+    "deny": [],
+    "defaultMode": "acceptEdits"
   }
 }

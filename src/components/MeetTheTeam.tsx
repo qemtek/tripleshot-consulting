@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Brain, Palette, TrendingUp, Code, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Brain, Palette, TrendingUp, Code, Heart, ChevronLeft, ChevronRight, Users } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 import Button from './ui/Button';
 
@@ -11,8 +11,10 @@ export default function MeetTheTeam() {
       personality: 'The Problem Solver',
       icon: Brain,
       image: '/images/team/chris-collins.jpg',
-      color: 'from-brand-primary to-blue-600',
-      bgColor: 'from-brand-primary/5 to-blue-50',
+      bgClass: 'bg-brand-green/30 group-hover:bg-brand-green',
+      mainColor: 'bg-brand-green',
+      textColor: 'text-brand-green',
+      bgColor: 'from-white to-white',
       experience: '10+ years building industry standard machine learning systems for Fortune 500 companies. Has built teams from the ground up and led AI implementations that increased margins by 20%.',
       stats: [
         { name: 'Algorithm Mastery', value: 95 },
@@ -24,31 +26,15 @@ export default function MeetTheTeam() {
       ]
     },
     {
-      name: 'Maria',
-      role: 'Branding & Web Design',
-      personality: 'The Creative Visionary',
-      icon: Palette,
-      image: '/images/team/maria-benitez.png',
-      color: 'from-brand-secondary to-purple-600',
-      bgColor: 'from-brand-secondary/5 to-purple-50',
-      experience: 'Expert in creating brands that customers actually remember. From startup logos to enterprise rebrands, she\'s designed visual identities for over 100 companies across diverse industries.',
-      stats: [
-        { name: 'Design Vision', value: 98 },
-        { name: 'Color Theory', value: 94 },
-        { name: 'User Experience', value: 91 },
-        { name: 'Brand Strategy', value: 87 },
-        { name: 'Yoga', value: 89 },
-        { name: 'Cycling', value: 9 }
-      ]
-    },
-    {
       name: 'John',
       role: 'Marketing & SEO',
       personality: 'The Growth Hacker',
       icon: TrendingUp,
       image: '/images/team/john-primavesi.jpg',
-      color: 'from-brand-success to-green-600',
-      bgColor: 'from-brand-success/5 to-green-50',
+      bgClass: 'bg-brand-orange/30 group-hover:bg-brand-orange',
+      mainColor: 'bg-brand-orange',
+      textColor: 'text-brand-orange',
+      bgColor: 'from-white to-white',
       experience: '12+ years turning marketing budgets into predictable revenue streams. Specialized in organic growth strategies that have generated over $10M in qualified leads for clients.',
       stats: [
         { name: 'SEO Wizardry', value: 96 },
@@ -65,8 +51,10 @@ export default function MeetTheTeam() {
       personality: 'The Code Architect',
       icon: Code,
       image: '/images/team/harry-godwin.jpg',
-      color: 'from-brand-accent to-orange-600',
-      bgColor: 'from-brand-accent/5 to-orange-50',
+      bgClass: 'bg-brand-secondary/30 group-hover:bg-brand-secondary',
+      mainColor: 'bg-brand-secondary',
+      textColor: 'text-brand-secondary',
+      bgColor: 'from-white to-white',
       experience: 'A master at building scalable systems that actually work. From fintech APIs handling millions of transactions to e-commerce platforms serving thousands of users daily.',
       stats: [
         { name: 'Code Quality', value: 93 },
@@ -75,6 +63,26 @@ export default function MeetTheTeam() {
         { name: 'API Development', value: 85 },
         { name: 'Powerlifting', value: 93 },
         { name: 'Feather Dusting', value: 32 }
+      ]
+    },
+    {
+      name: 'Maria',
+      role: 'Branding & Web Design',
+      personality: 'The Creative Visionary',
+      icon: Palette,
+      image: '/images/team/maria-benitez.png',
+      bgClass: 'bg-brand-logo/30 group-hover:bg-brand-logo',
+      mainColor: 'bg-brand-logo',
+      textColor: 'text-brand-logo',
+      bgColor: 'from-white to-white',
+      experience: 'Expert in creating brands that customers actually remember. From startup logos to enterprise rebrands, she\'s designed visual identities for over 100 companies across diverse industries.',
+      stats: [
+        { name: 'Design Vision', value: 98 },
+        { name: 'Color Theory', value: 94 },
+        { name: 'User Experience', value: 91 },
+        { name: 'Brand Strategy', value: 87 },
+        { name: 'Yoga', value: 89 },
+        { name: 'Cycling', value: 9 }
       ]
     }
   ];
@@ -127,7 +135,7 @@ export default function MeetTheTeam() {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-b from-warm-50 via-white to-warm-50 relative overflow-hidden">
+    <section className="py-24 bg-white relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 w-40 h-40 bg-brand-primary rounded-full blur-3xl"></div>
@@ -137,9 +145,9 @@ export default function MeetTheTeam() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent rounded-3xl mb-8 relative">
-            <Heart className="h-10 w-10 text-white" />
-            <div className="absolute -top-2 -right-2 w-8 h-8 bg-brand-accent rounded-full flex items-center justify-center">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-brand-logo rounded-full mb-8 relative">
+            <Users className="h-10 w-10 text-white" />
+            <div className="absolute -top-2 -right-2 w-8 h-8 bg-brand-logo/80 rounded-full flex items-center justify-center">
               <span className="text-white text-xs font-bold">4</span>
             </div>
           </div>
@@ -151,7 +159,7 @@ export default function MeetTheTeam() {
           <div className="w-24 h-1.5 bg-gradient-to-r from-brand-primary to-brand-accent mx-auto mb-8 rounded-full"></div>
           
           <p className="text-lg md:text-xl text-warm-600 max-w-4xl mx-auto leading-relaxed mb-4">
-            Four humans who love solving complex problems with simple solutions
+            Four humans who love solving complex problems in AI, Data Science, Software Engineering and Digital Branding with simple solutions
           </p>
           
         </div>
@@ -197,7 +205,6 @@ export default function MeetTheTeam() {
                     >
                       <CardContent className="p-6 h-full relative overflow-hidden">
                         {/* Card Header Banner */}
-                        <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${member.color}`}></div>
                         
                         <div className="relative z-10">
                         {/* Profile */}
@@ -209,7 +216,7 @@ export default function MeetTheTeam() {
                               loading="lazy"
                               className="w-full h-full rounded-2xl object-cover shadow-medium"
                             />
-                            <div className={`absolute -bottom-2 -right-2 w-8 h-8 rounded-lg bg-gradient-to-r ${member.color} flex items-center justify-center shadow-medium`}>
+                            <div className={`absolute -bottom-2 -right-2 w-8 h-8 rounded-full ${member.mainColor} flex items-center justify-center shadow-medium`}>
                               <member.icon className="h-4 w-4 text-white" />
                             </div>
                           </div>
@@ -223,7 +230,7 @@ export default function MeetTheTeam() {
                           {member.role}
                         </p>
                         
-                        <p className={`text-xs font-medium mb-4 bg-gradient-to-r ${member.color} bg-clip-text text-transparent`}>
+                        <p className={`text-xs font-medium mb-4 ${member.textColor}`}>
                           {member.personality}
                         </p>
                         
@@ -243,7 +250,7 @@ export default function MeetTheTeam() {
                               <div className="flex items-center">
                                 <div className="w-16 h-2 bg-warm-200 rounded-full mr-2 overflow-hidden">
                                   <div 
-                                    className={`h-full bg-gradient-to-r ${member.color} rounded-full`}
+                                    className={`h-full ${member.mainColor} rounded-full`}
                                     style={{ width: `${stat.value}%` }}
                                   />
                                 </div>
@@ -309,7 +316,6 @@ export default function MeetTheTeam() {
                 <div className="absolute inset-0 bg-white/90 backdrop-blur-sm"></div>
                 
                 {/* Card Header Banner */}
-                <div className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${member.color}`}></div>
                 
                 <div className="relative z-10">
                 {/* Profile */}
@@ -321,7 +327,7 @@ export default function MeetTheTeam() {
                       loading="lazy"
                       className="w-full h-full rounded-3xl object-cover shadow-large border-3 border-white"
                     />
-                    <div className={`absolute -bottom-3 -right-3 w-10 h-10 rounded-2xl bg-gradient-to-r ${member.color} flex items-center justify-center shadow-large border-3 border-white`}>
+                    <div className={`absolute -bottom-3 -right-3 w-10 h-10 rounded-full ${member.mainColor} flex items-center justify-center shadow-large border-3 border-white`}>
                       <member.icon className="h-5 w-5 text-white" />
                     </div>
                   </div>
@@ -331,7 +337,7 @@ export default function MeetTheTeam() {
                   {member.name}
                 </h3>
                 
-                <p className={`text-sm font-medium mb-2 bg-gradient-to-r ${member.color} bg-clip-text text-transparent`}>
+                <p className={`text-sm font-medium mb-2 ${member.textColor}`}>
                   {member.personality}
                 </p>
                 
@@ -355,7 +361,7 @@ export default function MeetTheTeam() {
                       <div className="flex items-center">
                         <div className="w-16 h-2 bg-warm-200 rounded-full mr-2 overflow-hidden">
                           <div 
-                            className={`h-full bg-gradient-to-r ${member.color} rounded-full`}
+                            className={`h-full ${member.mainColor} rounded-full`}
                             style={{ width: `${stat.value}%` }}
                           />
                         </div>
@@ -383,7 +389,7 @@ export default function MeetTheTeam() {
                   {teamMembers.map((member, index) => (
                     <div 
                       key={index}
-                      className={`w-12 h-12 rounded-full bg-gradient-to-r ${member.color} border-4 border-white shadow-medium flex items-center justify-center`}
+                      className={`w-12 h-12 rounded-full ${member.mainColor} border-4 border-white shadow-medium flex items-center justify-center`}
                     >
                       <member.icon className="h-6 w-6 text-white" />
                     </div>
@@ -400,9 +406,9 @@ export default function MeetTheTeam() {
               </p>
               
               <Button 
+                variant="cta"
                 size="lg" 
                 onClick={() => window.location.href = '/contact'}
-                className="bg-gradient-to-r from-brand-primary to-brand-secondary hover:from-brand-secondary hover:to-brand-accent shadow-large"
               >
                 Start a Conversation
               </Button>

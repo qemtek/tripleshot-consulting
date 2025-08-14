@@ -6,7 +6,7 @@ export default function BusinessValues() {
   const quoteAnimation = useScrollAnimation({ threshold: 0.3 });
 
   return (
-    <section className="py-16 bg-gradient-to-b from-white to-warm-50 relative overflow-hidden">
+    <section className="py-16 bg-white relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-10 left-10 w-32 h-32 bg-brand-secondary rounded-full blur-3xl"></div>
@@ -27,10 +27,10 @@ export default function BusinessValues() {
             <CardContent className="p-12 text-center">
               <div className="flex justify-center mb-6">
                 <div className="flex -space-x-2">
-                  <div className="w-12 h-12 bg-gradient-to-r from-brand-primary to-blue-600 rounded-full border-4 border-white shadow-medium"></div>
-                  <div className="w-12 h-12 bg-gradient-to-r from-brand-accent to-orange-600 rounded-full border-4 border-white shadow-medium"></div>
-                  <div className="w-12 h-12 bg-gradient-to-r from-brand-secondary to-purple-600 rounded-full border-4 border-white shadow-medium"></div>
-                  <div className="w-12 h-12 bg-gradient-to-r from-brand-success to-green-600 rounded-full border-4 border-white shadow-medium flex items-center justify-center">
+                  <div className="w-12 h-12 bg-brand-green rounded-full border-4 border-white shadow-medium"></div>
+                  <div className="w-12 h-12 bg-brand-orange rounded-full border-4 border-white shadow-medium"></div>
+                  <div className="w-12 h-12 bg-brand-secondary rounded-full border-4 border-white shadow-medium"></div>
+                  <div className="w-12 h-12 bg-brand-logo rounded-full border-4 border-white shadow-medium flex items-center justify-center">
                     <span className="text-white text-sm font-bold">+</span>
                   </div>
                 </div>

@@ -4,15 +4,20 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Nunito', 'system-ui', 'sans-serif'],
+        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        display: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        jakarta: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
       },
       colors: {
-        // Brand Colors - Professional but Personal
+        // Brand Colors - Professional and Trustworthy
         brand: {
-          primary: '#4f46e5', // Vibrant Indigo
-          secondary: '#7c3aed', // Purple
-          accent: '#f97316', // Orange
+          primary: '#1e40af', // Professional Blue
+          secondary: '#1e3a8a', // Deep Navy
+          accent: '#3b82f6', // Bright Blue
+          teal: '#0891b2', // Teal - complementary to red and navy
+          logo: '#ff1217', // Logo Red
+          orange: '#f97316', // Warm Orange
+          green: '#059669', // Forest Green
           success: '#10b981', // Emerald
         },
         // Warm Grays (not cold corporate)
@@ -73,6 +78,10 @@ export default {
         '7xl': ['4.5rem', { lineHeight: '1' }],
         '8xl': ['6rem', { lineHeight: '1' }],
         '9xl': ['8rem', { lineHeight: '1' }],
+      },
+      letterSpacing: {
+        'wider': '0.05em',
+        'widest': '0.1em',
       },
       spacing: {
         // Additional spacing for modern layouts

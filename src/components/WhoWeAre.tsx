@@ -10,24 +10,24 @@ export default function WhoWeAre() {
 
   const features = [
     {
-      icon: Users,
+      title: "small group of professionals",
       description: "We're a small group of professionals with decades of combined experience in high-performing businesses.",
-      gradient: "from-brand-primary to-blue-600"
+      bgColor: "from-white to-white"
     },
     {
-      icon: Target,
+      title: "serious positive impact",
       description: "Being a small team, we only take on clients if we think we can create a serious positive impact on their performance.",
-      gradient: "from-brand-accent to-orange-600"
+      bgColor: "from-white to-white"
     },
     {
-      icon: Heart,
+      title: "continuous training and support",
       description: "We provide continuous training and assistance, ensuring businesses have the tools they need to thrive in today's competitive environment.",
-      gradient: "from-brand-secondary to-purple-600"
+      bgColor: "from-white to-white"
     }
   ];
 
   return (
-    <section id="who-we-are" className="py-24 bg-gradient-to-b from-warm-50 to-white relative overflow-hidden">
+    <section id="who-we-are" className="py-24 bg-white relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 w-32 h-32 bg-brand-primary rounded-full blur-3xl"></div>
@@ -43,8 +43,8 @@ export default function WhoWeAre() {
               : 'opacity-0 transform translate-y-8'
           }`}
         >
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-2xl mb-6">
-            <Users className="h-8 w-8 text-white" />
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-brand-logo rounded-full mb-8 relative">
+            <Users className="h-10 w-10 text-white" />
           </div>
           
           <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-warm-900 mb-6 leading-tight">
@@ -70,14 +70,24 @@ export default function WhoWeAre() {
               }`}
               variant="elevated"
             >
-              <CardContent className="p-8 text-center">
-                <div className="mb-8">
-                  <div className={`w-20 h-20 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-medium`}>
-                    <feature.icon className="h-10 w-10 text-white" />
-                  </div>
-                </div>
+              <CardContent className={`p-8 bg-gradient-to-br ${feature.bgColor} h-full flex flex-col justify-center`}>
+                <h3 className={`font-jakarta text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-[0.9] tracking-normal lowercase text-left ${
+                  index === 0 ? 'text-brand-green' : 
+                  index === 1 ? 'text-brand-orange' : 
+                  'text-brand-secondary'
+                }`}>
+                  {index === 0 ? (
+                    <>
+                      small<br />
+                      group of<br />
+                      professionals
+                    </>
+                  ) : (
+                    feature.title
+                  )}
+                </h3>
                 
-                <p className="text-warm-600 leading-relaxed">
+                <p className="text-warm-600 leading-relaxed text-left">
                   {feature.description}
                 </p>
               </CardContent>
@@ -96,19 +106,23 @@ export default function WhoWeAre() {
             { label: "Success Rate", value: "100%", subtitle: "Client Satisfaction" },
             { label: "Partnership Duration", value: "2+", subtitle: "Years Average" }
           ].map((stat, index) => (
-            <div 
+            <Card 
               key={index} 
-              className={`text-center p-6 bg-white/60 backdrop-blur-sm rounded-xl border border-warm-200/50 transition-all duration-500 ${
+              hover
+              className={`group border-0 bg-white/80 backdrop-blur-sm transition-all duration-500 ${
                 statsAnimation.visibleItems.has(index)
                   ? 'opacity-100 transform translate-y-0 scale-100'
                   : 'opacity-0 transform translate-y-4 scale-95'
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
+              variant="elevated"
             >
-              <div className="text-2xl md:text-3xl font-bold text-brand-primary mb-1">{stat.value}</div>
-              <div className="text-sm font-medium text-warm-700">{stat.label}</div>
-              <div className="text-xs text-warm-500">{stat.subtitle}</div>
-            </div>
+              <CardContent className="text-center p-6 bg-gradient-to-br from-white to-white h-full">
+                <div className="text-2xl md:text-3xl font-bold text-brand-primary mb-1">{stat.value}</div>
+                <div className="text-sm font-medium text-warm-700">{stat.label}</div>
+                <div className="text-xs text-warm-500">{stat.subtitle}</div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>

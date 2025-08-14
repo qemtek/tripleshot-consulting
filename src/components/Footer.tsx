@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, CheckCircle, AlertCircle, Zap, Heart } from 'lucide-react';
+import Button from './ui/Button';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -116,13 +117,14 @@ const Footer = () => {
                   />
                 </div>
                 
-                <button
+                <Button
                   type="submit"
+                  variant="cta"
                   disabled={status === 'submitting'}
-                  className="w-full bg-brand-logo hover:bg-brand-logo/80 text-white px-6 py-3 rounded-xl transition-all duration-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed shadow-medium hover:shadow-large hover:scale-[1.02]"
+                  className="w-full"
                 >
                   {status === 'submitting' ? 'Subscribing...' : 'Keep Me Updated'}
-                </button>
+                </Button>
                 
                 {status === 'error' && (
                   <div className="bg-red-500/20 border border-red-400/30 rounded-xl p-3 backdrop-blur-sm">

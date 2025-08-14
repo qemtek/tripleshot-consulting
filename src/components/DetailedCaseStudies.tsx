@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, ExternalLink, Truck, DollarSign, Users } from 'lucide-react';
+import Button from './ui/Button';
 
 interface DetailedCaseStudy {
   id: string;
@@ -139,13 +140,14 @@ export default function DetailedCaseStudies() {
                   </div>
 
                   <div className="pt-4">
-                    <Link
-                      to={`/case-studies/${study.id}`}
-                      className="inline-flex items-center gap-2 bg-brand-logo hover:bg-brand-logo/80 text-white px-6 py-3 rounded-lg font-semibold shadow-medium hover:shadow-large transition-all duration-300"
+                    <Button
+                      variant="cta"
+                      onClick={() => window.location.href = `/case-studies/${study.id}`}
+                      className="inline-flex items-center gap-2"
                     >
                       Read Full Case Study
                       <ArrowRight className="w-4 h-4" />
-                    </Link>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -161,13 +163,15 @@ export default function DetailedCaseStudies() {
             <p className="text-warm-600 mb-6 leading-relaxed">
               These case studies represent just a fraction of what's possible when you combine domain expertise with cutting-edge AI and data science techniques.
             </p>
-            <Link 
-              to="/contact"
-              className="inline-flex items-center gap-2 bg-brand-logo hover:bg-brand-logo/80 text-white px-8 py-4 rounded-lg font-semibold shadow-medium hover:shadow-large transition-all duration-300"
+            <Button 
+              variant="cta"
+              size="lg"
+              onClick={() => window.location.href = '/contact'}
+              className="inline-flex items-center gap-2"
             >
               Discuss Your Project
               <ExternalLink className="w-4 h-4" />
-            </Link>
+            </Button>
           </div>
         </div>
       </div>

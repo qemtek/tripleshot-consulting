@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Button from './ui/Button';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -42,12 +43,13 @@ const Hero = () => {
               Streamline operations, improve customer service, and make better decisions with practical technology solutions designed for your business needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
-              <button
+              <Button
+                variant="cta"
+                size="lg"
                 onClick={goToContact}
-                className="bg-brand-logo hover:bg-brand-logo/80 text-white px-8 py-4 rounded-lg transition-all duration-300 text-lg font-semibold min-h-[48px] shadow-medium hover:shadow-large"
               >
                 Grab a coffee with our team
-              </button>
+              </Button>
             </div>
           </div>
         </div>

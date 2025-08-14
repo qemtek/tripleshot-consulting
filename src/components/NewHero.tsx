@@ -46,7 +46,7 @@ export default function NewHero() {
           </h1>
           
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-12 max-w-3xl mx-auto text-gray-200 leading-relaxed font-medium">
-            We supercharge businesses with AI, Data Science, Software Engineering and Digital Branding solutions, helping you stay competitive in a crowded market.
+            We supercharge businesses with modern technology, helping you stay competitive in a crowded market.
           </p>
           
           <div className="flex justify-center mb-16">

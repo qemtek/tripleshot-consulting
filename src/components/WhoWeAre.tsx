@@ -10,17 +10,17 @@ export default function WhoWeAre() {
 
   const features = [
     {
-      title: "small group of professionals",
+      title: "Small & Mighty",
       description: "We're a small group of professionals with decades of combined experience in high-performing businesses.",
       bgColor: "from-white to-white"
     },
     {
-      title: "serious positive impact",
+      title: "Serious About Impact",
       description: "Being a small team, we only take on clients if we think we can create a serious positive impact on their performance.",
       bgColor: "from-white to-white"
     },
     {
-      title: "continuous training and support",
+      title: "There When You Need Us",
       description: "We provide continuous training and assistance, ensuring businesses have the tools they need to thrive in today's competitive environment.",
       bgColor: "from-white to-white"
     }

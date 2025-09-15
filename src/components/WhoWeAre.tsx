@@ -10,7 +10,7 @@ export default function WhoWeAre() {
 
   const features = [
     {
-      title: "Small & Mighty",
+      title: "Small and Mighty",
       description: "We're a small group of professionals with decades of combined experience in high-performing businesses.",
       bgColor: "from-white to-white"
     },

@@ -41,7 +41,7 @@ export default function App() {
         <SEOHead />
         <StructuredData type="organization" />
         <Analytics />
-        <div className="min-h-screen bg-white font-sans">
+        <div className="min-h-screen bg-white font-sans text-gray-900">
           <Header />
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>
@@ -59,7 +59,7 @@ export default function App() {
           <ChatbotComponent 
             initialMessage="👋 Hi there! How can I help you today?" 
             position="bottom-right"
-            primaryColor="#4f46e5"
+            primaryColor="#00D4FF"
             apiBaseUrl={import.meta.env.VITE_API_URL || 'http://localhost:3001'}
           />
         </div>

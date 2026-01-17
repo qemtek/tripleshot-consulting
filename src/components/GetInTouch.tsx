@@ -1,91 +1,143 @@
-import React from 'react';
-import { Mail, MessageCircle, Heart, Calendar } from 'lucide-react';
-import { Card, CardContent } from './ui/card';
+import { Link } from 'react-router-dom';
+import { MessageCircle, Calendar, ArrowRight } from 'lucide-react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import Button from './ui/Button';
-import { useScrollAnimation, useStaggeredScrollAnimation } from '../hooks/useScrollAnimation';
+
+const contactOptions = [
+  {
+    icon: Calendar,
+    title: 'Book a Call',
+    description: 'Schedule a 30-minute discovery session to discuss your project in detail',
+    action: 'Choose a Time',
+    href: 'https://calendly.com/tripleshotconsultingltd/30min',
+    external: true,
+    color: 'cyan',
+  },
+  {
+    icon: MessageCircle,
+    title: 'Send a Message',
+    description: "Tell us about your challenge and we'll get back to you within 24 hours",
+    action: 'Get in Touch',
+    href: '/contact',
+    external: false,
+    color: 'purple',
+  }
+];
+
+const colorConfig = {
+  cyan: {
+    iconBg: 'bg-accent/10',
+    iconColor: 'text-accent',
+    border: 'border-accent/20 hover:border-accent/40',
+    glow: 'hover:shadow-glow-cyan',
+  },
+  purple: {
+    iconBg: 'bg-purple/10',
+    iconColor: 'text-purple',
+    border: 'border-purple/20 hover:border-purple/40',
+    glow: 'hover:shadow-glow-purple',
+  },
+};
 
 export default function GetInTouch() {
-  const headerAnimation = useScrollAnimation({ threshold: 0.3 });
-  const startersAnimation = useStaggeredScrollAnimation(3, { threshold: 0.2 });
-  const trustAnimation = useScrollAnimation({ threshold: 0.4 });
-
-  const conversationStarters = [
-    {
-      icon: Calendar,
-      title: 'Book a Call',
-      description: 'Schedule a 30-minute discovery session to discuss your project in detail',
-      action: 'Choose a Time',
-      bgClass: 'bg-brand-secondary'
-    },
-    {
-      icon: MessageCircle,
-      title: 'Drop us a Line',
-      description: 'Tell us about your challenge and we\'ll get back to you within 24 hours',
-      action: 'Send Message',
-      bgClass: 'bg-brand-secondary'
-    }
-  ];
-
+  const { elementRef, isVisible } = useScrollAnimation();
 
   return (
-    <section id="contact" className="py-24 bg-white relative overflow-hidden">
-      {/* Simplified background elements */}
-      <div className="absolute inset-0 opacity-3">
-        <div className="absolute top-20 left-20 w-40 h-40 bg-brand-primary rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-48 h-48 bg-brand-accent rounded-full blur-3xl"></div>
+    <section id="contact" className="py-24 md:py-32 bg-dark-900 relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[400px] h-[400px] bg-purple/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-brand-logo rounded-full mb-8 relative">
-            <MessageCircle className="h-10 w-10 text-white" />
-          </div>
-          
-          <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-warm-900 mb-6 leading-tight">
-            Let's Start a Conversation
+      {/* Top border */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-dark-500 to-transparent" />
+
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div
+          ref={elementRef}
+          className={`text-center mb-16 transition-all duration-700 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
+          <p className="text-accent text-sm font-medium tracking-wider uppercase mb-4">Get Started</p>
+          <h2 className="text-display-sm md:text-display-md font-bold text-text-primary mb-6">
+            Ready to make something{' '}
+            <span className="text-gradient">happen</span>?
           </h2>
-          
-          <div className="w-24 h-1.5 bg-gradient-to-r from-brand-primary to-brand-accent mx-auto mb-8 rounded-full"></div>
-          
-          <p className="text-lg md:text-xl text-warm-600 max-w-3xl mx-auto leading-relaxed">
-            Ready to solve your biggest business challenge in AI, Data Science, Software Engineering or Digital Branding? Choose how you'd like to connect with us.
+          <p className="max-w-2xl mx-auto text-text-secondary text-lg">
+            Whether you have a clear project in mind or just want to explore possibilities, we'd love to hear from you.
           </p>
         </div>
 
-        {/* Conversation starters */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 max-w-4xl mx-auto">
-          {conversationStarters.map((starter, index) => (
-            <Card key={index} hover className="group text-center">
-              <CardContent className="p-8">
-                <div className={`w-16 h-16 rounded-full ${starter.bgClass} flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-all duration-300 shadow-medium`}>
-                  <starter.icon className="h-8 w-8 text-white" />
+        {/* Contact options */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          {contactOptions.map((option, index) => {
+            const config = colorConfig[option.color as keyof typeof colorConfig];
+            const Icon = option.icon;
+
+            const content = (
+              <div
+                className={`group relative p-8 rounded-3xl bg-dark-800 border ${config.border} ${config.glow} transition-all duration-300 hover:-translate-y-2 h-full flex flex-col`}
+              >
+                {/* Icon */}
+                <div className={`inline-flex p-4 rounded-2xl ${config.iconBg} mb-6 self-start`}>
+                  <Icon className={`w-8 h-8 ${config.iconColor}`} />
                 </div>
-                
-                <h3 className="font-display text-xl font-bold text-warm-900 mb-4">
-                  {starter.title}
+
+                {/* Content */}
+                <h3 className="text-xl font-bold text-text-primary mb-3">
+                  {option.title}
                 </h3>
-                
-                <p className="text-warm-600 mb-6 leading-relaxed">
-                  {starter.description}
+                <p className="text-text-secondary mb-6 flex-1">
+                  {option.description}
                 </p>
-                
-                <Button 
-                  variant="outline" 
-                  className="group/btn border-2 border-brand-secondary text-brand-secondary hover:bg-brand-secondary hover:text-white hover:border-brand-secondary hover:scale-105 w-full transition-all duration-300"
-                  onClick={() => {
-                    if (starter.title === 'Drop us a Line') {
-                      window.location.href = '/contact';
-                    } else if (starter.title === 'Book a Call') {
-                      // Open Calendly booking page
-                      window.open('https://calendly.com/tripleshotconsultingltd/30min', '_blank');
-                    }
-                  }}
+
+                {/* Action */}
+                <Button
+                  variant={option.color === 'cyan' ? 'primary' : 'outline'}
+                  className="w-full group/btn"
                 >
-                  {starter.action}
+                  {option.action}
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                 </Button>
-              </CardContent>
-            </Card>
-          ))}
+              </div>
+            );
+
+            if (option.external) {
+              return (
+                <a
+                  key={index}
+                  href={option.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  {content}
+                </a>
+              );
+            }
+
+            return (
+              <Link key={index} to={option.href} className="block">
+                {content}
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* Additional info */}
+        <div className="text-center mt-12">
+          <p className="text-text-muted text-sm">
+            Prefer email? Reach us at{' '}
+            <a
+              href="mailto:tripleshotconsultingltd@gmail.com"
+              className="text-accent hover:text-accent-light transition-colors"
+            >
+              tripleshotconsultingltd@gmail.com
+            </a>
+          </p>
         </div>
       </div>
     </section>

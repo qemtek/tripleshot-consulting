@@ -1,29 +1,19 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
-import NewHero from '../components/NewHero';
-import WhoWeAre from '../components/WhoWeAre';
-import WhatWeDo from '../components/WhatWeDo';
-import BusinessValues from '../components/BusinessValues';
-import TripleshotMethod from '../components/TripleshotMethod';
+import DarkHero from '../components/DarkHero';
+import IntroShowcase from '../components/IntroShowcase';
+import WorkShowcase from '../components/WorkShowcase';
+import ThreePillars from '../components/ThreePillars';
+import GradientTransition from '../components/ui/GradientTransition';
 import MeetTheTeam from '../components/MeetTheTeam';
 import PreviousClients from '../components/PreviousClients';
 import GetInTouch from '../components/GetInTouch';
 
-// Original components kept for potential fallback
-// import Hero from '../components/Hero';
-// import AboutUs from '../components/AboutUs';
-// import Mission from '../components/Mission';
-// import Services from '../components/Services';
-// import DetailedCaseStudies from '../components/DetailedCaseStudies';
-// import CaseStudies from '../components/CaseStudies';
-// import Reviews from '../components/reviews/Reviews';
-// import Contact from '../components/Contact';
-
 export default function HomePage() {
   const location = useLocation();
-  
+
   useEffect(() => {
     if (location.state?.scrollTo) {
       const element = document.getElementById(location.state.scrollTo);
@@ -35,44 +25,47 @@ export default function HomePage() {
 
   return (
     <>
-      <SEOHead 
-        title="Tripleshot Solutions - Professional but Personal Business Automation"
-        description="Meet your business automation partners. We build close working relationships while delivering expert AI, web development, and process optimization solutions for growing businesses."
+      <SEOHead
+        title="Tripleshot - We Build Apps, Transform Businesses & Solve Problems"
+        description="A small team of senior engineers and strategists. We build apps, transform businesses, and solve the problems others walk away from."
         keywords={[
-          'business automation consultants',
-          'professional but personal service',
-          'AI consulting small business',
-          'web development partners',
-          'process optimization experts',
-          'tripleshot solutions'
+          'app development',
+          'business transformation',
+          'AI consulting',
+          'software engineering',
+          'data science',
+          'digital transformation',
+          'technology consulting',
+          'tripleshot'
         ]}
       />
-      <StructuredData type="webpage" data={{
-        title: "Tripleshot Solutions - Business Automation Partners",
-        description: "Professional but personal business automation consultants specializing in AI, web development, and process optimization.",
-        url: "https://tripleshotsolutions.com/"
-      }} />
-    
-    <main>
-      <NewHero />
-      <WhoWeAre />
-      <WhatWeDo />
-      <BusinessValues />
-      <TripleshotMethod />
-      <MeetTheTeam />
-      <PreviousClients />
-      <GetInTouch />
-      
-      {/* Original sections temporarily removed but kept for reference */}
-      {/* <Hero />
-      <AboutUs />
-      <Mission />
-      <Services />
-      <Reviews />
-      <DetailedCaseStudies />
-      <CaseStudies />
-      <Contact /> */}
-    </main>
+      <StructuredData
+        type="webpage"
+        data={{
+          title: "Tripleshot - Technology Partners for Ambitious Businesses",
+          description: "We build apps, transform businesses, and solve complex technical problems with AI, data science, and deep engineering expertise.",
+          url: "https://tripleshotsolutions.com/"
+        }}
+      />
+
+      <main className="bg-dark-800">
+        <DarkHero />
+        <IntroShowcase />
+
+        {/* Work Showcase - Alternating image/text layout */}
+        <WorkShowcase />
+
+        {/* Three Pillars - What We Do */}
+        <ThreePillars />
+
+        {/* Gradient: Dark to Light */}
+        <GradientTransition from="dark" to="light" variant="layered" height="lg" />
+        <MeetTheTeam />
+        <PreviousClients />
+        {/* Gradient: Light to Dark */}
+        <GradientTransition from="light" to="dark" variant="animated" height="lg" />
+        <GetInTouch />
+      </main>
     </>
   );
 }

@@ -3,30 +3,228 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    @apply text-brown-500;
+  :root {
+    /* Dark theme colors */
+    --color-dark-900: #0A0A0B;
+    --color-dark-800: #111113;
+    --color-dark-700: #18181B;
+    --color-dark-600: #27272A;
+    --color-dark-500: #3F3F46;
+
+    /* Accent colors */
+    --color-accent: #00D4FF;
+    --color-accent-light: #67E8F9;
+    --color-accent-dark: #00A8CC;
+    --color-purple: #8B5CF6;
+    --color-purple-light: #A78BFA;
+    --color-purple-dark: #7C3AED;
+    --color-emerald: #10B981;
+    --color-emerald-light: #34D399;
+
+    /* Text colors */
+    --color-text-primary: #FAFAFA;
+    --color-text-secondary: #A1A1AA;
+    --color-text-muted: #71717A;
+
+    /* Pillar colors */
+    --color-pillar-apps: #00D4FF;
+    --color-pillar-transform: #8B5CF6;
+    --color-pillar-science: #10B981;
+
+    /* Gradients */
+    --gradient-cyan-purple: linear-gradient(135deg, #00D4FF 0%, #8B5CF6 100%);
+    --gradient-dark: linear-gradient(180deg, #0A0A0B 0%, #111113 100%);
   }
-  
+
+  html {
+    @apply bg-white text-gray-900 antialiased;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white min-h-screen;
+  }
+
+  /* Selection styling */
+  ::selection {
+    @apply bg-accent/30 text-text-primary;
+  }
+
+  /* Scrollbar styling for dark theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-dark-500 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-dark-400;
+  }
+
   /* Improve mobile readability */
   @media (max-width: 768px) {
     body {
       font-size: 16px;
       line-height: 1.6;
     }
-    
+
     h1, h2, h3, h4, h5, h6 {
       line-height: 1.3;
     }
-    
+
     /* Ensure minimum touch target size */
     button, a, input, textarea, select {
       min-height: 44px;
     }
-    
+
     /* Better spacing for mobile */
     .container {
       padding-left: 1rem;
       padding-right: 1rem;
     }
+  }
+}
+
+@layer components {
+  /* Gradient text utility */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-cyan-purple);
+  }
+
+  .text-gradient-cyan {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #00D4FF 0%, #00A8CC 100%);
+  }
+
+  .text-gradient-purple {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+  }
+
+  .text-gradient-emerald {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  }
+
+  /* Glow effects */
+  .glow-cyan {
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+  }
+
+  .glow-purple {
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+  }
+
+  .glow-emerald {
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+  }
+
+  /* Card styles for dark theme */
+  .card-dark {
+    @apply bg-dark-700 border border-dark-500 rounded-2xl;
+  }
+
+  .card-dark-elevated {
+    @apply bg-dark-600 border border-dark-500 rounded-2xl;
+  }
+
+  /* Gradient border utility */
+  .border-gradient {
+    position: relative;
+    background: var(--color-dark-700);
+    border-radius: 1rem;
+  }
+
+  .border-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: var(--gradient-cyan-purple);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* Animated gradient background */
+  .bg-gradient-animated {
+    background: linear-gradient(-45deg, #0A0A0B, #111113, #18181B, #0A0A0B);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+
+  /* Gradient blob utilities */
+  .gradient-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: float 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .gradient-blob-cyan {
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.4) 0%, rgba(0, 212, 255, 0.1) 50%, transparent 100%);
+  }
+
+  .gradient-blob-purple {
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.35) 0%, rgba(139, 92, 246, 0.08) 50%, transparent 100%);
+  }
+
+  .gradient-blob-emerald {
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, rgba(16, 185, 129, 0.05) 50%, transparent 100%);
+  }
+
+  .gradient-blob-animated {
+    animation: blobShift 20s ease-in-out infinite, float 8s ease-in-out infinite;
+  }
+
+  /* Section spacing */
+  .section-padding {
+    @apply py-section px-4 md:px-8;
+  }
+
+  .section-padding-sm {
+    @apply py-section-sm px-4 md:px-8;
+  }
+}
+
+@layer utilities {
+  /* Animation delays */
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+  .animation-delay-700 {
+    animation-delay: 700ms;
+  }
+  .animation-delay-1000 {
+    animation-delay: 1000ms;
+  }
+
+  /* Fill mode for animations */
+  .animation-fill-both {
+    animation-fill-mode: both;
   }
 }

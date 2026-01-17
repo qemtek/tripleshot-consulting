@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { Send, Mail, MessageCircle, Coffee, Heart, Calendar, CheckCircle, AlertCircle } from 'lucide-react';
+import { Send, Mail, CheckCircle, AlertCircle, ArrowRight } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
-import { Card, CardContent } from '../components/ui/card';
 import Button from '../components/ui/Button';
-import Input from '../components/ui/Input';
-import Textarea from '../components/ui/Textarea';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 
 export default function ContactPage() {
@@ -24,7 +21,7 @@ export default function ContactPage() {
     e.preventDefault();
     setSubmissionState('loading');
     setErrorMessage('');
-    
+
     try {
       const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
       const response = await fetch(`${apiBaseUrl}/api/contact`, {
@@ -34,12 +31,11 @@ export default function ContactPage() {
         },
         body: JSON.stringify(formData)
       });
-      
+
       const data = await response.json();
-      
+
       if (response.ok) {
         setSubmissionState('success');
-        // Reset form after success
         setTimeout(() => {
           setFormData({ name: '', email: '', company: '', challenge: '', message: '' });
           setSubmissionState('idle');
@@ -66,151 +62,192 @@ export default function ContactPage() {
 
   return (
     <>
-      <SEOHead 
-        title="Contact Tripleshot Solutions - Let's Start a Conversation"
-        description="Ready to transform your business? Get in touch with our friendly team of automation experts. No sales pitch, just a genuine conversation about your challenges and goals."
+      <SEOHead
+        title="Contact Tripleshot - Let's Start a Conversation"
+        description="Ready to build something great? Get in touch with our team. No sales pitch, just a genuine conversation about your challenges and goals."
         keywords={[
-          'contact business automation consultants',
-          'get in touch tripleshot solutions',
-          'business consultation call',
+          'contact tripleshot',
+          'app development consultation',
+          'business transformation consulting',
           'AI consulting contact',
-          'automation experts contact'
+          'technology consulting'
         ]}
       />
-      <StructuredData type="webpage" data={{
-        title: "Contact Tripleshot Solutions",
-        description: "Get in touch with professional but personal business automation consultants.",
-        url: "https://tripleshotsolutions.com/contact"
-      }} />
-    
-      <main className="min-h-screen bg-gradient-to-b from-warm-50 via-white to-warm-50 relative overflow-hidden pt-20">
-        {/* Background elements */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 left-20 w-40 h-40 bg-brand-primary rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-20 w-48 h-48 bg-brand-accent rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-brand-secondary rounded-full blur-3xl"></div>
+      <StructuredData
+        type="webpage"
+        data={{
+          title: "Contact Tripleshot",
+          description: "Get in touch with technology consultants who build apps, transform businesses, and solve complex problems.",
+          url: "https://tripleshotsolutions.com/contact"
+        }}
+      />
+
+      <main className="min-h-screen bg-gray-50 relative overflow-hidden pt-24">
+        {/* Background effects */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-purple/5 rounded-full blur-3xl" />
         </div>
 
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           {/* Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent rounded-3xl mb-8 relative">
-              <Heart className="h-10 w-10 text-white" />
-              <div className="absolute -top-2 -right-2 w-8 h-8 bg-brand-accent rounded-full flex items-center justify-center">
-                <Mail className="h-4 w-4 text-white" />
-              </div>
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm mb-6">
+              <Mail className="h-4 w-4 text-accent" />
+              <span className="text-sm text-gray-600">Get in touch</span>
             </div>
-            
-            <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-warm-900 mb-6 leading-tight">
-              Drop us a Line
+
+            <h1 className="text-display-sm md:text-display-md font-bold text-gray-900 mb-4">
+              Let's build something{' '}
+              <span className="text-gradient">great</span>
             </h1>
-            
-            <div className="w-24 h-1.5 bg-gradient-to-r from-brand-primary to-brand-accent mx-auto mb-8 rounded-full"></div>
-            
-            <p className="text-lg md:text-xl text-warm-600 max-w-3xl mx-auto leading-relaxed">
-              Ready to solve your biggest business challenge? Tell us about it and we'll get back to you within 24 hours.
+
+            <p className="text-lg text-gray-600 max-w-xl mx-auto">
+              Tell us about your project or challenge. We'll get back to you within 24 hours.
             </p>
           </div>
 
           {/* Contact Form */}
-          <Card variant="elevated" className="overflow-hidden">
-            <CardContent className="p-8 lg:p-12 bg-gradient-to-br from-white to-brand-primary/5">
-              <form onSubmit={handleSubmit} className="space-y-6" aria-label="Contact form">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                  <Input
-                    label="What should we call you?"
+          <div className="bg-white border border-gray-200 rounded-3xl p-8 md:p-12 shadow-sm">
+            <form onSubmit={handleSubmit} className="space-y-6" aria-label="Contact form">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-900 mb-2">
+                    Your name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Your name"
+                    placeholder="John Doe"
                     required
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-accent focus:border-accent transition-all duration-200 hover:border-gray-300"
                   />
-                  <Input
-                    label="Best email to reach you"
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-900 mb-2">
+                    Email address
+                  </label>
+                  <input
                     type="email"
+                    id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="your@email.com"
+                    placeholder="john@company.com"
                     required
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-accent focus:border-accent transition-all duration-200 hover:border-gray-300"
                   />
                 </div>
-                
-                <Input
-                  label="Company (optional)"
+              </div>
+
+              <div>
+                <label htmlFor="company" className="block text-sm font-medium text-gray-900 mb-2">
+                  Company <span className="text-gray-400">(optional)</span>
+                </label>
+                <input
+                  type="text"
+                  id="company"
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
                   placeholder="Your company name"
-                  helpText="Helps us understand your context better"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-accent focus:border-accent transition-all duration-200 hover:border-gray-300"
                 />
-                
-                <Input
-                  label="What's your biggest challenge right now?"
+              </div>
+
+              <div>
+                <label htmlFor="challenge" className="block text-sm font-medium text-gray-900 mb-2">
+                  What are you looking to build or solve?
+                </label>
+                <input
+                  type="text"
+                  id="challenge"
                   name="challenge"
                   value={formData.challenge}
                   onChange={handleChange}
-                  placeholder="e.g., Too much manual work, need better website, want to use AI..."
-                  helpText="This helps us prepare for our conversation"
+                  placeholder="e.g., Mobile app, business automation, AI solution..."
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-accent focus:border-accent transition-all duration-200 hover:border-gray-300"
                 />
-                
-                <Textarea
-                  label="Anything else you'd like us to know?"
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-900 mb-2">
+                  Tell us more
+                </label>
+                <textarea
+                  id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Tell us more about your situation, timeline, or what success looks like to you..."
-                  helpText="The more context, the better we can help"
+                  rows={5}
+                  placeholder="Share any details about your project, timeline, or what success looks like..."
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-accent focus:border-accent transition-all duration-200 hover:border-gray-300 resize-none"
                 />
-                
-                <Button
-                  type="submit"
-                  size="lg"
-                  disabled={submissionState === 'loading'}
-                  className={`w-full shadow-large group transition-all duration-300 ${
-                    submissionState === 'success' 
-                      ? 'bg-brand-success hover:bg-green-600' 
-                      : submissionState === 'error'
-                      ? 'bg-red-500 hover:bg-red-600'
-                      : 'bg-gradient-to-r from-brand-primary to-brand-secondary hover:from-brand-secondary hover:to-brand-accent'
-                  }`}
-                >
-                  {submissionState === 'loading' && (
-                    <LoadingSpinner size="sm" color="white" className="mr-2" />
-                  )}
-                  {submissionState === 'success' && (
-                    <CheckCircle className="h-5 w-5 mr-2 animate-scale-in" />
-                  )}
-                  {submissionState === 'idle' && (
-                    <Send className="h-5 w-5 mr-2 group-hover:translate-x-1 transition-transform" />
-                  )}
-                  {submissionState === 'error' && (
-                    <Send className="h-5 w-5 mr-2" />
-                  )}
-                  
-                  {submissionState === 'loading' && 'Sending...'}
-                  {submissionState === 'success' && 'Message Sent!'}
-                  {submissionState === 'error' && 'Try Again'}
-                  {submissionState === 'idle' && 'Send Message'}
-                </Button>
-                
-                {submissionState === 'error' && errorMessage && (
-                  <div className="bg-red-500/20 border border-red-400/30 rounded-xl p-3 backdrop-blur-sm mt-4">
-                    <div className="flex items-start">
-                      <AlertCircle className="h-4 w-4 text-red-300 mr-2 flex-shrink-0 mt-0.5" />
-                      <span className="text-red-100 text-sm font-medium">{errorMessage}</span>
-                    </div>
-                  </div>
+              </div>
+
+              <Button
+                type="submit"
+                variant="gradient"
+                size="lg"
+                disabled={submissionState === 'loading'}
+                className={`w-full group ${
+                  submissionState === 'success'
+                    ? 'bg-emerald hover:bg-emerald-dark'
+                    : submissionState === 'error'
+                    ? 'bg-red-500 hover:bg-red-600'
+                    : ''
+                }`}
+              >
+                {submissionState === 'loading' && (
+                  <LoadingSpinner size="sm" className="mr-2" />
                 )}
-                
-                <p className="text-sm text-warm-500 text-center">
-                  Usually respond within a few hours ⚡
-                </p>
-              </form>
-            </CardContent>
-          </Card>
+                {submissionState === 'success' && (
+                  <CheckCircle className="h-5 w-5 mr-2 animate-scale-in" />
+                )}
+                {submissionState === 'idle' && (
+                  <Send className="h-5 w-5 mr-2 group-hover:translate-x-1 transition-transform" />
+                )}
+                {submissionState === 'error' && (
+                  <Send className="h-5 w-5 mr-2" />
+                )}
 
+                {submissionState === 'loading' && 'Sending...'}
+                {submissionState === 'success' && 'Message Sent!'}
+                {submissionState === 'error' && 'Try Again'}
+                {submissionState === 'idle' && 'Send Message'}
+              </Button>
 
+              {submissionState === 'error' && errorMessage && (
+                <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4">
+                  <div className="flex items-start">
+                    <AlertCircle className="h-5 w-5 text-red-400 mr-2 flex-shrink-0 mt-0.5" />
+                    <span className="text-red-300 text-sm">{errorMessage}</span>
+                  </div>
+                </div>
+              )}
+
+              <p className="text-sm text-gray-500 text-center">
+                We typically respond within a few hours
+              </p>
+            </form>
+          </div>
+
+          {/* Alternative contact */}
+          <div className="mt-12 text-center">
+            <p className="text-gray-600 mb-4">Prefer to schedule a call?</p>
+            <a
+              href="https://calendly.com/tripleshotconsultingltd/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-accent hover:text-accent-dark transition-colors group"
+            >
+              Book a 30-minute chat
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
         </div>
       </main>
     </>

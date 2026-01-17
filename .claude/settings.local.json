@@ -21,7 +21,8 @@
       "Bash(find:*)",
       "Bash(cwebp:*)",
       "Bash(convert:*)",
-      "Bash(magick:*)"
+      "Bash(magick:*)",
+      "WebFetch(domain:bendingspoons.com)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits"

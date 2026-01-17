@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Mail, Phone, CheckCircle, AlertCircle, Zap, Heart } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Mail, Phone, CheckCircle, AlertCircle, Heart, ArrowRight } from 'lucide-react';
 import Button from './ui/Button';
 
 const Footer = () => {
@@ -9,7 +10,7 @@ const Footer = () => {
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!email) return;
 
     setStatus('submitting');
@@ -41,121 +42,139 @@ const Footer = () => {
     }
   };
 
+  const navigation = {
+    main: [
+      { name: 'Home', href: '/' },
+      { name: 'Our Work', href: '/case-studies' },
+      { name: 'Insights', href: '/articles' },
+      { name: 'Contact', href: '/contact' },
+    ],
+  };
+
   return (
-    <footer className="bg-gradient-to-br from-warm-900 via-warm-800 to-warm-900 text-white py-20 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-1/4 w-96 h-96 bg-brand-primary rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-brand-accent rounded-full blur-3xl"></div>
+    <footer className="relative bg-gray-900 pt-20 pb-8 overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0">
+        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-purple/5 rounded-full blur-3xl" />
       </div>
-      
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Company Info */}
-          <div>
-            <div className="flex items-center mb-6">
-              <img src="/images/new_logo.svg" alt="Tripleshot Logo" className="h-12 mr-3" />
-              <div className="flex flex-col">
-                <span className="font-display text-xl font-bold text-white leading-tight">
-                  Tripleshot
-                </span>
-                <span className="text-sm text-brand-accent font-medium -mt-1">
-                  Solutions
-                </span>
-              </div>
-            </div>
-            <p className="text-warm-200 mb-6 leading-relaxed">
-              We deliver high-quality solutions to complex problems in AI, Data, Software Engineering and Digital Branding. 
-              A small group of professionals helping businesses reach their next level through modern technology and close partnerships.
+          <div className="lg:col-span-2">
+            <Link to="/" className="inline-block mb-6">
+              <img
+                src="/images/full_logo_white.webp"
+                alt="Tripleshot"
+                className="h-10"
+              />
+            </Link>
+            <p className="text-gray-400 mb-6 leading-relaxed max-w-md">
+              A small team of senior engineers and strategists. We build apps, transform businesses, and solve the problems others walk away from.
             </p>
             <div className="space-y-3">
-              <div className="flex items-center text-warm-200 hover:text-white transition-colors group">
-                <div className="w-8 h-8 rounded-lg bg-brand-primary/20 flex items-center justify-center mr-3 group-hover:bg-brand-primary/30 transition-colors">
+              <a
+                href="tel:+447861009217"
+                className="flex items-center text-gray-400 hover:text-accent transition-colors group"
+              >
+                <div className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center mr-3 group-hover:bg-accent/10 transition-colors">
                   <Phone className="h-4 w-4" />
                 </div>
-                <span className="font-medium">+44 7861009217</span>
-              </div>
-              <div className="flex items-center text-warm-200 hover:text-white transition-colors group">
-                <div className="w-8 h-8 rounded-lg bg-brand-accent/20 flex items-center justify-center mr-3 group-hover:bg-brand-accent/30 transition-colors">
+                <span className="font-medium">+44 7861 009217</span>
+              </a>
+              <a
+                href="mailto:tripleshotconsultingltd@gmail.com"
+                className="flex items-center text-gray-400 hover:text-accent transition-colors group"
+              >
+                <div className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center mr-3 group-hover:bg-accent/10 transition-colors">
                   <Mail className="h-4 w-4" />
                 </div>
                 <span className="font-medium">tripleshotconsultingltd@gmail.com</span>
-              </div>
+              </a>
             </div>
           </div>
 
-          {/* Newsletter Signup */}
+          {/* Navigation Links */}
           <div>
-            <div className="flex items-center mb-4">
-              <div className="w-8 h-8 rounded-lg bg-brand-secondary/20 flex items-center justify-center mr-3">
-                <Heart className="h-4 w-4 text-brand-secondary" />
-              </div>
-              <h3 className="font-display text-xl font-bold text-white">Join our Newsletter</h3>
-            </div>
-            <p className="text-warm-200 mb-6 leading-relaxed">
-              Get practical insights and success stories delivered to your inbox. No spam, just valuable content.
+            <h4 className="text-white font-semibold mb-4">Navigation</h4>
+            <ul className="space-y-3">
+              {navigation.main.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    to={item.href}
+                    className="text-gray-400 hover:text-accent transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">Stay Updated</h4>
+            <p className="text-gray-400 text-sm mb-4">
+              Get insights and updates delivered to your inbox.
             </p>
-            
+
             {status === 'success' ? (
-              <div className="bg-brand-success/20 border border-brand-success/30 rounded-xl p-4 backdrop-blur-sm">
+              <div className="bg-emerald/10 border border-emerald/20 rounded-xl p-4">
                 <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-brand-success mr-2" />
-                  <span className="text-white text-sm font-medium">{message}</span>
+                  <CheckCircle className="h-5 w-5 text-emerald mr-2 flex-shrink-0" />
+                  <span className="text-white text-sm">{message}</span>
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleNewsletterSubmit} className="space-y-4">
-                <div>
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email address"
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-warm-300 focus:ring-2 focus:ring-brand-primary focus:border-brand-primary backdrop-blur-sm transition-all duration-200 hover:bg-white/15"
-                    required
-                    disabled={status === 'submitting'}
-                  />
-                </div>
-                
+              <form onSubmit={handleNewsletterSubmit} className="space-y-3">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Your email"
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-accent focus:border-accent transition-all duration-200 hover:border-gray-600"
+                  required
+                  disabled={status === 'submitting'}
+                />
+
                 <Button
                   type="submit"
-                  variant="cta"
+                  variant="primary"
+                  size="sm"
                   disabled={status === 'submitting'}
                   className="w-full"
                 >
-                  {status === 'submitting' ? 'Subscribing...' : 'Keep Me Updated'}
+                  {status === 'submitting' ? 'Subscribing...' : (
+                    <>
+                      Subscribe
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </>
+                  )}
                 </Button>
-                
+
                 {status === 'error' && (
-                  <div className="bg-red-500/20 border border-red-400/30 rounded-xl p-3 backdrop-blur-sm">
+                  <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-3">
                     <div className="flex items-start">
-                      <AlertCircle className="h-4 w-4 text-red-300 mr-2 flex-shrink-0 mt-0.5" />
-                      <span className="text-red-100 text-sm font-medium">{message}</span>
+                      <AlertCircle className="h-4 w-4 text-red-400 mr-2 flex-shrink-0 mt-0.5" />
+                      <span className="text-red-300 text-sm">{message}</span>
                     </div>
                   </div>
                 )}
-                
-                <p className="text-xs text-warm-300 leading-relaxed">
-                  We respect your privacy. Unsubscribe anytime. 
-                  <br />
-                  By subscribing, you agree to receive email updates from Tripleshot Solutions.
-                </p>
               </form>
             )}
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-warm-700/30 mt-16 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-warm-300 text-sm">
-              &copy; 2025 Tripleshot Solutions. All rights reserved.
+        <div className="border-t border-gray-800 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-gray-500 text-sm">
+              &copy; {new Date().getFullYear()} Tripleshot Consulting. All rights reserved.
             </p>
-            <div className="flex items-center space-x-6 text-warm-300 text-sm">
-              <span className="flex items-center">
-                <Heart className="h-3 w-3 mr-1 text-brand-accent" />
-                Made with care in the UK
-              </span>
+            <div className="flex items-center text-gray-500 text-sm">
+              <Heart className="h-3 w-3 mr-1.5 text-accent" />
+              Made with care in the UK
             </div>
           </div>
         </div>
@@ -164,4 +183,4 @@ const Footer = () => {
   );
 };
 
-export default Footer; 
+export default Footer;

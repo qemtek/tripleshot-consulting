@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Code, Zap, Lightbulb, ArrowRight, Smartphone, Globe, Database, TrendingUp, Cog, BarChart3, Brain, Microscope } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import Button from './ui/Button';
+import { useRef, useState, useEffect } from 'react';
 
 interface PillarSectionProps {
   title: string;
@@ -13,9 +14,91 @@ interface PillarSectionProps {
   color: 'cyan' | 'purple' | 'emerald';
 }
 
+interface FeatureTileProps {
+  feature: { icon: React.ElementType; label: string; description: string };
+  index: number;
+  config: any;
+}
+
+function FeatureTile({ feature, index, config }: FeatureTileProps) {
+  const tileRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!tileRef.current) return;
+
+      const rect = tileRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const elementHeight = rect.height;
+
+      // Start later and finish earlier so tiles are ready to read
+      const start = windowHeight * 1.3;
+      const end = windowHeight * 0.25;
+
+      const elementCenter = rect.top + elementHeight / 2;
+
+      // Calculate base progress
+      let baseProgress = 0;
+      if (elementCenter > start) {
+        baseProgress = 0;
+      } else if (elementCenter < end) {
+        baseProgress = 1;
+      } else {
+        baseProgress = (start - elementCenter) / (start - end);
+      }
+
+      // Add stagger delay based on index (each tile starts animating slightly later)
+      const staggerDelay = 0.08 * index; // Reduced to 8% delay per tile
+      const adjustedProgress = Math.max(0, Math.min(1, (baseProgress - staggerDelay) / (1 - staggerDelay * 0.3)));
+
+      setProgress(adjustedProgress);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, [index]);
+
+  // Only fade in, no movement
+  const opacity = progress;
+
+  const FeatureIcon = feature.icon;
+
+  return (
+    <div
+      ref={tileRef}
+      className={`group p-6 rounded-2xl bg-gradient-to-br ${config.gradientFrom} ${config.gradientTo} border ${config.borderColor} backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg`}
+      style={{
+        opacity: opacity,
+        transition: 'opacity 0.1s ease-out',
+      }}
+    >
+      <div className="flex items-start gap-4">
+        <div className={`flex-shrink-0 p-3 rounded-xl ${config.iconBg}`}>
+          <FeatureIcon className={`w-6 h-6 ${config.iconColor}`} />
+        </div>
+        <div>
+          <h3 className={`text-lg md:text-xl font-bold ${config.textPrimary} mb-2`}>
+            {feature.label}
+          </h3>
+          <p className={`${config.textSecondary} leading-relaxed`}>
+            {feature.description}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function PillarSection({ title, subtitle, description, detailedDescription, icon: Icon, features, color }: PillarSectionProps) {
-  const { elementRef: titleRef, isVisible: titleVisible } = useScrollAnimation();
-  const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation();
+  const leftContentRef = useRef<HTMLDivElement>(null);
+  const [leftProgress, setLeftProgress] = useState(0);
 
   const colorConfig = {
     cyan: {
@@ -61,6 +144,48 @@ function PillarSection({ title, subtitle, description, detailedDescription, icon
 
   const config = colorConfig[color];
 
+  // Left side content animation - moves UP as user scrolls
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!leftContentRef.current) return;
+
+      const rect = leftContentRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const elementHeight = rect.height;
+
+      // Match the tile animation timing
+      const start = windowHeight * 1.0; // Start when entering viewport
+      const end = windowHeight * 0.6; // Finish at same point as tiles
+
+      const elementCenter = rect.top + elementHeight / 2;
+
+      // Calculate progress
+      let progress = 0;
+      if (elementCenter > start) {
+        progress = 0;
+      } else if (elementCenter < end) {
+        progress = 1;
+      } else {
+        progress = (start - elementCenter) / (start - end);
+      }
+
+      setLeftProgress(progress);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
+
+  // Calculate transform for left content - moves UP (opposite of tiles)
+  const leftTranslateY = 100 * (1 - leftProgress); // Starts 100px below, moves up
+  const leftOpacity = leftProgress;
+
   return (
     <section className={`relative py-24 md:py-32 lg:py-40 ${config.bg} overflow-hidden`}>
       {/* Subtle color gradient overlay for personality */}
@@ -87,21 +212,13 @@ function PillarSection({ title, subtitle, description, detailedDescription, icon
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left column: Title and description */}
           <div
-            ref={titleRef}
-            className={`transition-all duration-1000 ${
-              titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
+            ref={leftContentRef}
+            style={{
+              transform: `translateY(${leftTranslateY}px)`,
+              opacity: leftOpacity,
+              transition: 'transform 0.1s ease-out, opacity 0.1s ease-out',
+            }}
           >
-            {/* Icon */}
-            <div className={`inline-flex p-5 rounded-3xl ${config.iconBg} mb-6`}>
-              <Icon className={`w-10 h-10 md:w-12 md:h-12 ${config.iconColor}`} />
-            </div>
-
-            {/* Subtitle */}
-            <p className={`text-sm md:text-base font-bold tracking-wider uppercase ${config.accentColor} mb-4`}>
-              {subtitle}
-            </p>
-
             {/* Title */}
             <h2 className={`text-display-md md:text-display-lg lg:text-display-xl font-bold ${config.textPrimary} mb-6`}>
               {title}
@@ -127,37 +244,16 @@ function PillarSection({ title, subtitle, description, detailedDescription, icon
           </div>
 
           {/* Right column: Features */}
-          <div
-            ref={contentRef}
-            className={`transition-all duration-1000 delay-200 ${
-              contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-          >
+          <div>
             <div className="space-y-6">
-              {features.map((feature, index) => {
-                const FeatureIcon = feature.icon;
-                return (
-                  <div
-                    key={index}
-                    className={`group p-6 rounded-2xl bg-gradient-to-br ${config.gradientFrom} ${config.gradientTo} border ${config.borderColor} backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg`}
-                    style={{ transitionDelay: `${index * 100}ms` }}
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className={`flex-shrink-0 p-3 rounded-xl ${config.iconBg}`}>
-                        <FeatureIcon className={`w-6 h-6 ${config.iconColor}`} />
-                      </div>
-                      <div>
-                        <h3 className={`text-lg md:text-xl font-bold ${config.textPrimary} mb-2`}>
-                          {feature.label}
-                        </h3>
-                        <p className={`${config.textSecondary} leading-relaxed`}>
-                          {feature.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+              {features.map((feature, index) => (
+                <FeatureTile
+                  key={index}
+                  feature={feature}
+                  index={index}
+                  config={config}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -168,7 +264,7 @@ function PillarSection({ title, subtitle, description, detailedDescription, icon
 
 // Pillar data
 const buildAppsData = {
-  title: 'We Build Apps',
+  title: 'App Development',
   subtitle: 'DEVELOPMENT',
   description: 'From concept to app store. We design and build custom mobile and web applications that scale with your ambition.',
   detailedDescription: 'Whether you need a consumer app with millions of users or an internal tool that transforms how your team works, we bring the technical depth and product thinking to make it happen.',
@@ -194,7 +290,7 @@ const buildAppsData = {
 };
 
 const transformBusinessData = {
-  title: 'We Transform Businesses',
+  title: 'Business Transformation',
   subtitle: 'TRANSFORMATION',
   description: 'Modernize how you operate. We streamline processes, automate workflows, and build systems that drive real growth.',
   detailedDescription: 'We help businesses break through operational bottlenecks by automating manual work, integrating systems, and building the infrastructure needed for sustainable growth.',
@@ -220,7 +316,7 @@ const transformBusinessData = {
 };
 
 const solveProblemsData = {
-  title: 'We Solve Problems',
+  title: 'AI / Data Science',
   subtitle: 'SCIENCE & TECH',
   description: 'When you need the impossible figured out. We tackle complex technical challenges with AI, data science, and deep expertise.',
   detailedDescription: 'From machine learning models that predict customer behavior to complex algorithms that optimize operations, we solve the problems that require deep technical expertise and creative thinking.',
@@ -275,7 +371,7 @@ export default function ThreePillars() {
               }`}
             >
               <h2 className="text-display-md md:text-display-lg lg:text-display-xl font-bold text-text-primary mb-6">
-                Our Business Arms
+                Our Focus Areas
               </h2>
               <p className="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto">
                 The majority of our work is split across three main pillars...

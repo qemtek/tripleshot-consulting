@@ -45,14 +45,12 @@ const Footer = () => {
   const navigation = {
     main: [
       { name: 'Home', href: '/' },
-      { name: 'Our Work', href: '/case-studies' },
-      { name: 'Insights', href: '/articles' },
       { name: 'Contact', href: '/contact' },
     ],
   };
 
   return (
-    <footer className="relative bg-gray-900 pt-20 pb-8 overflow-hidden">
+    <footer className="relative bg-gray-900 pt-12 pb-6 overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0">
         <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl" />
@@ -60,20 +58,13 @@ const Footer = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <Link to="/" className="inline-block mb-6">
-              <img
-                src="/images/full_logo_white.webp"
-                alt="Tripleshot"
-                className="h-10"
-              />
-            </Link>
-            <p className="text-gray-400 mb-6 leading-relaxed max-w-md">
+            <p className="text-gray-400 mb-4 leading-relaxed max-w-md">
               A small team of senior engineers and strategists. We build apps, transform businesses, and solve the problems others walk away from.
             </p>
-            <div className="space-y-3">
+            <div className="space-y-2">
               <a
                 href="tel:+447861009217"
                 className="flex items-center text-gray-400 hover:text-accent transition-colors group"
@@ -167,7 +158,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 pt-8">
+        <div className="border-t border-gray-800 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm">
               &copy; {new Date().getFullYear()} Tripleshot Consulting. All rights reserved.

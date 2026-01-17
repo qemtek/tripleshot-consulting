@@ -1,10 +1,18 @@
 export async function subscribeToNewsletter(email: string): Promise<void> {
-  // TODO: Implement newsletter service integration
-  // Example with a mock API call
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      console.log(`Subscribed email: ${email}`);
-      resolve();
-    }, 1000);
+  const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
+  const response = await fetch(`${apiBaseUrl}/api/newsletter`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email }),
   });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({ error: 'Failed to subscribe' }));
+    throw new Error(errorData.error || 'Failed to subscribe to newsletter');
+  }
+
+  return response.json();
 }

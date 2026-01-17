@@ -52,8 +52,14 @@ export default function HomePage() {
         <DarkHero />
         <IntroShowcase />
 
+        {/* Gradient: Dark to Light */}
+        <GradientTransition from="dark" to="light" variant="layered" height="lg" />
+
         {/* Work Showcase - Alternating image/text layout */}
         <WorkShowcase />
+
+        {/* Gradient: Light to Dark */}
+        <GradientTransition from="light" to="dark" variant="animated" height="lg" />
 
         {/* Three Pillars - What We Do */}
         <ThreePillars />

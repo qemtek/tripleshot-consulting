@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import Button from './ui/Button';
 
 const clients = [
   {
@@ -11,6 +14,11 @@ const clients = [
     name: 'FSB Technology',
     logo: '/images/fsb-logo.png',
     description: 'Sports Trading Platform'
+  },
+  {
+    name: 'Swimback Legal',
+    logo: '/images/SBLLogoBlack.png',
+    description: 'Legal Services'
   }
 ];
 
@@ -27,8 +35,31 @@ export default function PreviousClients() {
   }, []);
 
   return (
-    <section className="pt-0 pb-20 bg-white relative overflow-hidden">
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="pt-0 pb-12 bg-white relative overflow-hidden">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* CTA */}
+          <div className="text-center lg:text-left">
+            <div className="inline-flex flex-col items-center lg:items-start bg-gray-50 border border-gray-200 rounded-3xl p-8 md:p-12 w-full">
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                Ready to work together?
+              </h3>
+
+              <p className="text-gray-600 mb-6 max-w-md">
+                Let's chat about your project and see how we can help.
+              </p>
+
+              <Link to="/contact">
+                <Button variant="gradient" size="lg" className="group">
+                  Start a conversation
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Trusted By Carousel */}
+          <div>
         <div
           ref={elementRef}
           className={`text-center transition-all duration-700 ${
@@ -81,6 +112,8 @@ export default function PreviousClients() {
                 />
               ))}
             </div>
+          </div>
+        </div>
           </div>
         </div>
       </div>

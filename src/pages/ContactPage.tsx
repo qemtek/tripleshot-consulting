@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, Mail, CheckCircle, AlertCircle, ArrowRight } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle, ArrowRight } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
 import Button from '../components/ui/Button';
@@ -92,11 +92,6 @@ export default function ContactPage() {
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           {/* Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm mb-6">
-              <Mail className="h-4 w-4 text-accent" />
-              <span className="text-sm text-gray-600">Get in touch</span>
-            </div>
-
             <h1 className="text-display-sm md:text-display-md font-bold text-gray-900 mb-4">
               Let's build something{' '}
               <span className="text-gradient">great</span>

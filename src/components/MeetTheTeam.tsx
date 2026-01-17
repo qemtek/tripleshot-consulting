@@ -12,7 +12,7 @@ const teamMembers = [
     icon: Brain,
     image: '/images/team/chris-collins.jpg',
     color: 'emerald',
-    experience: '10+ years building machine learning systems for Fortune 500 companies. Led AI implementations that increased margins by 20%.',
+    experience: '10+ years building machine learning systems for Fortune 500 companies.',
     stats: [
       { name: 'Algorithm Mastery', value: 95 },
       { name: 'Problem Solving', value: 92 },
@@ -133,7 +133,7 @@ export default function MeetTheTeam() {
   };
 
   return (
-    <section className="pt-0 pb-24 md:pb-32 bg-white relative overflow-hidden">
+    <section className="pt-0 pb-8 bg-white relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-accent/10 rounded-full blur-3xl" />
@@ -325,40 +325,6 @@ export default function MeetTheTeam() {
             })}
           </div>
         )}
-
-        {/* CTA */}
-        <div className="text-center">
-          <div className="inline-flex flex-col items-center bg-gray-50 border border-gray-200 rounded-3xl p-8 md:p-12">
-            <div className="flex -space-x-3 mb-6">
-              {teamMembers.map((member, index) => {
-                const config = colorConfig[member.color as keyof typeof colorConfig];
-                return (
-                  <div
-                    key={index}
-                    className={`w-12 h-12 rounded-xl ${config.iconBg} border-2 border-white flex items-center justify-center`}
-                  >
-                    <member.icon className={`h-5 w-5 ${config.iconColor}`} />
-                  </div>
-                );
-              })}
-            </div>
-
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">
-              Ready to work together?
-            </h3>
-
-            <p className="text-gray-600 mb-6 max-w-md">
-              Let's chat about your project and see how we can help.
-            </p>
-
-            <Link to="/contact">
-              <Button variant="gradient" size="lg" className="group">
-                Start a conversation
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
-          </div>
-        </div>
       </div>
     </section>
   );

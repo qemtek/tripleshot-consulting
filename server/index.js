@@ -286,15 +286,15 @@ app.post('/api/newsletter', async (req, res) => {
     }
     
     // Check if email already exists
-    const { data: existingSubscriber, error: checkError } = await supabase
+    const { data: existingSubscriber } = await supabase
       .from('newsletter_subscribers')
       .select('email')
       .eq('email', email)
-      .single();
-    
+      .maybeSingle();
+
     if (existingSubscriber) {
-      return res.status(400).json({ 
-        error: 'This email is already subscribed to our newsletter' 
+      return res.status(400).json({
+        error: 'This email is already subscribed to our newsletter'
       });
     }
     

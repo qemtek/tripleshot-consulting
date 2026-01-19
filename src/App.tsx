@@ -19,8 +19,8 @@ const ArticlesPage = lazy(() => import('./pages/ArticlesPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage'));
 const AdminPage = lazy(() => import('./pages/AdminPage'));
-// const Blog = lazy(() => import('./pages/Blog'));
-// const BlogPost = lazy(() => import('./pages/BlogPost'));
+const Blog = lazy(() => import('./pages/Blog'));
+const BlogPost = lazy(() => import('./pages/BlogPost'));
 
 function ScrollToTop() {
   useScrollToTop();
@@ -51,8 +51,8 @@ export default function App() {
               <Route path="/articles" element={<ArticlesPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/admin" element={<AdminPage />} />
-              {/* <Route path="/blog" element={<Blog />} /> */}
-              {/* <Route path="/blog/:slug" element={<BlogPost />} /> */}
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
             </Routes>
           </Suspense>
           <Footer />

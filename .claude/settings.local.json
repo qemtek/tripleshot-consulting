@@ -23,7 +23,12 @@
       "Bash(convert:*)",
       "Bash(magick:*)",
       "WebFetch(domain:bendingspoons.com)",
-      "Bash(node optimize-images.mjs:*)"
+      "Bash(node optimize-images.mjs:*)",
+      "WebFetch(domain:chriscollins852464.substack.com)",
+      "WebSearch",
+      "WebFetch(domain:chriscollins756.substack.com)",
+      "Bash(lsof:*)",
+      "Bash(xargs:*)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits"

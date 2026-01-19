@@ -32,9 +32,9 @@ function FeatureTile({ feature, index, config }: FeatureTileProps) {
       const windowHeight = window.innerHeight;
       const elementHeight = rect.height;
 
-      // Start later and finish earlier so tiles are ready to read
-      const start = windowHeight * 1.3;
-      const end = windowHeight * 0.25;
+      // Start early and finish well before reading position
+      const start = windowHeight * 1.2;
+      const end = windowHeight * 0.55;
 
       const elementCenter = rect.top + elementHeight / 2;
 
@@ -49,8 +49,8 @@ function FeatureTile({ feature, index, config }: FeatureTileProps) {
       }
 
       // Add stagger delay based on index (each tile starts animating slightly later)
-      const staggerDelay = 0.08 * index; // Reduced to 8% delay per tile
-      const adjustedProgress = Math.max(0, Math.min(1, (baseProgress - staggerDelay) / (1 - staggerDelay * 0.3)));
+      const staggerDelay = 0.06 * index; // 6% delay per tile
+      const adjustedProgress = Math.max(0, Math.min(1, (baseProgress - staggerDelay) / (1 - staggerDelay * 0.5)));
 
       setProgress(adjustedProgress);
     };

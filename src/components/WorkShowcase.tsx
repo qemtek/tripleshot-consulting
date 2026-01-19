@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { OptimizedImage } from './ui/OptimizedImage';
 
 interface ShowcaseItemProps {
   image: string;
@@ -93,8 +94,8 @@ function ShowcaseItem({ image, title, description, imageOnLeft }: ShowcaseItemPr
                 className="relative rounded-2xl overflow-hidden border border-dark-500/50 backdrop-blur-sm shadow-2xl"
               >
                 <div className="aspect-[4/3] relative">
-                  <img
-                    src={image}
+                  <OptimizedImage
+                    src={image.replace(/\.(jpg|jpeg)$/, '')}
                     alt={title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -136,13 +137,13 @@ function ShowcaseItem({ image, title, description, imageOnLeft }: ShowcaseItemPr
 
 const showcaseData = [
   {
-    image: '/images/logistics.jpeg',
+    image: '/images/logistics.jpg',
     title: 'Logistics',
     description: 'We built a sophisticated routing and optimization system that reduced delivery times by 40% and operational costs by 25% for a major logistics provider.',
     imageOnLeft: true,
   },
   {
-    image: '/images/horse_racing.jpeg',
+    image: '/images/horse_racing.jpg',
     title: 'Sports Trading',
     description: 'Developed a cutting-edge analytics platform with machine learning algorithms that provide real-time insights and predictive modeling for the racing industry.',
     imageOnLeft: false,

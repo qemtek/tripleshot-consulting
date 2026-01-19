@@ -22,7 +22,8 @@
       "Bash(cwebp:*)",
       "Bash(convert:*)",
       "Bash(magick:*)",
-      "WebFetch(domain:bendingspoons.com)"
+      "WebFetch(domain:bendingspoons.com)",
+      "Bash(node optimize-images.mjs:*)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits"

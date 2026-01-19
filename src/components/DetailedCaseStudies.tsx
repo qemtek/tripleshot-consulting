@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, ExternalLink, Truck, DollarSign, Users } from 'lucide-react';
 import Button from './ui/Button';
+import { OptimizedImage } from './ui/OptimizedImage';
 
 interface DetailedCaseStudy {
   id: string;
@@ -86,8 +87,8 @@ export default function DetailedCaseStudies() {
               }`}>
                 <div className="lg:w-1/2">
                   <div className="relative overflow-hidden rounded-2xl shadow-2xl h-full">
-                    <img 
-                      src={study.image} 
+                    <OptimizedImage
+                      src={study.image.replace(/\.(jpg|jpeg|png)$/, '')}
                       alt={study.title}
                       className="w-full h-64 lg:h-full lg:min-h-96 object-cover"
                     />

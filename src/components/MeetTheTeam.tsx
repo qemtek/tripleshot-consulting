@@ -50,7 +50,7 @@ export default function MeetTheTeam() {
         {/* Section header */}
         <div
           ref={elementRef}
-          className={`text-center mb-8 transition-all duration-700 ${
+          className={`text-center mb-8 transition-[opacity,transform] duration-700 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
@@ -69,7 +69,7 @@ export default function MeetTheTeam() {
 
         {/* Core team intro */}
         <div
-          className={`text-center mb-16 transition-all duration-700 ${
+          className={`text-center mb-16 transition-[opacity,transform] duration-700 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
@@ -86,7 +86,7 @@ export default function MeetTheTeam() {
             return (
               <div
                 key={index}
-                className={`flex flex-col items-center transition-all duration-700 ${
+                className={`flex flex-col items-center transition-[opacity,transform] duration-700 ${
                   isVisible
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-10'

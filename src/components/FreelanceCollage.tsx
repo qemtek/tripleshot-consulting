@@ -1,4 +1,3 @@
-import React from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export default function FreelanceCollage() {
@@ -7,9 +6,12 @@ export default function FreelanceCollage() {
   return (
     <div
       ref={elementRef}
-      className={`my-12 transition-all duration-700 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+      className={`my-12 ${
+        isVisible ? 'opacity-100' : 'opacity-0'
       }`}
+      style={{
+        transition: 'opacity 0.7s ease-out',
+      }}
     >
       {/* Bento box grid - 5 images */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto auto-rows-[180px]">
@@ -20,6 +22,9 @@ export default function FreelanceCollage() {
             alt="Team collaboration"
             className="w-full h-full object-cover rounded-2xl shadow-lg"
             loading="lazy"
+            decoding="async"
+            width={600}
+            height={360}
           />
         </div>
 
@@ -30,6 +35,9 @@ export default function FreelanceCollage() {
             alt="Team working together"
             className="w-full h-full object-cover rounded-2xl shadow-lg"
             loading="lazy"
+            decoding="async"
+            width={300}
+            height={180}
           />
         </div>
 
@@ -40,6 +48,9 @@ export default function FreelanceCollage() {
             alt="Coworking space"
             className="w-full h-full object-cover rounded-2xl shadow-lg"
             loading="lazy"
+            decoding="async"
+            width={300}
+            height={180}
           />
         </div>
 
@@ -50,6 +61,9 @@ export default function FreelanceCollage() {
             alt="Focused work"
             className="w-full h-full object-cover rounded-2xl shadow-lg"
             loading="lazy"
+            decoding="async"
+            width={300}
+            height={180}
           />
         </div>
 
@@ -60,6 +74,9 @@ export default function FreelanceCollage() {
             alt="Remote team"
             className="w-full h-full object-cover rounded-2xl shadow-lg"
             loading="lazy"
+            decoding="async"
+            width={300}
+            height={180}
           />
         </div>
       </div>

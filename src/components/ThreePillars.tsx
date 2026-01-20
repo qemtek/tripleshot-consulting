@@ -83,7 +83,7 @@ function FeatureTile({ feature, index, config }: FeatureTileProps) {
   return (
     <div
       ref={tileRef}
-      className={`group p-6 rounded-2xl bg-gradient-to-br ${config.gradientFrom} ${config.gradientTo} border ${config.borderColor} backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg`}
+      className={`group p-6 rounded-2xl bg-gradient-to-br ${config.gradientFrom} ${config.gradientTo} border ${config.borderColor} backdrop-blur-sm transition-[transform] duration-300 hover:scale-105`}
       style={{
         opacity: opacity,
         transition: 'opacity 0.1s ease-out',
@@ -386,7 +386,7 @@ export default function ThreePillars() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div
               ref={elementRef}
-              className={`text-center transition-all duration-1000 ${
+              className={`text-center transition-[opacity,transform] duration-1000 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
             >

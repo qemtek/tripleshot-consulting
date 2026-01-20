@@ -44,7 +44,7 @@ export default function DarkHero() {
 
           {/* Subheadline */}
           <p className="max-w-3xl mx-auto text-xl md:text-2xl lg:text-3xl text-text-secondary mb-10 animate-fade-in-up animation-fill-both animation-delay-200">
-            A small team of senior engineers and strategists who build apps, transform businesses, and solve the problems others walk away from.
+            We're a small team of senior engineers and strategists who build apps, transform businesses, and solve the problems others walk away from.
           </p>
 
           {/* CTA buttons */}

@@ -75,13 +75,13 @@ const Footer = () => {
                 <span className="font-medium">+44 7861 009217</span>
               </a>
               <a
-                href="mailto:tripleshotconsultingltd@gmail.com"
+                href="mailto:hello@tripleshot-solutions.com"
                 className="flex items-center text-gray-400 hover:text-accent transition-colors group"
               >
                 <div className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center mr-3 group-hover:bg-accent/10 transition-colors">
                   <Mail className="h-4 w-4" />
                 </div>
-                <span className="font-medium">tripleshotconsultingltd@gmail.com</span>
+                <span className="font-medium">hello@tripleshot-solutions.com</span>
               </a>
             </div>
           </div>

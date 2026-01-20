@@ -132,10 +132,10 @@ export default function GetInTouch() {
           <p className="text-text-muted text-sm">
             Prefer email? Reach us at{' '}
             <a
-              href="mailto:tripleshotconsultingltd@gmail.com"
+              href="mailto:hello@tripleshot-solutions.com"
               className="text-accent hover:text-accent-light transition-colors"
             >
-              tripleshotconsultingltd@gmail.com
+              hello@tripleshot-solutions.com
             </a>
           </p>
         </div>

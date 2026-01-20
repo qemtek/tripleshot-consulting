@@ -26,6 +26,48 @@ const images = [
     width: 1920,
     webpQuality: 80,
     jpegQuality: 85
+  },
+  {
+    input: 'public/images/team/chris-collins-upscaled.jpg',
+    width: 800,
+    webpQuality: 80,
+    jpegQuality: 85
+  },
+  {
+    input: 'public/images/team/maria-benitez-upscaled.png',
+    width: 800,
+    webpQuality: 80,
+    jpegQuality: 85
+  },
+  {
+    input: 'public/images/team1.jpeg',
+    width: 800,
+    webpQuality: 80,
+    jpegQuality: 85
+  },
+  {
+    input: 'public/images/team2.jpeg',
+    width: 800,
+    webpQuality: 80,
+    jpegQuality: 85
+  },
+  {
+    input: 'public/images/team3.jpeg',
+    width: 800,
+    webpQuality: 80,
+    jpegQuality: 85
+  },
+  {
+    input: 'public/images/team4.jpg',
+    width: 800,
+    webpQuality: 80,
+    jpegQuality: 85
+  },
+  {
+    input: 'public/images/team5.jpg',
+    width: 800,
+    webpQuality: 80,
+    jpegQuality: 85
   }
 ];
 

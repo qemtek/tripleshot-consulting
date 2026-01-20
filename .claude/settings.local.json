@@ -28,7 +28,8 @@
       "WebSearch",
       "WebFetch(domain:chriscollins756.substack.com)",
       "Bash(lsof:*)",
-      "Bash(xargs:*)"
+      "Bash(xargs:*)",
+      "Bash(identify:*)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits"

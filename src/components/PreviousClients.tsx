@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import Button from './ui/Button';
 
 const clients = [
   {
@@ -35,31 +32,8 @@ export default function PreviousClients() {
   }, []);
 
   return (
-    <section className="pt-0 pb-12 bg-white relative overflow-hidden">
+    <section className="py-16 bg-white relative overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* CTA */}
-          <div className="text-center lg:text-left">
-            <div className="inline-flex flex-col items-center lg:items-start bg-gray-50 border border-gray-200 rounded-3xl p-8 md:p-12 w-full">
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                Ready to work together?
-              </h3>
-
-              <p className="text-gray-600 mb-6 max-w-md">
-                Let's chat about your project and see how we can help.
-              </p>
-
-              <Link to="/contact">
-                <Button variant="gradient" size="lg" className="group">
-                  Start a conversation
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-
-          {/* Trusted By Carousel */}
-          <div>
         <div
           ref={elementRef}
           className={`text-center transition-all duration-700 ${
@@ -70,8 +44,8 @@ export default function PreviousClients() {
             Trusted by
           </p>
 
-          {/* Logo display */}
-          <div className="relative">
+          {/* Logo carousel - full width */}
+          <div className="relative max-w-4xl mx-auto">
             <div className="overflow-hidden">
               <div
                 className="flex transition-transform duration-700 ease-in-out"
@@ -80,12 +54,12 @@ export default function PreviousClients() {
                 {clients.map((client, index) => (
                   <div key={index} className="w-full flex-shrink-0 text-center">
                     <div className="flex flex-col items-center justify-center">
-                      <div className="mb-4 p-6 bg-gray-50 rounded-2xl border border-gray-200">
+                      <div className="mb-4 p-8 bg-gray-50 rounded-2xl border border-gray-200">
                         <img
                           src={client.logo}
                           alt={client.name}
                           loading="lazy"
-                          className="h-12 md:h-16 max-w-xs mx-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
+                          className="h-16 md:h-20 max-w-md mx-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
                         />
                       </div>
                       <p className="text-gray-500 text-sm">
@@ -112,8 +86,6 @@ export default function PreviousClients() {
                 />
               ))}
             </div>
-          </div>
-        </div>
           </div>
         </div>
       </div>

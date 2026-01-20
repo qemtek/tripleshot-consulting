@@ -25,7 +25,9 @@ function FeatureTile({ feature, index, config }: FeatureTileProps) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
+    let ticking = false;
+
+    const calculateProgress = () => {
       if (!tileRef.current) return;
 
       const rect = tileRef.current.getBoundingClientRect();
@@ -53,15 +55,23 @@ function FeatureTile({ feature, index, config }: FeatureTileProps) {
       const adjustedProgress = Math.max(0, Math.min(1, (baseProgress - staggerDelay) / (1 - staggerDelay * 0.5)));
 
       setProgress(adjustedProgress);
+      ticking = false;
     };
 
-    handleScroll();
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(calculateProgress);
+        ticking = true;
+      }
+    };
+
+    calculateProgress();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
+    window.addEventListener('resize', calculateProgress);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      window.removeEventListener('resize', calculateProgress);
     };
   }, [index]);
 
@@ -146,7 +156,9 @@ function PillarSection({ title, subtitle, description, detailedDescription, icon
 
   // Left side content animation - moves UP as user scrolls
   useEffect(() => {
-    const handleScroll = () => {
+    let ticking = false;
+
+    const calculateProgress = () => {
       if (!leftContentRef.current) return;
 
       const rect = leftContentRef.current.getBoundingClientRect();
@@ -170,15 +182,23 @@ function PillarSection({ title, subtitle, description, detailedDescription, icon
       }
 
       setLeftProgress(progress);
+      ticking = false;
     };
 
-    handleScroll();
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(calculateProgress);
+        ticking = true;
+      }
+    };
+
+    calculateProgress();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
+    window.addEventListener('resize', calculateProgress);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      window.removeEventListener('resize', calculateProgress);
     };
   }, []);
 

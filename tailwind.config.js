@@ -231,18 +231,26 @@ export default {
           '0%': { transform: 'translateX(0)', opacity: '1' },
           '100%': { transform: 'translateX(-100%)', opacity: '0' },
         },
-        // Text reveal effect
+        // Text reveal effect (with Safari webkit prefix)
         textReveal: {
-          '0%': { clipPath: 'inset(0 100% 0 0)' },
-          '100%': { clipPath: 'inset(0 0 0 0)' },
+          '0%': {
+            clipPath: 'inset(0 100% 0 0)',
+            WebkitClipPath: 'inset(0 100% 0 0)',
+          },
+          '100%': {
+            clipPath: 'inset(0 0 0 0)',
+            WebkitClipPath: 'inset(0 0 0 0)',
+          },
         },
-        // Glow pulse with color shift
+        // Glow pulse with color shift (with Safari webkit prefix)
         glowShift: {
           '0%, 100%': {
             filter: 'drop-shadow(0 0 20px rgba(0, 212, 255, 0.5))',
+            WebkitFilter: 'drop-shadow(0 0 20px rgba(0, 212, 255, 0.5))',
           },
           '50%': {
             filter: 'drop-shadow(0 0 30px rgba(139, 92, 246, 0.6))',
+            WebkitFilter: 'drop-shadow(0 0 30px rgba(139, 92, 246, 0.6))',
           },
         },
         // Blob shift animation for gradient blobs

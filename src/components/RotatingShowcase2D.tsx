@@ -69,7 +69,11 @@ export default function RotatingShowcase2D({ items }: RotatingShowcase2DProps) {
       const scale = 1 - (y / config.radius) * 0.1;
       const zIndex = Math.round(100 - y);
 
-      el.style.transform = `translateX(calc(-50% + ${x}px)) translateY(${y}px) rotate(${phoneConfig.tilt}deg) scale(${scale})`;
+      // Use translate3d for GPU acceleration in Safari
+      const transform = `translate3d(calc(-50% + ${x}px), ${y}px, 0) rotate(${phoneConfig.tilt}deg) scale(${scale})`;
+      el.style.transform = transform;
+      // Also set webkit prefix for older Safari
+      (el.style as CSSStyleDeclaration & { webkitTransform?: string }).webkitTransform = transform;
       el.style.zIndex = String(zIndex);
     });
   }, [config, phoneConfigs, prefersReducedMotion]);
@@ -130,6 +134,9 @@ export default function RotatingShowcase2D({ items }: RotatingShowcase2DProps) {
             style={{
               left: '50%',
               top: '50px',
+              willChange: 'transform',
+              WebkitBackfaceVisibility: 'hidden',
+              backfaceVisibility: 'hidden',
             }}
           >
             <PhoneCard item={item} tilt={0} />

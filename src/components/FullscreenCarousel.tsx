@@ -115,6 +115,7 @@ export default function FullscreenCarousel({
         <button
           onClick={goToPrevious}
           className="absolute left-8 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-dark-700/80 backdrop-blur-sm border border-dark-500 text-white hover:bg-dark-600 hover:scale-110 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent"
+          style={{ WebkitBackdropFilter: 'blur(4px)' }}
           aria-label="Previous image"
         >
           <ChevronLeft className="w-6 h-6" />
@@ -123,6 +124,7 @@ export default function FullscreenCarousel({
         <button
           onClick={goToNext}
           className="absolute right-8 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-dark-700/80 backdrop-blur-sm border border-dark-500 text-white hover:bg-dark-600 hover:scale-110 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent"
+          style={{ WebkitBackdropFilter: 'blur(4px)' }}
           aria-label="Next image"
         >
           <ChevronRight className="w-6 h-6" />
@@ -147,7 +149,10 @@ export default function FullscreenCarousel({
 
         {/* Pause indicator */}
         {autoRotate && isPaused && (
-          <div className="absolute top-8 right-8 z-10 px-3 py-1 rounded-full bg-dark-700/80 backdrop-blur-sm border border-dark-500 text-white text-sm">
+          <div
+            className="absolute top-8 right-8 z-10 px-3 py-1 rounded-full bg-dark-700/80 backdrop-blur-sm border border-dark-500 text-white text-sm"
+            style={{ WebkitBackdropFilter: 'blur(4px)' }}
+          >
             Paused
           </div>
         )}

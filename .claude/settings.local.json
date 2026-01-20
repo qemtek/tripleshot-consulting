@@ -29,7 +29,8 @@
       "WebFetch(domain:chriscollins756.substack.com)",
       "Bash(lsof:*)",
       "Bash(xargs:*)",
-      "Bash(identify:*)"
+      "Bash(identify:*)",
+      "Bash(timeout 8 node:*)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits"

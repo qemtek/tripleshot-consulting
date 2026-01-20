@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Safari backdrop-filter support */
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .backdrop-blur-sm {
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .backdrop-blur-md {
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .backdrop-blur-lg {
+    -webkit-backdrop-filter: blur(16px);
+  }
+  .backdrop-blur-xl {
+    -webkit-backdrop-filter: blur(24px);
+  }
+  .backdrop-blur {
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
 @layer base {
   :root {
     /* Dark theme colors */
@@ -152,6 +171,7 @@
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
+    -webkit-mask-composite: destination-out; /* Safari fallback */
     mask-composite: exclude;
   }
 

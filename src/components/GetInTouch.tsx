@@ -56,8 +56,6 @@ export default function GetInTouch() {
         />
       </div>
 
-      {/* Top border */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-dark-500 to-transparent" />
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}

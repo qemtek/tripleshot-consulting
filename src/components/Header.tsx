@@ -50,9 +50,9 @@ const Header: React.FC = () => {
               <img
                 src="/images/new_tripleshot.svg"
                 alt="Tripleshot"
-                width={180}
-                height={32}
-                className="h-8 w-auto transition-opacity duration-200 group-hover:opacity-80"
+                width={144}
+                height={26}
+                className="h-6 w-auto transition-opacity duration-200 group-hover:opacity-80"
               />
             </Link>
           </div>
@@ -109,7 +109,7 @@ const Header: React.FC = () => {
 
         {/* Mobile menu */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 bg-white/95 backdrop-blur-lg">
+          <div className="md:hidden border-t border-gray-200 bg-white/95 backdrop-blur-lg" style={{ WebkitBackdropFilter: 'blur(16px)' }}>
             <div className="py-4 space-y-2">
               {navigation.map((item) => {
                 const isActive = location.pathname === item.href;

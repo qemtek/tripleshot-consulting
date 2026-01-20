@@ -48,6 +48,7 @@ function Stat({ value, suffix, label, color, isVisible, delay = 0 }: StatProps) 
         transitionDelay: `${delay}ms`,
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+        WebkitBackdropFilter: 'blur(4px)',
       }}
     >
       {/* Gradient blob background - static radial gradient for performance */}
@@ -95,9 +96,6 @@ export default function BigNumbers() {
         />
       </div>
 
-      {/* Border lines */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-dark-500 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-dark-500 to-transparent" />
 
       <div ref={elementRef} className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Bento-box grid layout: 2x2 on desktop, 1 column on mobile */}

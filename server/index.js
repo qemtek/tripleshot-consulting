@@ -5,21 +5,14 @@ const fs = require('fs').promises;
 const path = require('path');
 const dotenv = require('dotenv');
 const OpenAI = require('openai');
-const { createClient } = require('@supabase/supabase-js');
 const nodemailer = require('nodemailer');
 
 // Load environment variables from parent directory
 dotenv.config({ path: '../.env' });
 
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
-
 // Validate required environment variables
-if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
-  console.error('❌ Missing required Supabase environment variables');
+if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+  console.error('❌ Missing required email environment variables (EMAIL_USER, EMAIL_PASSWORD)');
   process.exit(1);
 }
 
@@ -42,34 +35,17 @@ const openai = new OpenAI({
 
 // Middleware
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || '*', // Allow configuration via env var or default to all
+  origin: process.env.CORS_ORIGIN || '*',
   methods: ['GET', 'POST'],
   credentials: true
 }));
 app.use(bodyParser.json());
 
-// Test Supabase connection
-async function testSupabaseConnection() {
-  try {
-    const { data, error } = await supabase
-      .from('leads')
-      .select('count', { count: 'exact', head: true });
-    
-    if (error) {
-      console.error('Supabase connection error:', error);
-    } else {
-      console.log('✅ Supabase connection successful');
-    }
-  } catch (error) {
-    console.error('Error testing Supabase connection:', error);
-  }
-}
-
 // Send notification email for new leads
 async function sendLeadNotificationEmail(leadData) {
   try {
     const notificationEmail = process.env.NOTIFICATION_EMAIL || 'christopher.collins.ds@gmail.com';
-    
+
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: notificationEmail,
@@ -79,24 +55,24 @@ async function sendLeadNotificationEmail(leadData) {
           <h2 style="color: #3e2415; border-bottom: 2px solid #e8c598; padding-bottom: 10px;">
             🎉 New Contact Form Submission
           </h2>
-          
+
           <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3 style="color: #3e2415; margin-top: 0;">Contact Details</h3>
             <p><strong>Name:</strong> ${leadData.name}</p>
             <p><strong>Email:</strong> <a href="mailto:${leadData.email}">${leadData.email}</a></p>
             <p><strong>Company:</strong> ${leadData.company || 'Not provided'}</p>
           </div>
-          
+
           <div style="background: #fff; padding: 20px; border: 1px solid #e8c598; border-radius: 8px; margin: 20px 0;">
             <h3 style="color: #3e2415; margin-top: 0;">Message</h3>
             <p style="line-height: 1.6;">${leadData.message}</p>
           </div>
-          
+
           <div style="background: #3e2415; color: white; padding: 15px; border-radius: 8px; text-align: center; margin: 20px 0;">
             <p style="margin: 0;"><strong>⏰ Submitted:</strong> ${new Date().toLocaleString()}</p>
             <p style="margin: 5px 0 0 0; font-size: 14px;">Respond within 24 hours for best conversion rates!</p>
           </div>
-          
+
           <p style="color: #666; font-size: 12px; text-align: center; margin-top: 30px;">
             This email was sent automatically from your Tripleshot Consulting website contact form.
           </p>
@@ -108,18 +84,53 @@ async function sendLeadNotificationEmail(leadData) {
     console.log('✅ Lead notification email sent successfully');
   } catch (error) {
     console.error('❌ Error sending lead notification email:', error);
-    // Don't throw error - we don't want email failures to break the contact form
+    throw error;
+  }
+}
+
+// Send newsletter subscription notification
+async function sendNewsletterNotificationEmail(email) {
+  try {
+    const notificationEmail = process.env.NOTIFICATION_EMAIL || 'christopher.collins.ds@gmail.com';
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: notificationEmail,
+      subject: `📧 New Newsletter Subscriber: ${email}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #3e2415; border-bottom: 2px solid #e8c598; padding-bottom: 10px;">
+            📧 New Newsletter Subscription
+          </h2>
+
+          <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+            <p><strong>Subscribed at:</strong> ${new Date().toLocaleString()}</p>
+            <p><strong>Source:</strong> Website Footer</p>
+          </div>
+
+          <p style="color: #666; font-size: 12px; text-align: center; margin-top: 30px;">
+            This email was sent automatically from your Tripleshot Consulting website.
+          </p>
+        </div>
+      `
+    };
+
+    await emailTransporter.sendMail(mailOptions);
+    console.log('✅ Newsletter notification email sent successfully');
+  } catch (error) {
+    console.error('❌ Error sending newsletter notification email:', error);
+    throw error;
   }
 }
 
 // OpenAI Chat Function
 async function getChatResponse(messages, companyInfo) {
   try {
-    // Create a system message with company information
     const systemMessage = {
       role: 'system',
-      content: `You are a helpful assistant for TripleShot Consulting, a technology consulting company. 
-      
+      content: `You are a helpful assistant for TripleShot Consulting, a technology consulting company.
+
 Company Information:
 - TripleShot Consulting specializes in technology consulting services.
 - Services include customer service solutions, marketing automation, financial management tools, business operations optimization, data analysis, and technology skills training.
@@ -139,13 +150,11 @@ Your task is to:
 ${companyInfo || ''}`
     };
 
-    // Add the system message at the beginning
     const formattedMessages = [
       systemMessage,
       ...messages
     ];
 
-    // Call the OpenAI API
     const completion = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: formattedMessages,
@@ -164,11 +173,11 @@ ${companyInfo || ''}`
 app.post('/api/chat', async (req, res) => {
   try {
     const { messages, companyInfo } = req.body;
-    
+
     if (!messages || !Array.isArray(messages)) {
       return res.status(400).json({ error: 'Messages array is required' });
     }
-    
+
     const response = await getChatResponse(messages, companyInfo);
     res.json({ response });
   } catch (error) {
@@ -177,92 +186,34 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
+// Chatbot lead capture endpoint
 app.post('/api/leads', async (req, res) => {
   try {
     const { email, conversation, name = '', company = '' } = req.body;
-    
+
     if (!email) {
       return res.status(400).json({ error: 'Email is required' });
     }
-    
-    // Insert chatbot lead into Supabase
-    const { data, error } = await supabase
-      .from('leads')
-      .insert([
-        {
-          email,
-          name,
-          company,
-          conversation: conversation || [],
-          source: 'chatbot',
-          status: 'new'
-        }
-      ])
-      .select();
-    
-    if (error) {
-      console.error('Supabase error saving chatbot lead:', error);
-      return res.status(500).json({ error: 'Failed to save lead' });
-    }
-    
-    console.log('New chatbot lead saved to Supabase:', { name, email, company });
-    
-    // Send notification email for chatbot lead
-    const conversationText = conversation && conversation.length > 0 
+
+    // Format conversation for email
+    const conversationText = conversation && conversation.length > 0
       ? conversation.map(msg => `${msg.sender}: ${msg.text}`).join('\n')
       : 'No conversation history available';
-    
-    sendLeadNotificationEmail({ 
-      name: name || 'Anonymous', 
-      email, 
-      company: company || 'Not provided', 
-      message: `Chatbot conversation:\n\n${conversationText}` 
+
+    // Send notification email
+    await sendLeadNotificationEmail({
+      name: name || 'Anonymous',
+      email,
+      company: company || 'Not provided',
+      message: `Chatbot conversation:\n\n${conversationText}`
     });
-    
-    res.status(201).json({ success: true, lead: data[0] });
+
+    console.log('New chatbot lead:', { name, email, company });
+
+    res.status(201).json({ success: true });
   } catch (error) {
     console.error('Error saving lead:', error);
     res.status(500).json({ error: 'Failed to save lead' });
-  }
-});
-
-// Get newsletter subscribers (would be protected in production)
-app.get('/api/newsletter', async (req, res) => {
-  try {
-    const { data, error } = await supabase
-      .from('newsletter_subscribers')
-      .select('*')
-      .order('subscribed_at', { ascending: false });
-    
-    if (error) {
-      console.error('Supabase error fetching newsletter subscribers:', error);
-      return res.status(500).json({ error: 'Failed to fetch subscribers' });
-    }
-    
-    res.json(data);
-  } catch (error) {
-    console.error('Error fetching newsletter subscribers:', error);
-    res.status(500).json({ error: 'Failed to fetch subscribers' });
-  }
-});
-
-// Get all leads (would be protected in production)
-app.get('/api/leads', async (req, res) => {
-  try {
-    const { data, error } = await supabase
-      .from('leads')
-      .select('*')
-      .order('created_at', { ascending: false });
-    
-    if (error) {
-      console.error('Supabase error fetching leads:', error);
-      return res.status(500).json({ error: 'Failed to fetch leads' });
-    }
-    
-    res.json(data);
-  } catch (error) {
-    console.error('Error fetching leads:', error);
-    res.status(500).json({ error: 'Failed to fetch leads' });
   }
 });
 
@@ -270,67 +221,34 @@ app.get('/api/leads', async (req, res) => {
 app.post('/api/newsletter', async (req, res) => {
   try {
     const { email } = req.body;
-    
+
     if (!email) {
-      return res.status(400).json({ 
-        error: 'Email is required' 
+      return res.status(400).json({
+        error: 'Email is required'
       });
     }
-    
+
     // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return res.status(400).json({ 
-        error: 'Please provide a valid email address' 
-      });
-    }
-    
-    // Check if email already exists
-    const { data: existingSubscriber } = await supabase
-      .from('newsletter_subscribers')
-      .select('email')
-      .eq('email', email)
-      .maybeSingle();
-
-    if (existingSubscriber) {
       return res.status(400).json({
-        error: 'This email is already subscribed to our newsletter'
+        error: 'Please provide a valid email address'
       });
     }
-    
-    // Insert newsletter subscription into Supabase
-    const { data, error } = await supabase
-      .from('newsletter_subscribers')
-      .insert([
-        {
-          email,
-          subscribed_at: new Date().toISOString(),
-          status: 'active',
-          source: 'website_footer'
-        }
-      ])
-      .select();
-    
-    if (error) {
-      console.error('Supabase error saving newsletter subscription:', error);
-      return res.status(500).json({ 
-        error: 'Failed to subscribe. Please try again.' 
-      });
-    }
-    
+
+    // Send notification email
+    await sendNewsletterNotificationEmail(email);
+
     console.log('New newsletter subscription:', { email });
-    
-    // Send welcome email notification (optional)
-    // You can add this later if you want to send welcome emails
-    
-    res.status(201).json({ 
-      success: true, 
-      message: 'Thank you for subscribing! You\'ll receive our latest insights and updates.' 
+
+    res.status(201).json({
+      success: true,
+      message: 'Thank you for subscribing! You\'ll receive our latest insights and updates.'
     });
   } catch (error) {
     console.error('Error processing newsletter subscription:', error);
-    res.status(500).json({ 
-      error: 'Something went wrong. Please try again.' 
+    res.status(500).json({
+      error: 'Something went wrong. Please try again.'
     });
   }
 });
@@ -339,57 +257,35 @@ app.post('/api/newsletter', async (req, res) => {
 app.post('/api/contact', async (req, res) => {
   try {
     const { name, email, company, message } = req.body;
-    
+
     // Validate required fields
     if (!name || !email || !message) {
-      return res.status(400).json({ 
-        error: 'Name, email, and message are required' 
+      return res.status(400).json({
+        error: 'Name, email, and message are required'
       });
     }
-    
+
     // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return res.status(400).json({ 
-        error: 'Please provide a valid email address' 
+      return res.status(400).json({
+        error: 'Please provide a valid email address'
       });
     }
-    
-    // Insert lead into Supabase
-    const { data, error } = await supabase
-      .from('leads')
-      .insert([
-        {
-          email,
-          name,
-          company: company || '',
-          message,
-          source: 'contact_form',
-          status: 'new'
-        }
-      ])
-      .select();
-    
-    if (error) {
-      console.error('Supabase error:', error);
-      return res.status(500).json({ 
-        error: 'Failed to save your message. Please try again.' 
-      });
-    }
-    
-    console.log('New contact form submission saved to Supabase:', { name, email, company });
-    
-    // Send notification email (don't wait for it to complete)
-    sendLeadNotificationEmail({ name, email, company, message });
-    
-    res.status(201).json({ 
-      success: true, 
-      message: 'Thank you for your message! We\'ll get back to you within 24 hours.' 
+
+    // Send notification email
+    await sendLeadNotificationEmail({ name, email, company, message });
+
+    console.log('New contact form submission:', { name, email, company });
+
+    res.status(201).json({
+      success: true,
+      message: 'Thank you for your message! We\'ll get back to you within 24 hours.'
     });
   } catch (error) {
     console.error('Error processing contact form:', error);
-    res.status(500).json({ 
-      error: 'Something went wrong. Please try again or email us directly.' 
+    res.status(500).json({
+      error: 'Something went wrong. Please try again or email us directly.'
     });
   }
 });
@@ -397,7 +293,6 @@ app.post('/api/contact', async (req, res) => {
 // FAQ endpoints
 app.get('/api/faqs', async (req, res) => {
   try {
-    // In a real implementation, this would come from a database
     const faqs = [
       {
         id: '1',
@@ -425,7 +320,7 @@ app.get('/api/faqs', async (req, res) => {
         answer: "You can get started by scheduling a free consultation through our contact form, or by initiating a chat with us right here. We'll discuss your needs and recommend the best approach for your business."
       }
     ];
-    
+
     res.json(faqs);
   } catch (error) {
     console.error('Error fetching FAQs:', error);
@@ -433,9 +328,13 @@ app.get('/api/faqs', async (req, res) => {
   }
 });
 
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
 // Start server
-testSupabaseConnection().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
+app.listen(PORT, () => {
+  console.log(`✅ Server running on port ${PORT}`);
+  console.log(`📧 Email notifications will be sent to: ${process.env.NOTIFICATION_EMAIL || 'christopher.collins.ds@gmail.com'}`);
 });

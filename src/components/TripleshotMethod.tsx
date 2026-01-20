@@ -51,10 +51,16 @@ export default function TripleshotMethod() {
 
   return (
     <section className="py-24 bg-white relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-10 left-1/4 w-64 h-64 bg-brand-primary rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-brand-accent rounded-full blur-3xl animate-pulse delay-1000"></div>
+      {/* Background elements - using radial gradients instead of blur for performance */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <div
+          className="absolute top-10 left-1/4 w-64 h-64"
+          style={{ background: 'radial-gradient(circle, var(--color-brand-primary, #00D4FF) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute bottom-10 right-1/4 w-80 h-80"
+          style={{ background: 'radial-gradient(circle, var(--color-brand-accent, #8B5CF6) 0%, transparent 70%)' }}
+        />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

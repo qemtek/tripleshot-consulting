@@ -51,10 +51,16 @@ const Footer = () => {
 
   return (
     <footer className="relative bg-gray-900 pt-12 pb-6 overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0">
-        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-purple/5 rounded-full blur-3xl" />
+      {/* Background effects - using radial gradients instead of blur for performance */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute bottom-0 left-1/4 w-[500px] h-[500px]"
+          style={{ background: 'radial-gradient(circle, rgba(0, 212, 255, 0.05) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute top-0 right-1/4 w-[400px] h-[400px]"
+          style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.05) 0%, transparent 70%)' }}
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

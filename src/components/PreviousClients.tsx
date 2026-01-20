@@ -36,7 +36,7 @@ export default function PreviousClients() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
           ref={elementRef}
-          className={`text-center transition-all duration-700 ${
+          className={`text-center transition-[opacity,transform] duration-700 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
@@ -58,6 +58,8 @@ export default function PreviousClients() {
                         <img
                           src={client.logo}
                           alt={client.name}
+                          width={200}
+                          height={80}
                           loading="lazy"
                           className="h-16 md:h-20 max-w-md mx-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
                         />
@@ -77,10 +79,10 @@ export default function PreviousClients() {
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
+                  className={`h-2 w-2 rounded-full transition-transform duration-300 ${
                     index === currentIndex
-                      ? 'w-8 bg-accent'
-                      : 'w-2 bg-gray-300 hover:bg-gray-400'
+                      ? 'bg-accent scale-x-[4]'
+                      : 'bg-gray-300 hover:bg-gray-400 scale-x-100'
                   }`}
                   aria-label={`View client ${index + 1}`}
                 />

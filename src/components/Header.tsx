@@ -38,7 +38,7 @@ const Header: React.FC = () => {
     <header
       className={`fixed w-full z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/90 backdrop-blur-lg border-b border-gray-200 shadow-sm'
+          ? 'bg-white border-b border-gray-200 shadow-sm'
           : 'bg-transparent'
       }`}
     >
@@ -50,7 +50,9 @@ const Header: React.FC = () => {
               <img
                 src="/images/new_tripleshot.svg"
                 alt="Tripleshot"
-                className="h-8 transition-opacity duration-200 group-hover:opacity-80"
+                width={180}
+                height={32}
+                className="h-8 w-auto transition-opacity duration-200 group-hover:opacity-80"
               />
             </Link>
           </div>

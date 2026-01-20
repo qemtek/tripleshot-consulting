@@ -82,9 +82,15 @@ export default function GradientTransition({
               }}
             />
 
-            {/* Subtle blur accents */}
-            <div className="absolute top-1/2 left-1/4 w-64 h-64 -translate-x-1/2 -translate-y-1/2 bg-accent/10 rounded-full blur-3xl" />
-            <div className="absolute top-1/2 right-1/4 w-48 h-48 translate-x-1/2 -translate-y-1/2 bg-purple/10 rounded-full blur-3xl" />
+            {/* Subtle radial accents - using gradients instead of blur for performance */}
+            <div
+              className="absolute top-1/2 left-1/4 w-64 h-64 -translate-x-1/2 -translate-y-1/2"
+              style={{ background: 'radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%)' }}
+            />
+            <div
+              className="absolute top-1/2 right-1/4 w-48 h-48 translate-x-1/2 -translate-y-1/2"
+              style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)' }}
+            />
           </div>
         );
 
@@ -99,15 +105,18 @@ export default function GradientTransition({
               }}
             />
 
-            {/* Animated gradient blobs */}
-            <div className="gradient-blob gradient-blob-cyan gradient-blob-animated w-96 h-96 top-0 left-1/4" />
+            {/* Static gradient accents - removed expensive blur animations for performance */}
             <div
-              className="gradient-blob gradient-blob-purple gradient-blob-animated w-64 h-64 top-1/2 right-1/4"
-              style={{ animationDelay: '5s' }}
+              className="absolute w-96 h-96 top-0 left-1/4"
+              style={{ background: 'radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%)' }}
             />
             <div
-              className="gradient-blob gradient-blob-emerald gradient-blob-animated w-48 h-48 bottom-0 left-1/2"
-              style={{ animationDelay: '10s' }}
+              className="absolute w-64 h-64 top-1/2 right-1/4"
+              style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%)' }}
+            />
+            <div
+              className="absolute w-48 h-48 bottom-0 left-1/2"
+              style={{ background: 'radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%)' }}
             />
           </div>
         );

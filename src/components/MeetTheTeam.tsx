@@ -22,15 +22,15 @@ const teamMembers = [
 const colorConfig = {
   cyan: {
     textColor: 'text-accent',
-    glowClass: 'glow-pulse-cyan',
+    shadowColor: 'shadow-[0_0_30px_rgba(0,212,255,0.3)]',
   },
   purple: {
     textColor: 'text-purple',
-    glowClass: 'glow-pulse-purple',
+    shadowColor: 'shadow-[0_0_30px_rgba(139,92,246,0.3)]',
   },
   emerald: {
     textColor: 'text-emerald',
-    glowClass: 'glow-pulse-emerald',
+    shadowColor: 'shadow-[0_0_30px_rgba(16,185,129,0.3)]',
   },
 };
 
@@ -39,11 +39,20 @@ export default function MeetTheTeam() {
 
   return (
     <section className="py-20 bg-white relative overflow-hidden">
-      {/* Background effects */}
+      {/* Background effects - using radial gradients instead of blur for performance */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-emerald/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-purple/20 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-3xl" />
+        <div
+          className="absolute top-1/4 left-0 w-[500px] h-[500px]"
+          style={{ background: 'radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute bottom-1/4 right-0 w-[500px] h-[500px]"
+          style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px]"
+          style={{ background: 'radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%)' }}
+        />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -95,10 +104,12 @@ export default function MeetTheTeam() {
               >
                 {/* Large photo with glow effect */}
                 <div className="relative mb-8">
-                  <div className={`relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden ${config.glowClass}`}>
+                  <div className={`relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden ${config.shadowColor}`}>
                     <img
                       src={member.image}
                       alt={member.name}
+                      width={384}
+                      height={384}
                       className="w-full h-full object-cover"
                     />
                   </div>

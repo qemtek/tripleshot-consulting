@@ -44,10 +44,16 @@ export default function GetInTouch() {
 
   return (
     <section id="contact" className="py-24 md:py-32 bg-dark-900 relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[400px] h-[400px] bg-purple/5 rounded-full blur-3xl" />
+      {/* Background effects - using radial gradients instead of blur for performance */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px]"
+          style={{ background: 'radial-gradient(circle, rgba(0, 212, 255, 0.05) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[400px] h-[400px]"
+          style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.05) 0%, transparent 70%)' }}
+        />
       </div>
 
       {/* Top border */}

@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { Code, Zap, Lightbulb, ArrowRight, Smartphone, Globe, Database, TrendingUp, Cog, BarChart3, Brain, Microscope } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import Button from './ui/Button';
-import { useRef, useState, useEffect } from 'react';
 
 interface PillarSectionProps {
   title: string;
@@ -18,76 +17,18 @@ interface FeatureTileProps {
   feature: { icon: React.ElementType; label: string; description: string };
   index: number;
   config: any;
+  isVisible: boolean;
 }
 
-function FeatureTile({ feature, index, config }: FeatureTileProps) {
-  const tileRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    let ticking = false;
-
-    const calculateProgress = () => {
-      if (!tileRef.current) return;
-
-      const rect = tileRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const elementHeight = rect.height;
-
-      // Start early and finish well before reading position
-      const start = windowHeight * 1.2;
-      const end = windowHeight * 0.55;
-
-      const elementCenter = rect.top + elementHeight / 2;
-
-      // Calculate base progress
-      let baseProgress = 0;
-      if (elementCenter > start) {
-        baseProgress = 0;
-      } else if (elementCenter < end) {
-        baseProgress = 1;
-      } else {
-        baseProgress = (start - elementCenter) / (start - end);
-      }
-
-      // Add stagger delay based on index (each tile starts animating slightly later)
-      const staggerDelay = 0.06 * index; // 6% delay per tile
-      const adjustedProgress = Math.max(0, Math.min(1, (baseProgress - staggerDelay) / (1 - staggerDelay * 0.5)));
-
-      setProgress(adjustedProgress);
-      ticking = false;
-    };
-
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(calculateProgress);
-        ticking = true;
-      }
-    };
-
-    calculateProgress();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', calculateProgress);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', calculateProgress);
-    };
-  }, [index]);
-
-  // Only fade in, no movement
-  const opacity = progress;
-
+function FeatureTile({ feature, index, config, isVisible }: FeatureTileProps) {
   const FeatureIcon = feature.icon;
 
   return (
     <div
-      ref={tileRef}
-      className={`group p-6 rounded-2xl bg-gradient-to-br ${config.gradientFrom} ${config.gradientTo} border ${config.borderColor} backdrop-blur-sm transition-[transform] duration-300 hover:scale-105`}
-      style={{
-        opacity: opacity,
-        transition: 'opacity 0.1s ease-out',
-      }}
+      className={`group p-6 rounded-2xl bg-gradient-to-br ${config.gradientFrom} ${config.gradientTo} border ${config.borderColor} transition-[opacity,transform] duration-700 hover:scale-105 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+      }`}
+      style={{ transitionDelay: `${index * 100}ms` }}
     >
       <div className="flex items-start gap-4">
         <div className={`flex-shrink-0 p-3 rounded-xl ${config.iconBg}`}>
@@ -107,8 +48,7 @@ function FeatureTile({ feature, index, config }: FeatureTileProps) {
 }
 
 function PillarSection({ title, subtitle, description, detailedDescription, icon: Icon, features, color }: PillarSectionProps) {
-  const leftContentRef = useRef<HTMLDivElement>(null);
-  const [leftProgress, setLeftProgress] = useState(0);
+  const { elementRef, isVisible } = useScrollAnimation();
 
   const colorConfig = {
     cyan: {
@@ -118,11 +58,12 @@ function PillarSection({ title, subtitle, description, detailedDescription, icon
       accentColor: 'text-accent',
       gradientFrom: 'from-accent/20',
       gradientTo: 'to-accent/5',
-      blobColor: 'bg-accent/10',
       borderColor: 'border-accent/20',
       textPrimary: 'text-text-primary',
       textSecondary: 'text-text-secondary',
       textMuted: 'text-text-muted',
+      gradientBg: 'radial-gradient(ellipse at 30% 40%, rgba(0, 212, 255, 0.08) 0%, transparent 60%)',
+      blobBg: 'radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%)',
     },
     purple: {
       bg: 'bg-dark-800',
@@ -131,11 +72,12 @@ function PillarSection({ title, subtitle, description, detailedDescription, icon
       accentColor: 'text-purple',
       gradientFrom: 'from-purple/20',
       gradientTo: 'to-purple/5',
-      blobColor: 'bg-purple/10',
       borderColor: 'border-purple/20',
       textPrimary: 'text-text-primary',
       textSecondary: 'text-text-secondary',
       textMuted: 'text-text-muted',
+      gradientBg: 'radial-gradient(ellipse at 70% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 60%)',
+      blobBg: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)',
     },
     emerald: {
       bg: 'bg-dark-900',
@@ -144,117 +86,56 @@ function PillarSection({ title, subtitle, description, detailedDescription, icon
       accentColor: 'text-emerald',
       gradientFrom: 'from-emerald/20',
       gradientTo: 'to-emerald/5',
-      blobColor: 'bg-emerald/10',
       borderColor: 'border-emerald/20',
       textPrimary: 'text-text-primary',
       textSecondary: 'text-text-secondary',
       textMuted: 'text-text-muted',
+      gradientBg: 'radial-gradient(ellipse at 50% 40%, rgba(16, 185, 129, 0.08) 0%, transparent 60%)',
+      blobBg: 'radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%)',
     },
   };
 
   const config = colorConfig[color];
 
-  // Left side content animation - moves UP as user scrolls
-  useEffect(() => {
-    let ticking = false;
-
-    const calculateProgress = () => {
-      if (!leftContentRef.current) return;
-
-      const rect = leftContentRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const elementHeight = rect.height;
-
-      // Match the tile animation timing
-      const start = windowHeight * 1.0; // Start when entering viewport
-      const end = windowHeight * 0.6; // Finish at same point as tiles
-
-      const elementCenter = rect.top + elementHeight / 2;
-
-      // Calculate progress
-      let progress = 0;
-      if (elementCenter > start) {
-        progress = 0;
-      } else if (elementCenter < end) {
-        progress = 1;
-      } else {
-        progress = (start - elementCenter) / (start - end);
-      }
-
-      setLeftProgress(progress);
-      ticking = false;
-    };
-
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(calculateProgress);
-        ticking = true;
-      }
-    };
-
-    calculateProgress();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', calculateProgress);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', calculateProgress);
-    };
-  }, []);
-
-  // Calculate transform for left content - moves UP (opposite of tiles)
-  const leftTranslateY = 100 * (1 - leftProgress); // Starts 100px below, moves up
-  const leftOpacity = leftProgress;
-
   return (
     <section className={`relative py-24 md:py-32 lg:py-40 ${config.bg} overflow-hidden`}>
-      {/* Subtle color gradient overlay for personality */}
+      {/* Subtle color gradient overlay */}
       <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute inset-0"
-          style={{
-            background: color === 'cyan'
-              ? 'radial-gradient(ellipse at 30% 40%, rgba(0, 212, 255, 0.08) 0%, transparent 60%)'
-              : color === 'purple'
-              ? 'radial-gradient(ellipse at 70% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 60%)'
-              : 'radial-gradient(ellipse at 50% 40%, rgba(16, 185, 129, 0.08) 0%, transparent 60%)'
-          }}
-        />
+        <div className="absolute inset-0" style={{ background: config.gradientBg }} />
       </div>
 
       {/* Decorative gradient blobs */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className={`absolute top-1/4 -left-1/4 w-[600px] h-[600px] rounded-full ${config.blobColor} blur-3xl opacity-40`} />
-        <div className={`absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] rounded-full ${config.blobColor} blur-3xl opacity-30`} />
+        <div
+          className="absolute top-1/4 -left-1/4 w-[600px] h-[600px]"
+          style={{ background: config.blobBg, opacity: 0.4 }}
+        />
+        <div
+          className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px]"
+          style={{ background: config.blobBg, opacity: 0.3 }}
+        />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div ref={elementRef} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left column: Title and description */}
           <div
-            ref={leftContentRef}
-            style={{
-              transform: `translateY(${leftTranslateY}px)`,
-              opacity: leftOpacity,
-              transition: 'transform 0.1s ease-out, opacity 0.1s ease-out',
-            }}
+            className={`transition-[opacity,transform] duration-700 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
           >
-            {/* Title */}
             <h2 className={`text-display-md md:text-display-lg lg:text-display-xl font-bold ${config.textPrimary} mb-6`}>
               {title}
             </h2>
 
-            {/* Description */}
             <p className={`text-xl md:text-2xl ${config.textSecondary} mb-6 leading-relaxed`}>
               {description}
             </p>
 
-            {/* Detailed description */}
             <p className={`text-lg ${config.textMuted} mb-8 leading-relaxed`}>
               {detailedDescription}
             </p>
 
-            {/* CTA */}
             <Link to="/contact">
               <Button variant="gradient" size="lg" className="group">
                 Let's talk about your project
@@ -264,17 +145,16 @@ function PillarSection({ title, subtitle, description, detailedDescription, icon
           </div>
 
           {/* Right column: Features */}
-          <div>
-            <div className="space-y-6">
-              {features.map((feature, index) => (
-                <FeatureTile
-                  key={index}
-                  feature={feature}
-                  index={index}
-                  config={config}
-                />
-              ))}
-            </div>
+          <div className="space-y-6">
+            {features.map((feature, index) => (
+              <FeatureTile
+                key={index}
+                feature={feature}
+                index={index}
+                config={config}
+                isVisible={isVisible}
+              />
+            ))}
           </div>
         </div>
       </div>

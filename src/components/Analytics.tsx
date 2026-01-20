@@ -19,29 +19,41 @@ export default function Analytics({ trackingId = GA_TRACKING_ID }: AnalyticsProp
       return;
     }
 
-    // Load gtag script
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${trackingId}`;
-    document.head.appendChild(script);
+    // Defer analytics loading until the page is idle to avoid blocking the main thread
+    const loadAnalytics = () => {
+      // Load gtag script
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${trackingId}`;
+      document.head.appendChild(script);
 
-    // Initialize gtag
-    window.dataLayer = window.dataLayer || [];
-    function gtag(...args: any[]) {
-      window.dataLayer.push(args);
+      // Initialize gtag
+      window.dataLayer = window.dataLayer || [];
+      function gtag(...args: any[]) {
+        window.dataLayer.push(args);
+      }
+
+      gtag('js', new Date());
+      gtag('config', trackingId, {
+        page_title: document.title,
+        page_location: window.location.href,
+      });
+
+      // Make gtag available globally
+      (window as any).gtag = gtag;
+    };
+
+    // Use requestIdleCallback if available, otherwise delay by 3 seconds
+    let timeoutId: number;
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(loadAnalytics, { timeout: 5000 });
+    } else {
+      timeoutId = window.setTimeout(loadAnalytics, 3000);
     }
-    
-    gtag('js', new Date());
-    gtag('config', trackingId, {
-      page_title: document.title,
-      page_location: window.location.href,
-    });
-
-    // Make gtag available globally
-    (window as any).gtag = gtag;
 
     return () => {
-      // Cleanup script if component unmounts
+      // Cleanup
+      if (timeoutId) window.clearTimeout(timeoutId);
       const scripts = document.querySelectorAll(`script[src*="${trackingId}"]`);
       scripts.forEach(script => script.remove());
     };

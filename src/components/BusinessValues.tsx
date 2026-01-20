@@ -7,10 +7,16 @@ export default function BusinessValues() {
 
   return (
     <section className="py-16 bg-white relative overflow-hidden">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-brand-secondary rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-40 h-40 bg-brand-primary rounded-full blur-3xl"></div>
+      {/* Subtle background pattern - using radial gradients instead of blur for performance */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <div
+          className="absolute top-10 left-10 w-32 h-32"
+          style={{ background: 'radial-gradient(circle, var(--color-brand-secondary, #10B981) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute bottom-10 right-10 w-40 h-40"
+          style={{ background: 'radial-gradient(circle, var(--color-brand-primary, #00D4FF) 0%, transparent 70%)' }}
+        />
       </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -28,14 +28,15 @@ function ScrollToTop() {
 }
 
 export default function App() {
-  usePerformanceMonitor();
-  useWebVitals({ 
-    debug: process.env.NODE_ENV === 'development',
-    reportAllChanges: true 
+  // Disabled in dev for performance - these add overhead
+  // usePerformanceMonitor();
+  useWebVitals({
+    debug: false,
+    reportAllChanges: false
   });
   
   return (
-    <Router>
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <HelmetProvider>
         <ScrollToTop />
         <SEOHead />

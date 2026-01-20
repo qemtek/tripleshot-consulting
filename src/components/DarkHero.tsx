@@ -5,11 +5,20 @@ import Button from './ui/Button';
 export default function DarkHero() {
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-dark-900">
-      {/* Gradient background effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-1/2 -right-1/4 w-[800px] h-[800px] rounded-full bg-accent/10 blur-3xl" />
-        <div className="absolute -bottom-1/2 -left-1/4 w-[600px] h-[600px] rounded-full bg-purple/10 blur-3xl" />
-        <div className="absolute top-1/4 left-1/2 w-[400px] h-[400px] rounded-full bg-emerald/5 blur-3xl" />
+      {/* Gradient background effects - using radial gradients instead of blur for performance */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          className="absolute -top-1/2 -right-1/4 w-[800px] h-[800px]"
+          style={{ background: 'radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute -bottom-1/2 -left-1/4 w-[600px] h-[600px]"
+          style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute top-1/4 left-1/2 w-[400px] h-[400px]"
+          style={{ background: 'radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, transparent 70%)' }}
+        />
       </div>
 
       {/* Grid pattern overlay */}

@@ -34,11 +34,20 @@ export default function WorkShowcase() {
 
   return (
     <section className="relative bg-white overflow-x-clip">
-      {/* Background gradient effects */}
+      {/* Background gradient effects - using radial gradients instead of blur for performance */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-purple/5 rounded-full blur-3xl" />
-        <div className="absolute top-2/3 left-1/2 w-[400px] h-[400px] bg-emerald/5 rounded-full blur-3xl" />
+        <div
+          className="absolute top-1/4 left-1/4 w-[600px] h-[600px]"
+          style={{ background: 'radial-gradient(circle, rgba(0, 212, 255, 0.05) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px]"
+          style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.05) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute top-2/3 left-1/2 w-[400px] h-[400px]"
+          style={{ background: 'radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, transparent 70%)' }}
+        />
       </div>
 
       {/* Section Header */}
@@ -46,7 +55,7 @@ export default function WorkShowcase() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             ref={elementRef}
-            className={`text-center transition-all duration-1000 ${
+            className={`text-center transition-[opacity,transform] duration-1000 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >

@@ -25,12 +25,12 @@ function Stat({ value, suffix, label, color, isVisible, delay = 0 }: StatProps) 
     multi: 'from-accent/15 via-purple/15 to-emerald/10',
   };
 
-  // Color-specific blob classes
-  const blobColorMap = {
-    cyan: 'gradient-blob-cyan',
-    purple: 'gradient-blob-purple',
-    emerald: 'gradient-blob-emerald',
-    multi: 'gradient-blob-cyan',
+  // Color-specific radial gradient backgrounds (replacing expensive blur blobs)
+  const blobGradientMap = {
+    cyan: 'radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%)',
+    purple: 'radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%)',
+    emerald: 'radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%)',
+    multi: 'radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%)',
   };
 
   // Color-specific glow effects
@@ -50,8 +50,11 @@ function Stat({ value, suffix, label, color, isVisible, delay = 0 }: StatProps) 
         transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
       }}
     >
-      {/* Animated gradient blob background */}
-      <div className={`gradient-blob ${blobColorMap[color]} gradient-blob-animated w-64 h-64 -top-8 -left-8`} />
+      {/* Gradient blob background - static radial gradient for performance */}
+      <div
+        className="absolute w-64 h-64 -top-8 -left-8 pointer-events-none"
+        style={{ background: blobGradientMap[color] }}
+      />
 
       {/* Stat content */}
       <div className="relative z-10 text-center">
@@ -76,11 +79,20 @@ export default function BigNumbers() {
 
   return (
     <section className="relative py-20 md:py-28 bg-dark-900 overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-accent/5 blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-purple/5 blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-emerald/5 blur-3xl" />
+      {/* Decorative background elements - using radial gradients instead of blur for performance */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-1/4 left-1/4 w-96 h-96"
+          style={{ background: 'radial-gradient(circle, rgba(0, 212, 255, 0.05) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute bottom-1/4 right-1/4 w-96 h-96"
+          style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.05) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96"
+          style={{ background: 'radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, transparent 70%)' }}
+        />
       </div>
 
       {/* Border lines */}

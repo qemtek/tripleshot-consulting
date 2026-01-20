@@ -38,7 +38,6 @@
 
   html {
     @apply bg-white text-gray-900 antialiased;
-    scroll-behavior: smooth;
   }
 
   body {
@@ -163,13 +162,11 @@
     animation: gradientShift 15s ease infinite;
   }
 
-  /* Gradient blob utilities */
+  /* Gradient blob utilities - optimized for performance (no blur filter) */
   .gradient-blob {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
     opacity: 0.6;
-    animation: float 8s ease-in-out infinite;
     pointer-events: none;
   }
 
@@ -185,8 +182,9 @@
     background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, rgba(16, 185, 129, 0.05) 50%, transparent 100%);
   }
 
+  /* Removed expensive animations - static gradients are much more performant */
   .gradient-blob-animated {
-    animation: blobShift 20s ease-in-out infinite, float 8s ease-in-out infinite;
+    /* Previously had blur(80px) + float animation - removed for performance */
   }
 
   /* Section spacing */
@@ -228,34 +226,16 @@
     animation-fill-mode: both;
   }
 
-  /* Team member glow pulse animations */
+  /* Team member glow effects - static shadows instead of animations for performance */
   .glow-pulse-cyan {
-    animation: glowPulseCyan 3s ease-in-out infinite;
-    will-change: box-shadow;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
   }
 
   .glow-pulse-purple {
-    animation: glowPulsePurple 3s ease-in-out infinite;
-    will-change: box-shadow;
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
   }
 
   .glow-pulse-emerald {
-    animation: glowPulseEmerald 3s ease-in-out infinite;
-    will-change: box-shadow;
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
   }
-}
-
-@keyframes glowPulseCyan {
-  0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
-  50% { box-shadow: 0 0 50px rgba(0, 212, 255, 0.5); }
-}
-
-@keyframes glowPulsePurple {
-  0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
-  50% { box-shadow: 0 0 50px rgba(139, 92, 246, 0.5); }
-}
-
-@keyframes glowPulseEmerald {
-  0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
-  50% { box-shadow: 0 0 50px rgba(16, 185, 129, 0.5); }
 }

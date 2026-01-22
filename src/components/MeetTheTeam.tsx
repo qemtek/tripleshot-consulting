@@ -83,7 +83,7 @@ export default function MeetTheTeam() {
           }`}
         >
           <p className="max-w-3xl mx-auto text-gray-600 text-lg">
-            At its core are Chris and Maria, two experts in their respective fields, with almost two decades of combined experience.
+            At its core are our founders, Chris and Maria, two experts in their respective fields, with almost two decades of combined experience.
           </p>
         </div>
 

@@ -30,7 +30,12 @@
       "Bash(lsof:*)",
       "Bash(xargs:*)",
       "Bash(identify:*)",
-      "Bash(timeout 8 node:*)"
+      "Bash(timeout 8 node:*)",
+      "Bash(for hook in useCarousel useCounterAnimation useParallax usePerformanceMonitor useReducedMotion useSmoothScroll useWebVitals)",
+      "Bash(do echo \"=== $hook ===\")",
+      "Bash(done)",
+      "Bash(for util in dateUtils newsletterUtils)",
+      "Bash(do echo \"=== $util ===\")"
     ],
     "deny": [],
     "defaultMode": "acceptEdits"

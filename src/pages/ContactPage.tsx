@@ -23,13 +23,17 @@ export default function ContactPage() {
     setErrorMessage('');
 
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-      const response = await fetch(`${apiBaseUrl}/api/contact`, {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          access_key: 'a1ad025c-84b5-4670-8133-ce9b294e60fb',
+          subject: `New contact from ${formData.name} - Tripleshot`,
+          from_name: 'Tripleshot Website',
+          ...formData
+        })
       });
 
       const data = await response.json();

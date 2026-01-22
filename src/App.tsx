@@ -8,9 +8,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import LoadingSpinner from './components/ui/LoadingSpinner';
 import { useScrollToTop } from './hooks/useScrollToTop';
-import { usePerformanceMonitor } from './hooks/usePerformanceMonitor';
 import { useWebVitals } from './hooks/useWebVitals';
-import ChatbotComponent from './components/chatbot/ChatbotComponent';
 
 // Lazy load page components
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -28,8 +26,6 @@ function ScrollToTop() {
 }
 
 export default function App() {
-  // Disabled in dev for performance - these add overhead
-  // usePerformanceMonitor();
   useWebVitals({
     debug: false,
     reportAllChanges: false
@@ -57,12 +53,6 @@ export default function App() {
             </Routes>
           </Suspense>
           <Footer />
-          <ChatbotComponent 
-            initialMessage="👋 Hi there! How can I help you today?" 
-            position="bottom-right"
-            primaryColor="#00D4FF"
-            apiBaseUrl={import.meta.env.VITE_API_URL || 'http://localhost:3001'}
-          />
         </div>
       </HelmetProvider>
     </Router>

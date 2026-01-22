@@ -9,7 +9,7 @@ const contactOptions = [
     title: 'Book a Call',
     description: 'Schedule a 30-minute discovery session to discuss your project in detail',
     action: 'Choose a Time',
-    href: 'https://calendly.com/tripleshotconsultingltd/30min',
+    href: 'https://calendly.com/christopher-collins-tripleshot-solutions/30min',
     external: true,
     color: 'cyan',
   },

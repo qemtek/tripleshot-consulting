@@ -244,7 +244,7 @@ export default function ContactPage() {
           <div className="mt-12 text-center">
             <p className="text-gray-600 mb-4">Prefer to schedule a call?</p>
             <a
-              href="https://calendly.com/tripleshotconsultingltd/30min"
+              href="https://calendly.com/christopher-collins-tripleshot-solutions/30min"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-accent hover:text-accent-dark transition-colors group"
